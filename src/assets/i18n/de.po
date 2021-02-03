@@ -80,9 +80,6 @@ msgstr ""
 msgid "ACTIVATED"
 msgstr ""
 
-msgid "About {{ appName }}"
-msgstr "Über {{ appName }}"
-
 msgid "About {{appName}}"
 msgstr "Über {{appName}}"
 
@@ -1353,9 +1350,6 @@ msgid "Having problems with a ShapeShift?"
 msgstr "Haben Sie Probleme mit einem ShapeShift?"
 
 msgid "Help & Support"
-msgstr ""
-
-msgid "Help & support"
 msgstr "Hilfe & Support"
 
 msgid "Help BitPay improve"
@@ -1398,7 +1392,7 @@ msgid "How to recover your funds if you lose this device?"
 msgstr ""
 
 msgid "However, unconfirmed funds are not allowed for spending with merchants, BitPay Card loads, or BitPay in-app gift card purchases."
-msgstr ""
+msgstr "Trotzdem können unbestätigte Transaktionen nicht für den Kauf bei Händlern, BitPay Karten aufladungen oder Geschenkkartenkäufen verwendet werden."
 
 msgid "I Understand"
 msgstr ""

@@ -98,9 +98,6 @@ msgstr ""
 msgid "ACTIVATED"
 msgstr ""
 
-msgid "About {{ appName }}"
-msgstr ""
-
 msgid "About {{appName}}"
 msgstr ""
 
@@ -424,7 +421,7 @@ msgstr ""
 
 msgid ""
 "Bitcore Wallet Service is under maintenance. Please check "
-"https://status.bitpay.com/."
+"https://status.daytona.to"
 msgstr ""
 
 msgid "Broadcast Payment"
@@ -1445,9 +1442,6 @@ msgid "Having problems with a ShapeShift?"
 msgstr ""
 
 msgid "Help & Support"
-msgstr ""
-
-msgid "Help & support"
 msgstr ""
 
 msgid "Help BitPay improve"

@@ -187,7 +187,7 @@ export class PricePage {
       alternativeIsoCode
     )
       ? alternativeIsoCode
-      : 'USD';
+      : 'EUR';
     this.isFiatIsoCodeSupported = _.includes(this.fiatCodes, this.fiatIsoCode);
   }
 

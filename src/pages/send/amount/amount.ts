@@ -287,7 +287,7 @@ export class AmountPage {
       this.fiatCode =
         this.alternativeCurrency ||
         this.config.wallet.settings.alternativeIsoCode ||
-        'USD';
+        'EUR';
       fiatName = this.config.wallet.settings.alternativeName || this.fiatCode;
       this.altUnitIndex = this.availableUnits.length;
     }
@@ -736,7 +736,7 @@ export class AmountPage {
         ? this.fiatCode
         : this.isSupportedFiat(isoCode)
         ? isoCode
-        : 'USD';
+        : 'EUR';
 
     this.quoteForm = this.formBuilder.group({
       amount: [

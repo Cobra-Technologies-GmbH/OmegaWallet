@@ -71,6 +71,6 @@ describe('Replace Parameters Provider', () => {
       world: 'world!',
       appName: 'Copay'
     });
-    expect(replacedString).toEqual('Hello {{world }}. I love Copay');
+    expect(replacedString).toEqual('Hello {{world }}. I love {{ appName }}');
   });
 });

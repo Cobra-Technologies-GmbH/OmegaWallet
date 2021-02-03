@@ -88,7 +88,7 @@ export class ExchangeCheckoutPage {
     this.fixedRateId = this.navParams.data.fixedRateId;
     this.rate = this.navParams.data.rate;
     this.alternativeIsoCode =
-      this.configProvider.get().wallet.settings.alternativeIsoCode || 'USD';
+      this.configProvider.get().wallet.settings.alternativeIsoCode || 'EUR';
     this.bitcoreCash = this.bwcProvider.getBitcoreCash();
     this.termsAccepted = false;
     this.createFixTransaction();

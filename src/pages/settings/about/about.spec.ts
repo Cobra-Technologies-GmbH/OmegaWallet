@@ -41,7 +41,7 @@ describe('AboutPage', () => {
         instance.ionViewDidLoad();
 
         expect(instance.translate.instant).toHaveBeenCalledWith(
-          'About {{appName}}'
+          'About App'
         );
         expect(
           instance.replaceParametersProvider.replace

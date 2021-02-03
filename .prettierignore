@@ -4,6 +4,7 @@ package-template.json
 google-services.json
 app-template/bitpay/google-services.json
 app-template/copay/google-services.json
+app-template/omega/google-services.json
 .sourcemaps/
 coverage/
 platforms/

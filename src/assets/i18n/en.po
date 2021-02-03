@@ -135,9 +135,6 @@ msgstr ""
 msgid "ACTIVATED"
 msgstr "ACTIVATED"
 
-msgid "About {{ appName }}"
-msgstr "About {{ appName }}"
-
 msgid "About {{appName}}"
 msgstr "About {{appName}}"
 
@@ -1585,9 +1582,6 @@ msgid "Having problems with a ShapeShift?"
 msgstr "Having problems with a ShapeShift?"
 
 msgid "Help & Support"
-msgstr "Help & Support"
-
-msgid "Help & support"
 msgstr "Help & support"
 
 msgid "Help BitPay improve"

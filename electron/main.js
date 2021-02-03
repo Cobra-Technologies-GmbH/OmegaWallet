@@ -100,7 +100,7 @@ function createMenu() {
           label: 'Open Help Center',
           click() {
             require('electron').shell.openExternal(
-              'https://support.bitpay.com/hc/en-us'
+              'https://support.daytona.to/'
             );
           }
         }

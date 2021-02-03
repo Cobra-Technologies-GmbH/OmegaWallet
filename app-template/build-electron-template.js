@@ -37,7 +37,7 @@ builder
         hardenedRuntime: false,
         artifactName: '*USERVISIBLENAME*',
         darkModeSupport: true,
-        identity: 'BitPay, Inc. (884JRH5R93)',
+        identity: 'Cobra Technologies GmbH',
         provisioningProfile: './*PACKAGENAME*-embedded.provisionprofile',
         extendInfo: {
           NSCameraUsageDescription:
@@ -47,7 +47,7 @@ builder
       },
       mas: {
         artifactName: '*USERVISIBLENAME*.pkg',
-        identity: 'BitPay, Inc. (884JRH5R93)',
+        identity: 'Cobra Technologies GmbH',
         entitlements: './*PACKAGENAME*-entitlements.mas.plist',
         entitlementsInherit: 'entitlements.mas.inherit.plist'
       },
@@ -76,7 +76,7 @@ builder
       appx: {
         identityName: '*WINDOWSSTOREIDENTITYNAME*',
         publisher: 'CN=F89609D1-EB3E-45FD-A58A-C2E3895FCE7B',
-        publisherDisplayName: 'BitPay Inc.',
+        publisherDisplayName: 'Cobra Technologies GmbH',
         applicationId: '*WINDOWSAPPLICATIONID*',
         displayName: '*WINDOWSSTOREDISPLAYNAME*',
         languages: ['en-US', 'es', 'fr']
