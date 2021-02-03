@@ -6,6 +6,7 @@ import { EncryptPasswordComponent } from '../../components/encrypt-password/encr
 import { IncomingDataMenuComponent } from '../../components/incoming-data-menu/incoming-data-menu';
 import { InfoSheetComponent } from '../../components/info-sheet/info-sheet';
 import { MemoComponent } from '../../components/memo-component/memo-component';
+import { NeedsBackupComponent } from '../../components/needs-backup/needs-backup';
 import { OptionsSheetComponent } from '../../components/options-sheet/options-sheet';
 import { PhoneSheet } from '../../components/phone-sheet/phone-sheet';
 import { WalletReceiveComponent } from '../../components/wallet-receive/wallet-receive';
@@ -45,6 +46,7 @@ export type InfoSheetType =
   | 'payment-request'
   | 'payment-method-changed'
   | 'print-required'
+  | 'send-max-min-amount'
   | 'sensitive-info'
   | 'in-app-notification'
   | 'request-feature'
@@ -166,6 +168,11 @@ export class ActionSheetProvider {
       null,
       params
     ).instance;
+  }
+
+  public createNeedsBackup(): NeedsBackupComponent {
+    return this.setupSheet<NeedsBackupComponent>(NeedsBackupComponent, null)
+      .instance;
   }
 
   public createChooseFeeLevel(
