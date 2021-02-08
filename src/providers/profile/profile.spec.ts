@@ -825,7 +825,7 @@ describe('Profile Provider', () => {
         n: 1,
         myName: null,
         networkName: 'livenet',
-        bwsurl: 'https://bws.bitpay.com/bws/api',
+        bwsurl: 'https://bws.omega.eco/bws/api',
         singleAddress: false,
         coin: 'btc',
         mnemonic: 'mom mom mom mom mom mom mom mom mom mom mom mom'
@@ -849,7 +849,7 @@ describe('Profile Provider', () => {
         n: 1,
         myName: null,
         networkName: 'livenet',
-        bwsurl: 'https://bws.bitpay.com/bws/api',
+        bwsurl: 'https://bws.omega.eco/bws/api',
         singleAddress: false,
         coin: 'btc',
         extendedPrivateKey: 'extendedPrivateKey1'
@@ -873,7 +873,7 @@ describe('Profile Provider', () => {
         n: 1,
         myName: null,
         networkName: 'livenet',
-        bwsurl: 'https://bws.bitpay.com/bws/api',
+        bwsurl: 'https://bws.omega.eco/bws/api',
         singleAddress: false,
         coin: 'btc',
         extendedPublicKey: 'extendedPublicKey1'
@@ -897,7 +897,7 @@ describe('Profile Provider', () => {
         n: 1,
         myName: null,
         networkName: 'livenet',
-        bwsurl: 'https://bws.bitpay.com/bws/api',
+        bwsurl: 'https://bws.omega.eco/bws/api',
         singleAddress: false,
         coin: 'btc'
       };
@@ -1251,7 +1251,7 @@ describe('Profile Provider', () => {
         n: 1,
         myName: null,
         networkName: 'livenet',
-        bwsurl: 'https://bws.bitpay.com/bws/api',
+        bwsurl: 'https://bws.omega.eco/bws/api',
         singleAddress: false,
         coin: 'btc',
         mnemonic: 'mom mom mom mom mom mom mom mom mom mom mom mom'

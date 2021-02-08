@@ -56,7 +56,7 @@ describe('Release Provider', () => {
     });
 
     const bwsReq = httpMock.expectOne(
-      'https://bws.bitpay.com/bws/api/latest-version'
+      'https://bws.omega.eco/bws/api/latest-version'
     );
     expect(bwsReq.request.method).toEqual('GET');
     bwsReq.flush({ version: latestAppVersion });

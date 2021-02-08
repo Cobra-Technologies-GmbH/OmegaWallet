@@ -55,19 +55,19 @@ describe('RateProvider', () => {
     rate: 8427.66,
     fetchedOn: 1559315104699
   };
-  let btcUrl: string = 'https://bws.bitpay.com/bws/api/v3/fiatrates/btc';
-  let bchUrl: string = 'https://bws.bitpay.com/bws/api/v3/fiatrates/bch';
-  let ethUrl: string = 'https://bws.bitpay.com/bws/api/v3/fiatrates/eth';
-  let xrpUrl: string = 'https://bws.bitpay.com/bws/api/v3/fiatrates/xrp';
-  let paxUrl: string = 'https://bws.bitpay.com/bws/api/v3/fiatrates/pax';
-  let usdcUrl: string = 'https://bws.bitpay.com/bws/api/v3/fiatrates/usdc';
-  let gusdUrl: string = 'https://bws.bitpay.com/bws/api/v3/fiatrates/gusd';
-  let busdUrl: string = 'https://bws.bitpay.com/bws/api/v3/fiatrates/busd';
-  // let daiUrl: string = 'https://bws.bitpay.com/bws/api/v3/fiatrates/dai';
-  // let wbtcUrl: string = 'https://bws.bitpay.com/bws/api/v3/fiatrates/wbtc';
+  let btcUrl: string = 'https://bws.omega.eco/bws/api/v3/fiatrates/btc';
+  let bchUrl: string = 'https://bws.omega.eco/bws/api/v3/fiatrates/bch';
+  let ethUrl: string = 'https://bws.omega.eco/bws/api/v3/fiatrates/eth';
+  let xrpUrl: string = 'https://bws.omega.eco/bws/api/v3/fiatrates/xrp';
+  let paxUrl: string = 'https://bws.omega.eco/bws/api/v3/fiatrates/pax';
+  let usdcUrl: string = 'https://bws.omega.eco/bws/api/v3/fiatrates/usdc';
+  let gusdUrl: string = 'https://bws.omega.eco/bws/api/v3/fiatrates/gusd';
+  let busdUrl: string = 'https://bws.omega.eco/bws/api/v3/fiatrates/busd';
+  // let daiUrl: string = 'https://bws.omega.eco/bws/api/v3/fiatrates/dai';
+  // let wbtcUrl: string = 'https://bws.omega.eco/bws/api/v3/fiatrates/wbtc';
 
   let fiatRateUrl: string =
-    'https://bws.bitpay.com/bws/api/v1/fiatrates/USD?coin=btc&ts=1559315523000';
+    'https://bws.omega.eco/bws/api/v1/fiatrates/USD?coin=btc&ts=1559315523000';
 
   beforeEach(() => {
     const testBed = TestUtils.configureProviderTestingModule();

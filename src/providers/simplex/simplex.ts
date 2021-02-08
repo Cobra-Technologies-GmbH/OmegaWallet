@@ -15,7 +15,7 @@ import { PlatformProvider } from '../platform/platform';
 import { RateProvider } from '../rate/rate';
 
 const PASSTHROUGH_URI_DEV = 'https://cmgustavo.github.io/website/simplex/';
-const PASSTHROUGH_URI_PROD = 'https://bws.bitpay.com/static/simplex/';
+const PASSTHROUGH_URI_PROD = 'https://bws.omega.eco/static/simplex/';
 
 @Injectable()
 export class SimplexProvider {

@@ -100,7 +100,7 @@ function createMenu() {
           label: 'Open Help Center',
           click() {
             require('electron').shell.openExternal(
-              'https://support.daytona.to/'
+              'https://www.omega.eco/'
             );
           }
         }

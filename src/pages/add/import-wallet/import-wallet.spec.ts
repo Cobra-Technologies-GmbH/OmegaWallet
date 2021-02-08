@@ -80,7 +80,7 @@ describe('ImportWalletPage', () => {
     it('should call importBlob function if has backupText', () => {
       testBed.createComponent(ImportWalletPage);
       let info = {
-        bwsURL: 'https://bws.bitpay.com/bws/api',
+        bwsURL: 'https://bws.omega.eco/bws/api',
         words: 'mom mom mom mom mom mom mom mom mom mom mom mom',
         backupText: 'test'
       };
@@ -98,7 +98,7 @@ describe('ImportWalletPage', () => {
       testBed.createComponent(ImportWalletPage);
 
       let info = {
-        bwsURL: 'https://bws.bitpay.com/bws/api',
+        bwsURL: 'https://bws.omega.eco/bws/api',
         words: 'mom1 mom2 mom3 mom4 mom5 mom6 mom7 mom8 mom9 mom10 mom11 mom12',
         backupText: 'test'
       };

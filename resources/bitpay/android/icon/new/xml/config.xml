@@ -81,7 +81,11 @@
         BitPay Inc.
     </author>
     <content src="index.html" />
-    <access origin="https://bws.bitpay.com" />
+    <access origin="https://bws.omega.eco" />
+    <access origin="https://omega.ecp" />
+    <access origin="https://app.omega.eco" />
+    <access origin="https://www.omega.eco" />
+    <access origin="https://bws.omega.eco" />
     <access origin="https://bitpay.com" />
     <access origin="https://test.bitpay.com" />
     <access origin="https://staging.bitpay.com" />

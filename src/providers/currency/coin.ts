@@ -65,7 +65,7 @@ export const availableCoins: CoinsMap<CoinOpts> = {
     paymentInfo: {
       paymentCode: 'BIP73',
       protocolPrefix: { livenet: 'bitcoin', testnet: 'bitcoin' },
-      ratesApi: 'https://bws.bitpay.com/bws/api/v3/fiatrates/btc',
+      ratesApi: 'https://bws.omega.eco/bws/api/v3/fiatrates/btc',
       blockExplorerUrls: 'bitpay.com/insight/#/BTC/mainnet/',
       blockExplorerUrlsTestnet: 'bitpay.com/insight/#/BTC/testnet/'
     },
@@ -102,7 +102,7 @@ export const availableCoins: CoinsMap<CoinOpts> = {
     paymentInfo: {
       paymentCode: 'BIP73',
       protocolPrefix: { livenet: 'bitcoincash', testnet: 'bchtest' },
-      ratesApi: 'https://bws.bitpay.com/bws/api/v3/fiatrates/bch',
+      ratesApi: 'https://bws.omega.eco/bws/api/v3/fiatrates/bch',
       blockExplorerUrls: 'bitpay.com/insight/#/BCH/mainnet/',
       blockExplorerUrlsTestnet: 'bitpay.com/insight/#/BCH/testnet/'
     },
@@ -139,7 +139,7 @@ export const availableCoins: CoinsMap<CoinOpts> = {
     paymentInfo: {
       paymentCode: 'EIP681',
       protocolPrefix: { livenet: 'ethereum', testnet: 'ethereum' },
-      ratesApi: 'https://bws.bitpay.com/bws/api/v3/fiatrates/eth',
+      ratesApi: 'https://bws.omega.eco/bws/api/v3/fiatrates/eth',
       blockExplorerUrls: 'etherscan.io/',
       blockExplorerUrlsTestnet: 'kovan.etherscan.io/'
     },
@@ -176,7 +176,7 @@ export const availableCoins: CoinsMap<CoinOpts> = {
     paymentInfo: {
       paymentCode: 'BIP73',
       protocolPrefix: { livenet: 'ripple', testnet: 'ripple' },
-      ratesApi: 'https://bws.bitpay.com/bws/api/v3/fiatrates/xrp',
+      ratesApi: 'https://bws.omega.eco/bws/api/v3/fiatrates/xrp',
       blockExplorerUrls: 'xrpscan.com/',
       blockExplorerUrlsTestnet: 'test.bithomp.com/explorer/'
     },
@@ -213,7 +213,7 @@ export const availableCoins: CoinsMap<CoinOpts> = {
     paymentInfo: {
       paymentCode: 'EIP681b',
       protocolPrefix: { livenet: 'ethereum', testnet: 'ethereum' },
-      ratesApi: 'https://bws.bitpay.com/bws/api/v3/fiatrates/busd',
+      ratesApi: 'https://bws.omega.eco/bws/api/v3/fiatrates/busd',
       blockExplorerUrls: 'etherscan.io/',
       blockExplorerUrlsTestnet: 'kovan.etherscan.io/'
     },
@@ -250,7 +250,7 @@ export const availableCoins: CoinsMap<CoinOpts> = {
     paymentInfo: {
       paymentCode: 'EIP681b',
       protocolPrefix: { livenet: 'ethereum', testnet: 'ethereum' },
-      ratesApi: 'https://bws.bitpay.com/bws/api/v3/fiatrates/pax',
+      ratesApi: 'https://bws.omega.eco/bws/api/v3/fiatrates/pax',
       blockExplorerUrls: 'etherscan.io/',
       blockExplorerUrlsTestnet: 'kovan.etherscan.io/'
     },
@@ -287,7 +287,7 @@ export const availableCoins: CoinsMap<CoinOpts> = {
     paymentInfo: {
       paymentCode: 'EIP681b',
       protocolPrefix: { livenet: 'ethereum', testnet: 'ethereum' },
-      ratesApi: 'https://bws.bitpay.com/bws/api/v3/fiatrates/usdc',
+      ratesApi: 'https://bws.omega.eco/bws/api/v3/fiatrates/usdc',
       blockExplorerUrls: 'etherscan.io/',
       blockExplorerUrlsTestnet: 'kovan.etherscan.io/'
     },
@@ -324,7 +324,7 @@ export const availableCoins: CoinsMap<CoinOpts> = {
     paymentInfo: {
       paymentCode: 'EIP681b',
       protocolPrefix: { livenet: 'ethereum', testnet: 'ethereum' },
-      ratesApi: 'https://bws.bitpay.com/bws/api/v3/fiatrates/gusd',
+      ratesApi: 'https://bws.omega.eco/bws/api/v3/fiatrates/gusd',
       blockExplorerUrls: 'etherscan.io/',
       blockExplorerUrlsTestnet: 'kovan.etherscan.io/'
     },
@@ -361,7 +361,7 @@ export const availableCoins: CoinsMap<CoinOpts> = {
     paymentInfo: {
       paymentCode: 'EIP681b',
       protocolPrefix: { livenet: 'ethereum', testnet: 'ethereum' },
-      ratesApi: 'https://bws.bitpay.com/bws/api/v3/fiatrates/gusd',
+      ratesApi: 'https://bws.omega.eco/bws/api/v3/fiatrates/gusd',
       blockExplorerUrls: 'etherscan.io/',
       blockExplorerUrlsTestnet: 'kovan.etherscan.io/'
     },
@@ -398,7 +398,7 @@ export const availableCoins: CoinsMap<CoinOpts> = {
     paymentInfo: {
       paymentCode: 'EIP681b',
       protocolPrefix: { livenet: 'ethereum', testnet: 'ethereum' },
-      ratesApi: 'https://bws.bitpay.com/bws/api/v3/fiatrates/btc',
+      ratesApi: 'https://bws.omega.eco/bws/api/v3/fiatrates/btc',
       blockExplorerUrls: 'etherscan.io/',
       blockExplorerUrlsTestnet: 'kovan.etherscan.io/'
     },

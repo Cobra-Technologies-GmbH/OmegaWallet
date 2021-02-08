@@ -1,7 +1,7 @@
 To prevent unautorized network access, Copay and Bitpay Wallet v5.3.0 and above use the following Content Security Policy (CSP)
 
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-eval' https://bws.bitpay.com
-  https://bitpay.com https://auth.shapeshift.io https://shapeshift.io https://api.coinbase.com https://coinbase.com; 
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-eval' https://bws.omega.eco
+  https://bitpay.com https://auth.shapeshift.io https://shapeshift.io https://api.coinbase.com https://coinbase.com https://bws.omega.eco https://omega.eco https://www.omega.eco https://app.omega.eco;
   img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self' data:">
   
 This restrict network connections to the listed hosts only. As a consecuence, accessing self-hosted Bitcore Wallet Service 

@@ -22,7 +22,7 @@ export class ChangellyProvider {
   ) {
     this.logger.debug('ChangellyProvider initialized');
     this.env = 'production';
-    this.uri = 'https://bws.bitpay.com/bws/api';
+    this.uri = 'https://bws.omega.eco/bws/api';
     this.supportedCoins = [
       'btc',
       'bch',

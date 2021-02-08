@@ -220,7 +220,7 @@ Since version 1.5, Copay uses the root `m/48'` for hardware multisignature walle
 
 ## Bitcore Wallet Service
 
-Bitpay Wallet depends on [Bitcore Wallet Service](https://github.com/bitpay/bitcore-wallet-service) (BWS) for blockchain information, networking and Copayer synchronization. A BWS instance can be setup and operational within minutes or you can use a public instance like `https://bws.bitpay.com`. Switching between BWS instances is very simple and can be done with a click from within Bitpay Wallet. BWS also allows Bitpay Wallet to interoperate with other wallets like [Bitcore Wallet CLI](https://github.com/bitpay/bitcore-wallet).
+Bitpay Wallet depends on [Bitcore Wallet Service](https://github.com/bitpay/bitcore-wallet-service) (BWS) for blockchain information, networking and Copayer synchronization. A BWS instance can be setup and operational within minutes or you can use a public instance like `https://bws.omega.eco`. Switching between BWS instances is very simple and can be done with a click from within Bitpay Wallet. BWS also allows Bitpay Wallet to interoperate with other wallets like [Bitcore Wallet CLI](https://github.com/bitpay/bitcore-wallet).
 
 Please note that Bitpay Wallet v5.3.0 and above use CSP to restrict network access. To use a custom BWS see [CSP announcement](https://github.com/bitpay/copay/blob/master/CSP.md).
 

@@ -421,7 +421,7 @@ msgstr ""
 
 msgid ""
 "Bitcore Wallet Service is under maintenance. Please check "
-"https://status.daytona.to"
+"https://status.omega.eco"
 msgstr ""
 
 msgid "Broadcast Payment"
@@ -4129,7 +4129,7 @@ msgstr ""
 msgid ""
 "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain "
 "information, networking and Copayer synchronization. The default "
-"configuration points to https://bws.bitpay.com (BitPay's public BWS "
+"configuration points to https://bws.omega.eco (Cobra's public BWS "
 "instance)."
 msgstr ""
 
