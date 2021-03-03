@@ -71,9 +71,9 @@ export class BitPayIdPage {
   disconnectBitPayID() {
     this.popupProvider
       .ionicConfirm(
-        this.translate.instant('Disconnect BitPay ID'),
+        this.translate.instant('Disconnect Omega ID'),
         this.translate.instant(
-          'Are you sure you would like to disconnect your BitPay ID?'
+          'Are you sure you would like to disconnect your Omega ID?'
         )
       )
       .then(res => {
@@ -83,9 +83,9 @@ export class BitPayIdPage {
               const infoSheet = this.actionSheetProvider.createInfoSheet(
                 'in-app-notification',
                 {
-                  title: 'BitPay ID',
+                  title: 'Omega ID',
                   body: this.translate.instant(
-                    'BitPay ID successfully disconnected.'
+                    'Omega ID successfully disconnected.'
                   )
                 }
               );

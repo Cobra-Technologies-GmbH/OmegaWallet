@@ -80,6 +80,77 @@
         </label-tip>
       </div>
 
+      <div *ngIf="coin === 'eur'">
+        <ion-item>
+          <ion-label floating>{{'Your first name' | translate}}</ion-label>
+          <ion-input type="text" formControlName="fiatFirstName"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>{{'Your middle name' | translate}}</ion-label>
+          <ion-input type="text" formControlName="fiatMiddleName"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>{{'Your last name' | translate}}</ion-label>
+          <ion-input type="text" formControlName="fiatLastName"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>{{'Your date of birth' | translate}}</ion-label>
+          <!-- <ion-input type="text" formControlName="fiatDateOfBirth" readonly="true" onfocus="this.removeAttribute('readonly');this.type='date';this.setAttribute('onfocus','');this.blur();this.focus();" onblur="(this.type='text');this.setAttribute('readonly','true');"></ion-input> -->
+          <ion-input type="text" formControlName="fiatDateOfBirth" readonly="true" (ionFocus)="onFocusDate($event)" (ionBlur)="onBlurDate($event)"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>{{'Your country' | translate}}</ion-label>
+          <ion-select formControlName="fiatCountry">
+            <ion-option value="AT">Austria</ion-option>
+            <ion-option value="DE">Germany</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>{{'Your postal code' | translate}}</ion-label>
+          <ion-input type="text" formControlName="fiatPostalCode"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>{{'Your city' | translate}}</ion-label>
+          <ion-input type="text" formControlName="fiatCity"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>{{'Your street' | translate}}</ion-label>
+          <ion-input type="text" formControlName="fiatStreet"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>{{'Your house number' | translate}}</ion-label>
+          <ion-input type="text" formControlName="fiatHouseNumber"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>{{'Your document type' | translate}}</ion-label>
+          <ion-select formControlName="fiatDocumentType">
+            <ion-option value="passport">Passport</ion-option>
+            <ion-option value="driving-licence">Driving licence</ion-option>
+            <ion-option value="residency-permit">Residency Permit</ion-option>
+            <ion-option value="identity-card">Identity card</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>{{'Your document issue date' | translate}}</ion-label>
+          <ion-input type="text" formControlName="fiatDocumentIssueDate" readonly="true" (ionFocus)="onFocusDate($event)" (ionBlur)="onBlurDate($event)"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>{{'Your document number' | translate}}</ion-label>
+          <ion-input type="text" formControlName="fiatDocumentNumber"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>{{'Your country of residence' | translate}}</ion-label>
+          <ion-select formControlName="fiatCountryResidence">
+            <ion-option value="AUT">Austria</ion-option>
+            <ion-option value="GER">Germany</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>{{'Your email' | translate}}</ion-label>
+          <ion-input type="email" formControlName="fiatEmail"></ion-input>
+        </ion-item>
+      </div>
+
       <button ion-button class="button-standard button-secondary" (click)="showAdvOpts = !showAdvOpts">
         <span *ngIf="!showAdvOpts">{{'Show advanced options' | translate}}</span>
         <span *ngIf="showAdvOpts">{{'Hide advanced options' | translate}}</span>

@@ -5,6 +5,28 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Launch Main Process",
+            "type": "pwa-node",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
+            "windows":
+            {
+                "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron.cmd"
+            },
+            "args" : ["."],
+            "outputCapture": "std",
+            "preLaunchTask": "Build npm run build:desktop"
+        },
+        {
+            "name": "Run Browser",
+            "type": "pwa-chrome",
+            "request": "launch",
+            "url": "http://localhost:8100",
+            "sourceMaps": true,
+            "webRoot": "${workspaceFolder}/www",
+        },
+        {
             "name": "Launch via NPM",
             "request": "launch",
             "runtimeArgs": [
@@ -15,7 +37,13 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "type": "pwa-node"
+            "type": "pwa-node",
+            "sourceMaps": true,
+            "stopOnEntry": false,
+            "internalConsoleOptions": "openOnSessionStart",
+            "outFiles": [
+                "${workspaceFolder}/out/**/*.js"
+            ]
         }
     ]
 }

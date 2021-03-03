@@ -38,13 +38,16 @@ export class ExchangeRates {
     private logger: Logger,
     private events: Events
   ) {
-    const availableChains = this.currencyProvider.getAvailableChains();
-    for (const coin of availableChains) {
-      const {
+    const availableChains = this.currencyProvider.getAvailableWithoutFiatChains();
+    for (const coin of availableChains) 
+    {
+       const 
+      {
         backgroundColor,
         gradientBackgroundColor
       } = this.currencyProvider.getTheme(coin as Coin);
-      const card = {
+      const card =
+      {
         unitCode: coin,
         historicalRates: [],
         currentPrice: 0,

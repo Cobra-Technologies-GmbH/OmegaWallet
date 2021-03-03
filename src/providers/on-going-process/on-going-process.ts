@@ -63,9 +63,9 @@ export class OnGoingProcessProvider {
       buyingBitcoin: this.translate.instant('Buying Bitcoin...'),
       sellingBitcoin: this.translate.instant('Selling Bitcoin...'),
       fetchingBitPayAccount: this.translate.instant(
-        'Fetching BitPay Account...'
+        'Fetching Omega Account...'
       ),
-      fetchingBitPayCards: this.translate.instant('Fetching BitPay Cards...'),
+      fetchingBitPayCards: this.translate.instant('Fetching Omega Cards...'),
       updatingGiftCards: this.translate.instant('Updating Gift Cards...'),
       updatingGiftCard: this.translate.instant('Updating Gift Card...'),
       cancelingGiftCard: this.translate.instant('Canceling Gift Card...'),
@@ -73,7 +73,7 @@ export class OnGoingProcessProvider {
       buyingGiftCard: this.translate.instant('Buying Gift Card...'),
       topup: this.translate.instant('Top up in progress...'),
       duplicatingWallet: this.translate.instant('Duplicating wallet...'),
-      connectingBitPayId: this.translate.instant('Connecting BitPay ID...'),
+      connectingBitPayId: this.translate.instant('Connecting Omega ID...'),
       processingOrderReservation: this.translate.instant(
         'Processing order reservation...'
       ),

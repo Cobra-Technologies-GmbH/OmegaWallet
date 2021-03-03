@@ -139,6 +139,7 @@ export class SelectCurrencyPage {
         coin
       });
     } else {
+      // TODO: Bei FIAT eigene Create Seite aufrufen
       this.navCtrl.push(CreateWalletPage, {
         isShared: this.isShared,
         coin,

@@ -2,7 +2,7 @@ Manage your finances in one app with the secure, open source BitPay Wallet. Get 
 
 With the BitPay Wallet, your private keys and your money remain in your control at all times. And you're using code that's 100% open source for community testing and audits.
 
-We built the following features into this version of the BitPay app that doesn't compromise on security or accessibility:
+We built the following features into this version of the Omega App that doesn't compromise on security or accessibility:
 
 Real time gift card purchasing from major brands including Amazon.com
 Support Bitcoin, Bitcoin Cash and Ethereum

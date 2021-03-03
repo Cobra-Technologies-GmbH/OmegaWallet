@@ -5,7 +5,8 @@ import {
   Events,
   ModalController,
   NavController,
-  NavParams
+  NavParams,
+  TextInput
 } from 'ionic-angular';
 import * as _ from 'lodash';
 
@@ -113,7 +114,9 @@ export class CreateWalletPage implements OnInit {
       ? this.coin === 'bch'
         ? this.derivationPathHelperProvider.defaultMultisigBCH
         : this.derivationPathHelperProvider.defaultMultisigBTC
-      : this.bwcProvider.getCore().Deriver.pathFor(this.coin, 'livenet');
+      : this.coin === 'eur'
+        ? this.derivationPathHelperProvider.defaultFIAT
+        : this.bwcProvider.getCore().Deriver.pathFor(this.coin, 'livenet');
     this.derivationPathForTestnet = this.bwcProvider
       .getCore()
       .Deriver.pathFor(this.coin, 'testnet');
@@ -124,6 +127,20 @@ export class CreateWalletPage implements OnInit {
     this.createForm = this.fb.group({
       walletName: [walletName, Validators.required],
       myName: [null],
+      fiatFirstName: [null],
+      fiatMiddleName: [null],
+      fiatLastName: [null],
+      fiatDateOfBirth: [null],
+      fiatCountry: ['AT'],
+      fiatPostalCode: [null],
+      fiatCity: [null],
+      fiatStreet: [null],
+      fiatHouseNumber: [null],
+      fiatDocumentType: ['passport'],
+      fiatDocumentIssueDate: [null],
+      fiatDocumentNumber: [null],
+      fiatCountryResidence: [null],
+      fiatEmail: [null],
       totalCopayers: [1],
       requiredCopayers: [1],
       bwsURL: [this.defaults.bws.url],
@@ -463,5 +480,25 @@ export class CreateWalletPage implements OnInit {
       testnetEnabled: this.createForm.value.testnetEnabled,
       walletName: this.createForm.value.walletName
     });
+  }
+
+  public onFocusDate(e: TextInput)
+  {
+    if (e.readonly)
+    {
+      e.readonly = false;
+      e.type = 'date';
+      e.blur;
+      e.focus;
+    }
+  }
+
+  public onBlurDate(e: TextInput)
+  {
+    if(e != null)
+    {
+      e.type='text';
+      e.readonly = true;
+    }
   }
 }

@@ -198,7 +198,7 @@ export class BitPayCardPage {
 
           if (this.dateRange.value == 'last30Days') {
             // TODO?
-            // $log.debug('BitPay Card: storing cache history');
+            // $log.debug('Omega Card: storing cache history');
             // let cacheHistory = {
             //   balance: history.currentCardBalance,
             //   transactions: history.txs

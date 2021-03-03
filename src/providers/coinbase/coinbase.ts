@@ -51,7 +51,7 @@ export class CoinbaseProvider {
   ) {
     /*
      * Development: Gustavo's Account
-     * Production: BitPay Account
+     * Production: Omega Account
      */
     this.logger.debug('Coinbase initialized: ' + this.environment);
     this.credentials = {};
@@ -110,7 +110,7 @@ export class CoinbaseProvider {
         '&meta[send_limit_amount]=1&meta[send_limit_currency]=USD&meta[send_limit_period]=day';
     } else {
       /*
-       * Production: BitPay Account
+       * Production: Omega Account
        */
       this.credentials.HOST = coinbase.production.host;
       this.credentials.API = coinbase.production.api;
@@ -191,7 +191,7 @@ export class CoinbaseProvider {
             } catch (e) {
               this.logger.error('Coinbase: Parse file error', e);
               this.removeData();
-              return resolve();
+              return resolve(null);
             }
           }
           return resolve(data);
@@ -275,7 +275,7 @@ export class CoinbaseProvider {
           this.logger.info('Coinbase: Refresh Access Token SUCCESS');
           this._registerToken(data['access_token'], data['refresh_token']);
           this.setToken(data);
-          return resolve();
+          return resolve(null);
         },
         data => {
           this.isRefreshingToken = false;
@@ -319,7 +319,7 @@ export class CoinbaseProvider {
           this.setToken(data);
           this.preFetchAllData();
           this.logAccountLinked();
-          return resolve();
+          return resolve(null);
         },
         data => {
           this.logger.error('Coinbase: GET Access Token: ERROR ' + data.status);

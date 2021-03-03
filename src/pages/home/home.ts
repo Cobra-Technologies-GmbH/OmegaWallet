@@ -508,7 +508,7 @@ export class HomePage {
     const card: Advertisement = this.cardExperimentEnabled
       ? {
           name: 'bitpay-card',
-          title: this.translate.instant('Get the BitPay Card'),
+          title: this.translate.instant('Get the Omega Card'),
           body: this.translate.instant(
             'Designed for people who want to live life on crypto.'
           ),
@@ -840,7 +840,7 @@ export class HomePage {
           : this.persistenceProvider.setBitpayIdPairingFlag('enabled');
 
         alert(
-          `BitPay ID pairing feature ${res === 'enabled' ? res : 'disabled'}`
+          `Omega ID pairing feature ${res === 'enabled' ? res : 'disabled'}`
         );
         this.tapped = 0;
       });
@@ -874,7 +874,7 @@ export class HomePage {
 
   private openEmailDisclaimer() {
     const message = this.translate.instant(
-      'By providing your email address, you give explicit consent to BitPay to use your email address to send you email notifications about payments.'
+      'By providing your email address, you give explicit consent to Omega to use your email address to send you email notifications about payments.'
     );
     const title = this.translate.instant('Privacy Policy update');
     const okText = this.translate.instant('Accept');

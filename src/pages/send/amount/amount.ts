@@ -170,7 +170,7 @@ export class AmountPage {
       this.navParams.get('nextPage') === 'CustomAmountPage';
     this.nextView = this.getNextView();
 
-    // BitPay Card ID or Wallet ID or Coinbase Account ID
+    // Omega Card ID or Wallet ID or Coinbase Account ID
     this._id = this.navParams.data.id;
 
     // Use only with Coinbase Withdraw

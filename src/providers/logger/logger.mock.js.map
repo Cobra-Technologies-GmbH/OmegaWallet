@@ -1,0 +1,1 @@
+{"version":3,"file":"logger.mock.js","sourceRoot":"","sources":["logger.mock.ts"],"names":[],"mappings":";AAAA,OAAO,EAAE,UAAU,EAAE,MAAM,eAAe,CAAC;AAC3C,OAAO,EAAE,MAAM,EAAE,MAAM,UAAU,CAAC;AAGlC,IAAa,UAAU,GAAvB,MAAa,UAAW,SAAQ,MAAM;IAC7B,GAAG,KAAI,CAAC;CAChB,CAAA;AAFY,UAAU;IADtB,UAAU,EAAE;GACA,UAAU,CAEtB;SAFY,UAAU"}

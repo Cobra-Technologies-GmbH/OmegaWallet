@@ -1,0 +1,1 @@
+{"version":3,"file":"add-button.js","sourceRoot":"","sources":["add-button.ts"],"names":[],"mappings":";AAAA,OAAO,EAAE,SAAS,EAAE,MAAM,eAAe,CAAC;AAO1C,IAAa,kBAAkB,GAA/B,MAAa,kBAAkB;CAAG,CAAA;AAArB,kBAAkB;IAL9B,SAAS,CAAC;QACT,IAAI,EAAE,EAAE,KAAK,EAAE,YAAY,EAAE;QAC7B,QAAQ,EAAE,YAAY;QACtB,WAAW,EAAE,iBAAiB;KAC/B,CAAC;GACW,kBAAkB,CAAG;SAArB,kBAAkB"}

@@ -60,7 +60,7 @@ export class RateProvider {
   }
 
   public updateRates(chain: string): Promise<any> {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       this.getCoin(chain)
         .then(dataCoin => {
           _.each(dataCoin, currency => {
@@ -173,7 +173,7 @@ export class RateProvider {
   }
 
   public whenRatesAvailable(chain: string): Promise<any> {
-    return new Promise(resolve => {
+    return new Promise<void>(resolve => {
       if (this.ratesAvailable[chain]) resolve();
       else {
         if (chain) {

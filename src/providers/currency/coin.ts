@@ -413,5 +413,43 @@ export const availableCoins: CoinsMap<CoinOpts> = {
       backgroundColor: '#00dcfa', // TODO: change to proper color after beta
       gradientBackgroundColor: '#00dcfa' // TODO: change to proper color after beta
     }
-  }
+  },
+  eur:
+  {
+    name: 'Euro',
+    chain: 'EUR',
+    coin: 'eur',
+    unitInfo:
+    {
+      unitName: 'EUR',
+      unitToSatoshi: 100,
+      unitDecimals: 2,
+      unitCode: 'eur'
+    },
+    properties:
+    {
+      hasMultiSig: false,
+      hasMultiSend: false,
+      isUtxo: false,
+      isERCToken: false,
+      isStableCoin: false,
+      singleAddress: true
+    },
+    paymentInfo: 
+    {
+      paymentCode: 'FiatEuro',
+      protocolPrefix: { livenet: 'fiatEuro', testnet: 'fiatEuro' },
+      ratesApi: 'https://bws.omega.eco/bws/api/v3/fiatrates/eur',
+      blockExplorerUrls: 'bitpay.com/insight/#/EUR/mainnet/',
+      blockExplorerUrlsTestnet: 'bitpay.com/insight/#/EUR/testnet/'
+    },
+    feeInfo:
+    {
+      feeUnit: 'sat/byte',
+      feeUnitAmount: 1000,
+      blockTime: 10,
+      maxMerchantFee: 'urgent'
+    },
+    theme: { coinColor: '#f7931a', backgroundColor: '#f7921a', gradientBackgroundColor: '#f7921a' }
+  },
 };

@@ -629,11 +629,11 @@ export class IncomingDataProvider {
   }
 
   // private goToBitPayCard(data: string): void {
-  //   this.logger.debug('Incoming-data (redirect): BitPay Card URL');
+  //   this.logger.debug('Incoming-data (redirect): Omega Card URL');
   //
-  //   // Disable BitPay Card
+  //   // Disable Omega Card
   //   if (!this.appProvider.info._enabledExtensions.debitcard) {
-  //     this.logger.warn('BitPay Card has been disabled for this build');
+  //     this.logger.warn('Omega Card has been disabled for this build');
   //     return;
   //   }
   //
@@ -644,7 +644,7 @@ export class IncomingDataProvider {
   //   switch (reason) {
   //     default:
   //     case '0':
-  //       /* For BitPay card binding */
+  //       /* For Omega Card binding */
   //       let stateParams = { secret, email, otp };
   //       let nextView = {
   //         name: 'BitPayCardIntroPage',
@@ -661,9 +661,9 @@ export class IncomingDataProvider {
     switch (redir) {
       default:
       case 'card':
-        // Disable BitPay Card
+        // Disable Omega Card
         if (!this.appProvider.info._enabledExtensions.debitcard) {
-          this.logger.warn('BitPay Card has been disabled for this build');
+          this.logger.warn('Omega Card has been disabled for this build');
           return;
         }
         const nextView = {
@@ -1085,7 +1085,7 @@ export class IncomingDataProvider {
       return {
         data,
         type: 'BitPayCard',
-        title: 'BitPay Card URI'
+        title: 'Omega Card URI'
       };
 
       // BitPay  URI
@@ -1351,7 +1351,7 @@ export class IncomingDataProvider {
           });
           break;
 
-        // needs verification - send to bitpay id verify
+        // needs verification - send to Omega ID verify
         case 'userShopperNotFound':
         case 'tierNotMet':
           const verificationRequiredInfoSheet = this.actionSheetProvider.createInfoSheet(

@@ -890,7 +890,7 @@ describe('Provider: Incoming Data Provider', () => {
         expect(eventsSpy).toHaveBeenCalledWith('IncomingDataRedir', nextView);
       });
     });
-    xit('Should handle BitPay Card URI', () => {
+    xit('Should handle Omega Card URI', () => {
       let data = 'bitpay://bitpay.com?secret=xxxxx&email=xxx@xx.com';
       let stateParams = { secret: 'xxxxx', email: 'xxx@xx.com', otp: null };
       let nextView = {
@@ -901,7 +901,7 @@ describe('Provider: Incoming Data Provider', () => {
         true
       );
       expect(loggerSpy).toHaveBeenCalledWith(
-        'Incoming-data (redirect): BitPay Card URL'
+        'Incoming-data (redirect): Omega Card URL'
       );
       expect(eventsSpy).toHaveBeenCalledWith('IncomingDataRedir', nextView);
     });

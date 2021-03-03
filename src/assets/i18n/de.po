@@ -35,7 +35,7 @@ msgstr ""
 msgid "3.9% of the amount + 0.30 USD per transactions"
 msgstr ""
 
-msgid "5-star ratings help us get BitPay Wallet into more hands, and more users means more resources can be committed to the app!"
+msgid "5-star ratings help us get Omega Wallet into more hands, and more users means more resources can be committed to the app!"
 msgstr ""
 
 msgid "A Destination Tag is an optional number that corresponds to an invoice or a XRP account on an exchange."
@@ -104,8 +104,8 @@ msgstr "Aktivität"
 msgid "Add"
 msgstr "Hinzufügen"
 
-msgid "Add BitPay Account?"
-msgstr "BitPay-Konto hinzufügen?"
+msgid "Add Omega Account?"
+msgstr "Omega-Konto hinzufügen?"
 
 msgid "Add Encryption"
 msgstr ""
@@ -134,8 +134,8 @@ msgstr "Guthaben aufladen"
 msgid "Add funds from an existing wallet."
 msgstr ""
 
-msgid "Add this BitPay account ({{email}})?"
-msgstr "Dieses BitPay-Konto hinzufügen ({{email}})?"
+msgid "Add this Omega account ({{email}})?"
+msgstr "Dieses Omega-Konto hinzufügen ({{email}})?"
 
 msgid "Add {coinName} address"
 msgstr ""
@@ -254,7 +254,7 @@ msgstr "Wollen Sie wirklich diese Transaktion ablehnen?"
 msgid "Are you sure you want to remove this transaction?"
 msgstr "Wollen Sie wirklich diese Transaktion löschen?"
 
-msgid "Are you sure you would like to disconnect your BitPay ID?"
+msgid "Are you sure you would like to disconnect your Omega ID?"
 msgstr ""
 
 msgid "Are you sure?"
@@ -311,7 +311,7 @@ msgstr ""
 msgid "Because you are speeding up this transaction, the {coinName} miner fee ({fee} {coin}) will be deducted from the total."
 msgstr ""
 
-msgid "Because your encrypted password is not stored by BitPay, there is no way to reset it."
+msgid "Because your encrypted password is not stored by Omega, there is no way to reset it."
 msgstr ""
 
 msgid "Before duplicating your wallet, it's recommended that you first write down your recovery phrase and store it securely so that your wallet can be recovered in the case your device was lost or stolen."
@@ -329,22 +329,22 @@ msgstr ""
 msgid "Biometric"
 msgstr "Biometrisch"
 
-msgid "BitPay Account"
+msgid "Omega Account"
 msgstr ""
 
-msgid "BitPay ID"
-msgstr "BitPay ID"
+msgid "Omega ID"
+msgstr "Omega ID"
 
-msgid "BitPay ID successfully connected."
-msgstr "BitPay ID erfolgreich verbunden."
+msgid "Omega ID successfully connected."
+msgstr "Omega ID erfolgreich verbunden."
 
-msgid "BitPay ID successfully disconnected."
-msgstr "BitPay ID erfolgreich getrennt."
+msgid "Omega ID successfully disconnected."
+msgstr "Omega ID erfolgreich getrennt."
 
-msgid "BitPay does not receive and does not control miner fees."
+msgid "Omega does not receive and does not control miner fees."
 msgstr ""
 
-msgid "BitPay would also like to send you marketing and promotional communications about our products, services and special promotions. You can change your preferences at any time in “Settings” in our app or by contacting us as set forth in our"
+msgid "Omega would also like to send you marketing and promotional communications about our products, services and special promotions. You can change your preferences at any time in “Settings” in our app or by contacting us as set forth in our"
 msgstr ""
 
 msgid "Bitcoin Address"
@@ -410,10 +410,10 @@ msgstr "Kaufe Bitcoins..."
 msgid "Buying Gift Card..."
 msgstr "Geschenkkarte kaufen..."
 
-msgid "By giving my email address, I give explicit consent to BitPay to use it to contact me about payment issues."
+msgid "By giving my email address, I give explicit consent to Omega to use it to contact me about payment issues."
 msgstr ""
 
-msgid "By providing your email address, you give explicit consent to BitPay to use your email address to send you email notifications about payments."
+msgid "By providing your email address, you give explicit consent to Omega to use your email address to send you email notifications about payments."
 msgstr ""
 
 msgid "CLOSE"
@@ -584,7 +584,7 @@ msgstr ""
 msgid "Connect Coinbase Account"
 msgstr ""
 
-msgid "Connect Your BitPay ID"
+msgid "Connect Your Omega ID"
 msgstr ""
 
 msgid "Connect to ShapeShift Account"
@@ -593,7 +593,7 @@ msgstr ""
 msgid "Connect with Coinbase"
 msgstr ""
 
-msgid "Connect your BitPay ID"
+msgid "Connect your Omega ID"
 msgstr ""
 
 msgid "Connect your Coinbase!"
@@ -602,8 +602,8 @@ msgstr ""
 msgid "Connected with"
 msgstr ""
 
-msgid "Connecting BitPay ID..."
-msgstr "BitPay-ID verbinden..."
+msgid "Connecting Omega ID..."
+msgstr "Omega-ID verbinden..."
 
 msgid "Connecting to Coinbase..."
 msgstr "Verbinde mit Coinbase..."
@@ -722,7 +722,7 @@ msgstr "Zahlungsvorschlag konnte nicht gelöscht werden"
 msgid "Could not encrypt wallet"
 msgstr ""
 
-msgid "Could not get claim code. Please contact BitPay support."
+msgid "Could not get claim code. Please contact Omega support."
 msgstr ""
 
 msgid "Could not get crypto offer. Please, try again later."
@@ -911,7 +911,7 @@ msgstr ""
 msgid "Designed for people who want to live life on crypto."
 msgstr ""
 
-msgid "Designed for people who want to live life on crypto. View your balance, request a new PIN, and reload instantly all within the BitPay App."
+msgid "Designed for people who want to live life on crypto. View your balance, request a new PIN, and reload instantly all within the Omega App."
 msgstr ""
 
 msgid "Destination Tag"
@@ -932,8 +932,8 @@ msgstr "Deaktiviert"
 msgid "Disconnect"
 msgstr ""
 
-msgid "Disconnect BitPay ID"
-msgstr "BitPay ID trennen"
+msgid "Disconnect Omega ID"
+msgstr "Omega ID trennen"
 
 msgid "Discount"
 msgstr ""
@@ -1037,7 +1037,7 @@ msgstr ""
 msgid "Enter Amount"
 msgstr ""
 
-msgid "Enter Two Factor for your BitPay account"
+msgid "Enter Two Factor for your Omega Account"
 msgstr ""
 
 msgid "Enter a destination tag"
@@ -1112,7 +1112,7 @@ msgstr ""
 msgid "Error getting fee rate"
 msgstr ""
 
-msgid "Error pairing BitPay Account"
+msgid "Error pairing Omega Account"
 msgstr "Ein Fehler ist beim Koppeln des Bitpay-Account's aufgetreten"
 
 msgid "Error scanning funds:"
@@ -1199,10 +1199,10 @@ msgstr "Feedback konnte nicht abgeschickt werden. Bitte versuchen Sie es später
 msgid "Feedback!"
 msgstr ""
 
-msgid "Fetching BitPay Account..."
-msgstr "BitPay Konto abrufen..."
+msgid "Fetching Omega Account..."
+msgstr "Omega Konto abrufen..."
 
-msgid "Fetching BitPay Cards..."
+msgid "Fetching Omega Cards..."
 msgstr ""
 
 msgid "Fetching payment information..."
@@ -1220,10 +1220,10 @@ msgstr ""
 msgid "Flexibility"
 msgstr ""
 
-msgid "For BitPay invoices and gift cards the subtotal amount is the product or service amount plus network costs."
+msgid "For Omega invoices and gift cards the subtotal amount is the product or service amount plus network costs."
 msgstr ""
 
-msgid "For best security this should not match your BitPay ID password."
+msgid "For best security this should not match your Omega ID password."
 msgstr ""
 
 msgid "Forgot your password?"
@@ -1235,8 +1235,8 @@ msgstr ""
 msgid "From"
 msgstr "Von"
 
-msgid "From BitPay account"
-msgstr "Von BitPay Konto"
+msgid "From Omega Account"
+msgstr "Von Omega Konto"
 
 msgid "Fund it. Spend it."
 msgstr ""
@@ -1292,8 +1292,8 @@ msgstr ""
 msgid "Get help"
 msgstr ""
 
-msgid "Get news and updates from BitPay"
-msgstr "Erhalten Sie Neuigkeiten und Aktualisierungen von BitPay"
+msgid "Get news and updates from Omega"
+msgstr "Erhalten Sie Neuigkeiten und Aktualisierungen von Omega"
 
 msgid "Get on Chrome"
 msgstr ""
@@ -1304,7 +1304,7 @@ msgstr "Los geht’s"
 msgid "Get started by adding your first one."
 msgstr "Starten Sie indem Sie ihr erstes hinzufügen."
 
-msgid "Get the BitPay Card"
+msgid "Get the Omega Card"
 msgstr ""
 
 msgid "Getting fee levels..."
@@ -1352,7 +1352,7 @@ msgstr "Haben Sie Probleme mit einem ShapeShift?"
 msgid "Help & Support"
 msgstr "Hilfe & Support"
 
-msgid "Help BitPay improve"
+msgid "Help Omega improve"
 msgstr ""
 
 msgid "Help and support information is available at the website"
@@ -1391,8 +1391,8 @@ msgstr ""
 msgid "How to recover your funds if you lose this device?"
 msgstr ""
 
-msgid "However, unconfirmed funds are not allowed for spending with merchants, BitPay Card loads, or BitPay in-app gift card purchases."
-msgstr "Trotzdem können unbestätigte Transaktionen nicht für den Kauf bei Händlern, BitPay Karten aufladungen oder Geschenkkartenkäufen verwendet werden."
+msgid "However, unconfirmed funds are not allowed for spending with merchants, Omega Card loads, or Omega in-app gift card purchases."
+msgstr "Trotzdem können unbestätigte Transaktionen nicht für den Kauf bei Händlern, Omega Karten aufladungen oder Geschenkkartenkäufen verwendet werden."
 
 msgid "I Understand"
 msgstr ""
@@ -1430,10 +1430,10 @@ msgstr ""
 msgid "If enabled, wallets will also try to spend unconfirmed funds."
 msgstr "Wenn aktiviert wird versucht, unbestätigte Transaktionen beim Senden zu verwenden."
 
-msgid "If enabled, your gift card purchases will be associated with your BitPay ID, allowing you to keep track of your gift card purchases even if this device is lost."
+msgid "If enabled, your gift card purchases will be associated with your Omega ID, allowing you to keep track of your gift card purchases even if this device is lost."
 msgstr ""
 
-msgid "If you delete the BitPay app or lose this device, you’ll need a recovery key to regain access to your funds."
+msgid "If you delete the Omega app or lose this device, you’ll need a recovery key to regain access to your funds."
 msgstr ""
 
 msgid "If you do not have the recovery phrase, you will not be able to regain access to your wallet."
@@ -2048,7 +2048,7 @@ msgstr "PIN"
 msgid "PRIMARY"
 msgstr ""
 
-msgid "Pair My BitPay Card"
+msgid "Pair My Omega Card"
 msgstr ""
 
 msgid "Part or the entirety of the funds in your wallet/s are unconfirmed"
@@ -2915,7 +2915,7 @@ msgstr "Die Ziel-Brieftasche ist nicht gesichert. Bitte schließen Sie den Wiede
 msgid "The ethereum paired wallet you choose does not belong to this contract"
 msgstr ""
 
-msgid "The fastest, easiest way to turn your crypto into dollars for shopping. Load funds in the BitPay App and spend in minutes."
+msgid "The fastest, easiest way to turn your crypto into dollars for shopping. Load funds in the Omega App and spend in minutes."
 msgstr ""
 
 msgid "The final crypto amount you receive when the transaction is complete may differ because it is based on Simplex's exchange rate."
@@ -3107,7 +3107,7 @@ msgstr ""
 msgid "To get started, you'll need to enter a valid address or select an existent contact or wallet."
 msgstr ""
 
-msgid "To {{reason}} you must first add your BitPay account - {{email}}"
+msgid "To {{reason}} you must first add your Omega Account - {{email}}"
 msgstr ""
 
 msgid "Top up in progress..."
@@ -3182,13 +3182,13 @@ msgstr "Es werden keine Transaktionen ohne Gebühren unterstützt."
 msgid "Transfer from"
 msgstr ""
 
-msgid "Transfer from BitPay"
+msgid "Transfer from Omega"
 msgstr ""
 
 msgid "Transfer to"
 msgstr ""
 
-msgid "Transfer to BitPay"
+msgid "Transfer to Omega"
 msgstr ""
 
 msgid "Transfer to Multiple Recipients"
@@ -3209,7 +3209,7 @@ msgstr "Versuchen Sie es erneut in {{expires}}"
 msgid "Try entering any passwords you may have set in the past"
 msgstr ""
 
-msgid "Turn crypto into dollars using our BitPay Card."
+msgid "Turn crypto into dollars using our Omega Card."
 msgstr ""
 
 msgid "Two things you should know"
@@ -3245,10 +3245,10 @@ msgstr ""
 msgid "Unlock App"
 msgstr "App entsperren"
 
-msgid "Unlock BitPay faster by setting up facial recognition."
+msgid "Unlock Omega faster by setting up facial recognition."
 msgstr ""
 
-msgid "Unlock BitPay faster by setting up fingerprint authentication."
+msgid "Unlock Omega faster by setting up fingerprint authentication."
 msgstr ""
 
 msgid "Unsent transactions"
@@ -3488,7 +3488,7 @@ msgstr ""
 msgid "We were unable to parse your payment. Please try again or contact your wallet provider"
 msgstr ""
 
-msgid "We'll let you know as soon as the BitPay Card"
+msgid "We'll let you know as soon as the Omega Card"
 msgstr ""
 
 msgid "We'll notify you as soon as the card is ready."
@@ -3503,7 +3503,7 @@ msgstr ""
 msgid "We're always listening for ways we can improve your experience. Is there anything we could do to improve your experience?"
 msgstr ""
 
-msgid "Websites and exchanges get hacked. BitPay allows you to privately store, manage, and use your crypto funds without having to trust a centralized bank or exchange."
+msgid "Websites and exchanges get hacked. Omega allows you to privately store, manage, and use your crypto funds without having to trust a centralized bank or exchange."
 msgstr ""
 
 msgid "What could have happened?"
@@ -3671,16 +3671,16 @@ msgstr ""
 msgid "You're on the list!"
 msgstr ""
 
-msgid "Your BitPay Card is ready. Add funds to your card to start using it at stores."
+msgid "Your Omega Card is ready. Add funds to your card to start using it at stores."
 msgstr ""
 
 msgid "Your ETH linked wallet funds are locked by pending spend proposals"
 msgstr ""
 
-msgid "Your Key is all that is needed to access your funds. Be sure to protect your key and store it only on secure devices. BitPay does not have access to your keys, so you alone are responsible for your keys. If you share key access with external services, you take responsibility for the risk of theft or breach."
+msgid "Your Key is all that is needed to access your funds. Be sure to protect your key and store it only on secure devices. Omega does not have access to your keys, so you alone are responsible for your keys. If you share key access with external services, you take responsibility for the risk of theft or breach."
 msgstr ""
 
-msgid "Your extended private keys are all that is needed to access your funds. Be sure to protect your private keys and store them only on secure devices. BitPay does not have access to your private keys, so you alone are responsible for your keys. If you share key access with external services, you take responsibility for the risk of theft or breach. Only advanced users should handle extended private keys directly."
+msgid "Your extended private keys are all that is needed to access your funds. Be sure to protect your private keys and store them only on secure devices. Omega does not have access to your private keys, so you alone are responsible for your keys. If you share key access with external services, you take responsibility for the risk of theft or breach. Only advanced users should handle extended private keys directly."
 msgstr ""
 
 msgid "Your fee is lower than recommended."
@@ -3728,8 +3728,8 @@ msgstr "[Guthaben versteckt]"
 msgid "[Scanning Funds]"
 msgstr "[Prüfe Wallet auf neue Beiträge]"
 
-msgid "add your BitPay Visa card(s)"
-msgstr "Ihre BitPay Visa Karte(n) hinzufügen"
+msgid "add your Omega Visa card(s)"
+msgstr "Ihre Omega Visa Karte(n) hinzufügen"
 
 msgid "me"
 msgstr "Ich"
@@ -3771,7 +3771,7 @@ msgid "{{ params.error ? 'Error' : 'Warning!' }}"
 msgstr ""
 
 msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and Copayer synchronization. The default configuration points to https://bws.omega.eco (BitPay's public BWS instance)."
-msgstr "{{appName}} hängt von Bitcore Wallet Service (BWS) ab bezüglich Blockchain Informationen, Vernetzung und Copayer Synchronisation. Die Standard Konfiguration verweist auf https://bws.omega.eco (BitPays öffentlicher BWS Instanz)."
+msgstr "{{appName}} hängt von Bitcore Wallet Service (BWS) ab bezüglich Blockchain Informationen, Vernetzung und Copayer Synchronisation. Die Standard Konfiguration verweist auf https://bws.omega.eco (Omegas öffentlicher BWS Instanz)."
 
 msgid "{{appName}} only supports Bitcoin Cash using new version numbers addresses."
 msgstr ""

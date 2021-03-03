@@ -51,6 +51,30 @@ jobs:
           path: ./test
       - store_test_results:
           path: ./test
+
+  omega:
+    docker:
+      - image: circleci/node:10.16.2-browsers
+    working_directory: ~/copay
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+      - run: npm install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - run: npm run apply:omega
+      - run: npm run test:lint
+      - run: npm run test:ci
+      - run: npx codecov
+      - store_artifacts:
+          path: ./test
+      - store_test_results:
+          path: ./test
           
 workflows:
   version: 2

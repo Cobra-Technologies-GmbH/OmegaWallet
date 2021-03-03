@@ -76,6 +76,10 @@ export class AltCurrencyPage {
       {
         isoCode: 'WBTC'
       }
+      ,
+      {
+        isoCode: 'EUR'
+      }
     ];
   }
 

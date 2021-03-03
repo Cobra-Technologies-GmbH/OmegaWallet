@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class DerivationPathHelperProvider {
+  public defaultFIAT: string;
   public defaultBTC: string;
   public defaultBCH: string;
   public defaultETH: string;
@@ -18,6 +19,7 @@ export class DerivationPathHelperProvider {
     this.defaultMultisigBTC = "m/48'/0'/0'";
     this.defaultMultisigBCH = "m/48'/145'/0'";
     this.defaultTestnet = "m/44'/1'/0'";
+    this.defaultFIAT = "m/1'";
   }
 
   public parsePath(path: string) {
@@ -42,6 +44,9 @@ export class DerivationPathHelperProvider {
       case "48'":
         derivationStrategy = 'BIP48';
         break;
+      case "1":
+        derivationStrategy = "None";
+        break;
     }
     return derivationStrategy;
   }
@@ -50,6 +55,7 @@ export class DerivationPathHelperProvider {
     // BIP45
     const purpose = this.parsePath(path).purpose;
     if (purpose == "45'") return 'livenet';
+    if (purpose == "1'") return 'fiat';
 
     const coinCode = this.parsePath(path).coinCode;
     let networkName: string;
@@ -78,6 +84,7 @@ export class DerivationPathHelperProvider {
     // BIP45
     const purpose = this.parsePath(path).purpose;
     if (purpose == "45'") return 0;
+    if (purpose == "1'") return 0;
 
     const account = this.parsePath(path).account || '';
     const match = account.match(/(\d+)'/);
@@ -91,6 +98,7 @@ export class DerivationPathHelperProvider {
 
     // BIP45
     if (path == "m/45'") return true;
+    if (path == "m/1'") return true;
 
     switch (coin) {
       case 'btc':

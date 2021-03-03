@@ -560,7 +560,7 @@ export class CopayApp {
       });
     }
 
-    // BitPay Card
+    // Omega Card
     if (this.appProvider.info._enabledExtensions.debitcard)
       this.bitPayCardProvider.register();
   }

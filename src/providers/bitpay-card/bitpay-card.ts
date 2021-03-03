@@ -233,7 +233,7 @@ export class BitPayCardProvider {
           var n: any = {};
 
           if (!x.eid || !x.id || !x.lastFourDigits || !x.token) {
-            this.logger.warn('BAD data from BitPay card' + JSON.stringify(x));
+            this.logger.warn('BAD data from Omega Card' + JSON.stringify(x));
             return;
           }
 
@@ -260,7 +260,7 @@ export class BitPayCardProvider {
       },
       data => {
         this.onGoingProcessProvider.clear();
-        return cb(this._setError('BitPay Card Error: Get Debit Cards', data));
+        return cb(this._setError('Omega Card Error: Get Debit Cards', data));
       }
     );
   }
@@ -337,28 +337,28 @@ export class BitPayCardProvider {
                 },
                 data => {
                   this.logger.info(
-                    'Error loading BitPay Card transaction history for ',
+                    'Error loading Omega Card transaction history for ',
                     'card id: ',
                     cardId,
                     'Message: ',
                     data.error
                   );
                   return cb(
-                    this._setError('BitPay Card Error: Get History', data)
+                    this._setError('Omega Card Error: Get History', data)
                   );
                 }
               );
             },
             data => {
               this.logger.info(
-                'Error loading BitPay Card invoice history for ',
+                'Error loading Omega Card invoice history for ',
                 'card id: ',
                 cardId,
                 'Message: ',
                 data.error
               );
               return cb(
-                this._setError('BitPay Card Error: Get Invoices', data)
+                this._setError('Omega Card Error: Get Invoices', data)
               );
             }
           );
@@ -398,7 +398,7 @@ export class BitPayCardProvider {
               }
             },
             res => {
-              return cb(this._setError('BitPay Card Error: TopUp', res));
+              return cb(this._setError('Omega Card Error: TopUp', res));
             }
           );
         });
@@ -414,7 +414,7 @@ export class BitPayCardProvider {
         return cb(res.error, res.data);
       },
       res => {
-        return cb(this._setError('BitPay Card Error: Get Invoice', res));
+        return cb(this._setError('Omega Card Error: Get Invoice', res));
       }
     );
   }

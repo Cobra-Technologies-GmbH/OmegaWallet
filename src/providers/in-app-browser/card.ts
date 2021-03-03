@@ -117,7 +117,7 @@ export class IABCardProvider {
 
         /*
          *
-         * This handles the BitPay ID pairing and retrieves user data. It also passes it to the behavior subject.
+         * This handles the Omega ID pairing and retrieves user data. It also passes it to the behavior subject.
          *
          * */
 
@@ -862,7 +862,7 @@ export class IABCardProvider {
           // publish to correct window
           this.events.publish('BitPayId/Connected');
 
-          // if with notification -> connect your bitpay id in settings or pairing from personal dashboard
+          // if with notification -> connect your Omega ID in settings or pairing from personal dashboard
           if (withNotification) {
             // resets inappbrowser connect state
             this.cardIAB_Ref.executeScript(
@@ -878,9 +878,9 @@ export class IABCardProvider {
             const infoSheet = this.actionSheetProvider.createInfoSheet(
               'in-app-notification',
               {
-                title: 'BitPay ID',
+                title: 'Omega ID',
                 body: this.translate.instant(
-                  'BitPay ID successfully connected.'
+                  'Omega ID successfully connected.'
                 )
               }
             );
@@ -934,7 +934,7 @@ export class IABCardProvider {
           const errorSheet = this.actionSheetProvider.createInfoSheet(
             'default-error',
             {
-              title: 'BitPay ID',
+              title: 'Omega ID',
               msg: 'Uh oh, something went wrong please try again later.'
             }
           );
@@ -1002,7 +1002,7 @@ export class IABCardProvider {
 
           this.actionSheetProvider
             .createInfoSheet('default-error', {
-              title: 'BitPay Card',
+              title: 'Omega Card',
               msg: 'Uh oh, something went wrong please try again later.'
             })
             .present();

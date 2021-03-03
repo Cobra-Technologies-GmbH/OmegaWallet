@@ -25,13 +25,13 @@ export class BitPayAccountProvider {
    * pairData - data needed to complete the pairing process
    * {
    *   secret: shared pairing secret
-   *   email: email address associated with bitpay account
+   *   email: email address associated with Omega Account
    *   otp: two-factor one-time use password
    * }
    *
    * pairingReason - text string to be embedded into popup message.  If `null` then the reason
    * message is not shown to the UI.
-   *   "To {{reason}} you must pair this app with your BitPay account ({{email}})."
+   *   "To {{reason}} you must pair this app with your Omega Account ({{email}})."
    *
    * cb - callback after completion
    *   callback(err, paired, apiContext)
@@ -104,7 +104,7 @@ export class BitPayAccountProvider {
           this.fetchBasicInfo(apiContext, (err, basicInfo) => {
             this.onGoingProcessProvider.clear();
             if (err) return cb(err);
-            let title = this.translate.instant('Add BitPay Account?');
+            let title = this.translate.instant('Add Omega Account?');
             let msg;
 
             if (pairingReason) {
@@ -113,14 +113,14 @@ export class BitPayAccountProvider {
 
               msg = this.replaceParametersProvider.replace(
                 this.translate.instant(
-                  'To {{reason}} you must first add your BitPay account - {{email}}'
+                  'To {{reason}} you must first add your Omega Account - {{email}}'
                 ),
                 { reason, email }
               );
             } else {
               let email = pairData.email;
               msg = this.replaceParametersProvider.replace(
-                this.translate.instant('Add this BitPay account ({{email}})?'),
+                this.translate.instant('Add this Omega account ({{email}})?'),
                 { email }
               );
             }
@@ -158,7 +158,7 @@ export class BitPayAccountProvider {
   private checkOtp(pairData, cb: (otp?) => any) {
     if (pairData.otp) {
       let msg = this.translate.instant(
-        'Enter Two Factor for your BitPay account'
+        'Enter Two Factor for your Omega Account'
       );
       this.popupProvider.ionicPrompt(null, msg, null).then(res => {
         cb(res);
@@ -178,11 +178,11 @@ export class BitPayAccountProvider {
       json,
       data => {
         if (data && data.error) return cb(data.error);
-        this.logger.info('BitPay Account Get Basic Info: SUCCESS');
+        this.logger.info('Omega Account Get Basic Info: SUCCESS');
         return cb(null, data.data);
       },
       data => {
-        return cb(this._setError('BitPay Account Error: Get Basic Info', data));
+        return cb(this._setError('Omega Account Error: Get Basic Info', data));
       }
     );
   }

@@ -13,7 +13,8 @@ export enum Coin {
   PAX = 'pax',
   BUSD = 'busd',
   DAI = 'dai',
-  WBTC = 'wbtc'
+  WBTC = 'wbtc',
+  EUR = 'eur'
 }
 
 export type CoinsMap<T> = { [key in Coin]: T };
@@ -73,6 +74,26 @@ export class CurrencyProvider {
 
   getAvailableCoins(): Coin[] {
     return this.availableCoins;
+  }
+
+  getAvailableWithoutFiatChains(): string[]
+  {
+    var chains: string[] = _.uniq(
+      _.map(Object.values(this.coinOpts), (opts: CoinOpts) =>
+      {
+        if(opts.chain === "EUR")
+        {
+          return "";
+        }
+        else
+        {
+          return opts.chain.toLowerCase();
+        }
+      }
+      ).filter(chain => !_.isEmpty(chain))
+    );
+
+    return chains;
   }
 
   getAvailableChains(): string[] {
