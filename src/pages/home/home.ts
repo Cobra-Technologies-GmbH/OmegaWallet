@@ -82,6 +82,7 @@ export class HomePage {
   public testingAds: Advertisement[] = [];
   public totalBalanceAlternative: string;
   public totalBalanceAlternativeIsoCode: string;
+  public totalBalanceAlternativeIsoSymbol: string;
   public totalBalanceChange: number;
   public showTotalBalance: boolean = true;
   public fetchingStatus: boolean;
@@ -182,10 +183,24 @@ export class HomePage {
     });
   }
 
+  private setIsoSymbol(code: string)
+  {
+    if(code =="USD")
+    {
+      return "$";
+    }
+    if (code =="EUR")
+    {
+      return "€";
+    }
+    return "";
+  }
+
   async ionViewWillEnter() {
     const config = this.configProvider.get();
     this.totalBalanceAlternativeIsoCode =
       config.wallet.settings.alternativeIsoCode;
+    this.totalBalanceAlternativeIsoSymbol = this.setIsoSymbol(this.totalBalanceAlternativeIsoCode);
     this.events.publish('Local/showNewFeaturesSlides');
     this.setMerchantDirectoryAdvertisement();
     this.checkFeedbackInfo();
@@ -381,6 +396,7 @@ export class HomePage {
       this.totalBalanceAlternative = data.totalBalanceAlternative;
       this.totalBalanceChange = data.totalBalanceChange;
       this.totalBalanceAlternativeIsoCode = data.totalBalanceAlternativeIsoCode;
+      this.totalBalanceAlternativeIsoSymbol = this.setIsoSymbol(this.totalBalanceAlternativeIsoCode);
     });
   }
 

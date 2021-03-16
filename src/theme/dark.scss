@@ -39,18 +39,18 @@
 .dark {
   // 1 - Definitions
   // 1.1 - Backgrounds
-  $bg-color-dark-theme: #121212;
-  $bg-color-dark-theme-2: #1d1d1d;
-  $bg-color-dark-theme-3: #383838;
+  $bg-color-dark-theme: #051C3F;
+  $bg-color-dark-theme-2: #374965;
+  $bg-color-dark-theme-3: #374965;
   $bg-color-dark-theme-4: rgba(56, 56, 56, 0.8);
 
-  $bg-color-dark-theme-toolbar: #121212;
-  $bg-color-dark-theme-message: #1d1d1d;
-  $gradient-dark-theme: #101010;
+  $bg-color-dark-theme-toolbar: #051C3F;
+  $bg-color-dark-theme-message: #374965;
+  $gradient-dark-theme: #374965;
 
   // 1.2 - Text
   $text-color-dark-theme: rgba(255, 255, 255, 0.87);
-  $text-color-dark-theme-2: rgba(255, 255, 255, 0.6);
+  $text-color-dark-theme-2: rgba(255, 255, 255, 1);
   $text-color-dark-theme-3: rgba(255, 255, 255, 0.38);
 
   // 1.3 - Messages
@@ -189,6 +189,7 @@
   .tabs-ios {
     .tabbar {
       background-color: $bg-color-dark-theme;
+      border-radius: 32px 32px 0 0;
     }
 
     .tab-button[aria-selected='true'] {
@@ -396,7 +397,7 @@
       &.item-ios,
       &.item-md {
         border: 0;
-        background-color: $bg-color-dark-theme;
+        background-color: $bg-color-dark-theme-2;
       }
 
       &:not(.create-button):not(.assertive) {
@@ -823,7 +824,7 @@
 
   page-feedback-card {
     ion-card.card {
-      background-color: $bg-color-dark-theme-2;
+      background-color: $bg-color-dark-theme-4;
       color: $text-color-dark-theme;
     }
   }
@@ -909,7 +910,16 @@
   // 5 - Tabs
   // 5.1 Tab Home
   page-home {
+    .data-container
+    {
+      background-color: $bg-color-dark-theme-2;
+      border-radius: 32px 32px 0 0;
+      padding-top: 10px;
+    }
+
     .total-amount-container {
+      margin: 0 10px 0 10px;
+
       .total-amount-value {
         color: $text-color-dark-theme;
       }
@@ -921,7 +931,7 @@
 
     .message {
       &-background {
-        background-color: $bg-color-dark-theme-message;
+        background-color: $bg-color-dark-theme-4; //$bg-color-dark-theme-message;
       }
     }
   }
@@ -1348,7 +1358,7 @@
 
   merchant-page {
     .cover {
-      background-image: linear-gradient(180deg, #121212 0%, #1d1d1d 100%);
+      background-image: linear-gradient(180deg, #051C3F 0%, #374965 100%);
     }
 
     .body {

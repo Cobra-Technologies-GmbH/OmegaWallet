@@ -152,6 +152,8 @@ ion-header.bp-header .toolbar {
   bottom: calc(env(safe-area-inset-bottom));
   padding: 15px 15px calc(5vw + 1vh) 15px;
   padding: 15px 15px -webkit-calc(5vw + 1vh) 15px;
+  background-color: #374965;
+  border-radius: 32px 32px 0 0;
 
   .button {
     margin: 1.2rem auto;
@@ -512,7 +514,7 @@ ion-app,
 }
 
 .button-default {
-  color: white;
+  color: black;
 }
 
 .button-secondary {

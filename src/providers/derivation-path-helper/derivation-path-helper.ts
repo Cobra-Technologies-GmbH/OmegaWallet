@@ -19,7 +19,7 @@ export class DerivationPathHelperProvider {
     this.defaultMultisigBTC = "m/48'/0'/0'";
     this.defaultMultisigBCH = "m/48'/145'/0'";
     this.defaultTestnet = "m/44'/1'/0'";
-    this.defaultFIAT = "m/1'";
+    this.defaultFIAT = "m/3";
   }
 
   public parsePath(path: string) {
@@ -98,7 +98,7 @@ export class DerivationPathHelperProvider {
 
     // BIP45
     if (path == "m/45'") return true;
-    if (path == "m/1'") return true;
+    if (path == "m/3") return true;
 
     switch (coin) {
       case 'btc':

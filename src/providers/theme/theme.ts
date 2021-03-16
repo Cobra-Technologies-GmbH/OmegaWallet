@@ -36,11 +36,11 @@ export class ThemeProvider {
       },
       dark: {
         name: this.translate.instant('Dark Mode'),
-        bodyColor: '#121212',
-        backgroundColor: '#121212',
-        fixedScrollBgColor: '#121212',
-        walletDetailsBackgroundStart: '#121212',
-        walletDetailsBackgroundEnd: '#101010'
+        bodyColor: '#051C3F',
+        backgroundColor: '#051C3F',
+        fixedScrollBgColor: '#374965',
+        walletDetailsBackgroundStart: '#051C3F',
+        walletDetailsBackgroundEnd: '#051C3F'
       }
     };
   }
@@ -51,7 +51,7 @@ export class ThemeProvider {
   }
 
   public load() {
-    return new Promise(resolve => {
+    return new Promise<void>(resolve => {
       if (!this.isEnabled()) return resolve();
       const config = this.configProvider.get();
       if (!config.theme.system) {
@@ -82,24 +82,19 @@ export class ThemeProvider {
                   return resolve(success && success.value ? 'dark' : 'light');
                 },
                 _ => {
-                  return resolve('light');
+                  return resolve('dark');
                 }
               );
             } else {
-              return resolve('light');
+              return resolve('dark');
             }
           },
           _ => {
-            return resolve('light');
+            return resolve('dark');
           }
         );
       } else {
-        return resolve(
-          window.matchMedia &&
-            window.matchMedia('(prefers-color-scheme: dark)').matches
-            ? 'dark'
-            : 'light'
-        );
+        return resolve('dark');
       }
     });
   }

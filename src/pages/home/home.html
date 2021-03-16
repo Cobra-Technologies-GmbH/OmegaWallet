@@ -95,119 +95,125 @@
   </div>
 
   <page-feedback-card #showCard></page-feedback-card>
-
-  <div *ngIf="showTotalBalance" class="total-amount-container">
-    <div class="section-header" translate>Total cash value</div>
-    <div class="total-amount-value">
-      <span *ngIf="totalBalanceAlternative">
-        {{totalBalanceAlternative | number:'1.2-2'}} {{totalBalanceAlternativeIsoCode}}
-      </span>
-      <span *ngIf="fetchingStatus">
-        <ion-spinner></ion-spinner>
-      </span>
-    </div>
-    <div class="average-container">
-      <div *ngIf="totalBalanceChange || totalBalanceChange === 0" [ngClass]="totalBalanceChange >= 0 ? 'possitive-avg' : 'negative-avg'">
-        <span class="average"><span *ngIf="totalBalanceChange > 0">+</span>{{ totalBalanceChange | number: '1.2-2' }}%</span>
+  <div class="data-container">
+    <div *ngIf="showTotalBalance" class="total-amount-container">
+      <div class="section-header" translate>Total cash value</div>
+      <div class="total-amount-value">
+        <span *ngIf="totalBalanceAlternative" class="total-amount-iso">
+          {{totalBalanceAlternativeIsoCode}}
+        </span>
+        <span *ngIf="totalBalanceAlternative">
+          {{totalBalanceAlternative | number:'1.2-2'}}
+        </span>
+        <span *ngIf="fetchingStatus">
+          <ion-spinner></ion-spinner>
+        </span>
       </div>
-      <span *ngIf="totalBalanceChange || totalBalanceChange === 0" class="date" translate>Last day</span>
-    </div>
-  </div>
-
-  <ion-list margin-bottom class="bp-list">
-    <button ion-item *ngIf="showShoppingOption" (click)="goToShop()">
-      <ion-label>
-        <div class="services-list-label" translate>Shop</div>
-      </ion-label>
-    </button>
-    <div *ngIf="showShoppingOption" class="line-divider"></div>
-    <button ion-item *ngIf="showBuyCryptoOption" (click)="goToAmountPage()">
-      <ion-label>
-        <div class="services-list-label" translate>Buy Crypto</div>
-      </ion-label>
-    </button>
-    <div class="line-divider" *ngIf="showBuyCryptoOption"></div>
-    <button ion-item *ngIf="showExchangeCryptoOption" (click)="goToExchangeCryptoPage()">
-      <ion-label>
-        <div class="services-list-label" translate>Exchange Crypto</div>
-      </ion-label>
-    </button>
-    <div class="line-divider" *ngIf="showExchangeCryptoOption"></div>
-  </ion-list>
-
-  <ion-slides *ngIf="showAdvertisements && advertisements && advertisements[0] && !testingAdsEnabled" pager="true" (ionSlideDidChange)="slideChanged()">
-    <ion-slide *ngFor="let advertisement of advertisements">
-      <div class="message-background no-margin">
-        <div class="message-header" *ngIf="advertisement.dismissible">
-          <ion-row justify-content-end>
-            <button float-right ion-button clear icon-only color="grey" (click)="dismissAdvertisement(advertisement)">
-              <ion-icon name="close"></ion-icon>
-            </button>
-          </ion-row>
+      <div class="average-container">
+        <!-- <img src="assets/img/icon-update.svg" /> -->
+        <div *ngIf="totalBalanceChange || totalBalanceChange === 0">
+          <span *ngIf="totalBalanceChange >= 0" class="rateArrow"><img src="assets/img/rating/ArrowUp.svg"/></span>
+          <span *ngIf="totalBalanceChange < 0" class="rateArrow"><img src="assets/img/rating/ArrowDown.svg"/></span>
+          <span class="average">{{totalBalanceAlternativeIsoSymbol}}{{ (totalBalanceAlternative*totalBalanceChange) / 100 | number: '1.2-2'}} ({{ totalBalanceChange | number: '1.2-2' }}%)</span>
+          <span *ngIf="totalBalanceChange || totalBalanceChange === 0" class="date" translate>Last day</span>
         </div>
-        <div class="message-content">
-          <ion-row align-items-center>
-            <ion-col align-self-start col-4>
-              <div class="message-img">
-                <img [ngClass]="{'card-img': advertisement.imgSrc === 'assets/img/bitpay-card/bitpay-card-mc-angled-plain.svg'}" src="{{advertisement.imgSrc}}" />
-              </div>
-            </ion-col>
-            <ion-col col-8>
-              <div class="message-title message-title-adv" *ngIf="advertisement.title">
-                {{ advertisement.title }}
-              </div>
-              <div class="message-body message-body-adv" *ngIf="advertisement.body">
-                {{ advertisement.body }}
-              </div>
-            </ion-col>
-          </ion-row>
-          <div *ngIf="advertisement.link" (click)="goTo(advertisement.link, advertisement.linkParams)">
-            <div class="line-divider"></div>
-            <span class="message-button" *ngIf="advertisement.linkText">{{advertisement.linkText}}</span>
+      </div>
+    </div>
+    <ion-list margin-bottom class="bp-list">
+      <button ion-item *ngIf="showShoppingOption" (click)="goToShop()">
+        <ion-label>
+          <div class="services-list-label" translate>Shop</div>
+        </ion-label>
+      </button>
+      <div *ngIf="showShoppingOption" class="line-divider"></div>
+      <button ion-item *ngIf="showBuyCryptoOption" (click)="goToAmountPage()">
+        <ion-label>
+          <div class="services-list-label" translate>Buy Crypto</div>
+        </ion-label>
+      </button>
+      <div class="line-divider" *ngIf="showBuyCryptoOption"></div>
+      <button ion-item *ngIf="showExchangeCryptoOption" (click)="goToExchangeCryptoPage()">
+        <ion-label>
+          <div class="services-list-label" translate>Exchange Crypto</div>
+        </ion-label>
+      </button>
+      <div class="line-divider" *ngIf="showExchangeCryptoOption"></div>
+    </ion-list>
+
+    <ion-slides *ngIf="showAdvertisements && advertisements && advertisements[0] && !testingAdsEnabled" pager="true" (ionSlideDidChange)="slideChanged()">
+      <ion-slide *ngFor="let advertisement of advertisements">
+        <div class="message-background no-margin">
+          <div class="message-header" *ngIf="advertisement.dismissible">
+            <ion-row justify-content-end>
+              <button float-right ion-button clear icon-only color="grey" (click)="dismissAdvertisement(advertisement)">
+                <ion-icon name="close"></ion-icon>
+              </button>
+            </ion-row>
+          </div>
+          <div class="message-content">
+            <ion-row align-items-center>
+              <ion-col align-self-start col-4>
+                <div class="message-img">
+                  <img [ngClass]="{'card-img': advertisement.imgSrc === 'assets/img/bitpay-card/bitpay-card-mc-angled-plain.svg'}" src="{{advertisement.imgSrc}}" />
+                </div>
+              </ion-col>
+              <ion-col col-8>
+                <div class="message-title message-title-adv" *ngIf="advertisement.title">
+                  {{ advertisement.title }}
+                </div>
+                <div class="message-body message-body-adv" *ngIf="advertisement.body">
+                  {{ advertisement.body }}
+                </div>
+              </ion-col>
+            </ion-row>
+            <div *ngIf="advertisement.link" (click)="goTo(advertisement.link, advertisement.linkParams)">
+              <div class="line-divider"></div>
+              <span class="message-button" *ngIf="advertisement.linkText">{{advertisement.linkText}}</span>
+            </div>
           </div>
         </div>
-      </div>
-    </ion-slide>
-  </ion-slides>
+      </ion-slide>
+    </ion-slides>
 
-  <ion-slides *ngIf="showAdvertisements && testingAds && testingAds[0] && testingAdsEnabled" pager="true" (ionSlideDidChange)="slideChanged()">
-    <ion-slide *ngFor="let advertisement of testingAds">
-      <div class="message-background no-margin">
-        <div class="message-header" *ngIf="advertisement.dismissible">
-          <ion-row justify-content-end>
-            <button float-right ion-button clear icon-only color="grey" (click)="dismissAdvertisement(advertisement)">
-              <ion-icon name="close"></ion-icon>
-            </button>
-          </ion-row>
-        </div>
-        <div class="message-content">
-          <ion-row align-items-center>
-            <ion-col align-self-start col-4>
-              <div class="message-img">
-                <img [ngClass]="{'card-img': advertisement.imgSrc === 'assets/img/bitpay-card/bitpay-card-visa.svg'}" src="{{advertisement.imgSrc}}" />
-              </div>
-            </ion-col>
-            <ion-col col-8>
-              <div class="message-title message-title-adv" *ngIf="advertisement.title">
-                {{ advertisement.title }}
-              </div>
-              <div class="message-body message-body-adv" *ngIf="advertisement.body">
-                {{ advertisement.body }}
-              </div>
-            </ion-col>
-          </ion-row>
-          <div *ngIf="advertisement.link" (click)="goTo(advertisement.link, advertisement.linkParams)">
-            <div class="line-divider"></div>
-            <span class="message-button" *ngIf="advertisement.linkText">{{advertisement.linkText}}</span>
+    <ion-slides *ngIf="showAdvertisements && testingAds && testingAds[0] && testingAdsEnabled" pager="true" (ionSlideDidChange)="slideChanged()">
+      <ion-slide *ngFor="let advertisement of testingAds">
+        <div class="message-background no-margin">
+          <div class="message-header" *ngIf="advertisement.dismissible">
+            <ion-row justify-content-end>
+              <button float-right ion-button clear icon-only color="grey" (click)="dismissAdvertisement(advertisement)">
+                <ion-icon name="close"></ion-icon>
+              </button>
+            </ion-row>
+          </div>
+          <div class="message-content">
+            <ion-row align-items-center>
+              <ion-col align-self-start col-4>
+                <div class="message-img">
+                  <img [ngClass]="{'card-img': advertisement.imgSrc === 'assets/img/bitpay-card/bitpay-card-visa.svg'}" src="{{advertisement.imgSrc}}" />
+                </div>
+              </ion-col>
+              <ion-col col-8>
+                <div class="message-title message-title-adv" *ngIf="advertisement.title">
+                  {{ advertisement.title }}
+                </div>
+                <div class="message-body message-body-adv" *ngIf="advertisement.body">
+                  {{ advertisement.body }}
+                </div>
+              </ion-col>
+            </ion-row>
+            <div *ngIf="advertisement.link" (click)="goTo(advertisement.link, advertisement.linkParams)">
+              <div class="line-divider"></div>
+              <span class="message-button" *ngIf="advertisement.linkText">{{advertisement.linkText}}</span>
+            </div>
           </div>
         </div>
-      </div>
-    </ion-slide>
-  </ion-slides>
+      </ion-slide>
+    </ion-slides>
 
-  <div class="section-header">
-    <div translate>Exchange Rates</div>
-    <div translate class="date-label">1D</div>
+    <div class="section-header">
+      <div translate>Exchange Rates</div>
+      <div translate class="date-label">1D</div>
+    </div>
+    <exchange-rates #exchangeRates></exchange-rates>
   </div>
-  <exchange-rates #exchangeRates></exchange-rates>
 </ion-content>

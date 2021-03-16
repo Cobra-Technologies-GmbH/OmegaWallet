@@ -6,15 +6,17 @@ page-home {
       align-items: normal;
     }
   }
-  .total-amount-container {
-    margin: 20px 0px 10px 20px;
+
+   .total-amount-container {
+    margin: 0px 0px 0px 0px;
+    text-align: center;
     .section-header {
       margin-left: 0px;
     }
     .total-amount-value {
       color: #000000;
-      font-size: 38px;
-      line-height: 56px;
+      font-size: 30px;
+      line-height: 36px;
       font-weight: 700;
       ion-spinner {
         margin-left: 15px;
@@ -22,10 +24,15 @@ page-home {
           stroke: color($colors, primary);
         }
       }
+      .total-amount-iso {
+        font-size: 12px;
+        line-height: 20px;
+        font-weight: 400;
+        vertical-align: top;
+        margin-right: 10px;
+      }
     }
     .average-container {
-      display: flex;
-      text-align: center;
       height: 21px;
       .negative-avg {
         color: #cf2f32;
@@ -46,11 +53,11 @@ page-home {
         line-height: 19px;
         height: 21px;
         font-weight: 500;
+        color: rgba(255, 255, 255, 0.7);
       }
       .date {
         font-weight: 500;
-        color: #434d5a;
-        opacity: 50%;
+        color: rgba(255, 255, 255, 0.7);
         margin-left: 1rem;
       }
     }
@@ -171,5 +178,12 @@ page-home {
     color: #9ba3ae;
     font-size: 12px;
     cursor: default;
+  }
+
+  .rateArrow
+  {
+    vertical-align: middle;
+    width: 18px;
+    height: 18px;
   }
 }
