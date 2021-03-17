@@ -77,7 +77,7 @@
             <stop stop-color="#6983F7" offset="45%"></stop>
             <stop stop-color="#5A77F7" offset="58%"></stop>
             <stop stop-color="#5270F7" offset="74%"></stop>
-            <stop stop-color="#4F6EF7" offset="100%"></stop>
+            <stop stop-color="#02FE45" offset="100%"></stop>
         </linearGradient>
         <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-109">
             <stop stop-color="#EDEFF4" offset="0%"></stop>

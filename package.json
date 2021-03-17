@@ -45,7 +45,7 @@
     "lint": "ionic-app-scripts lint",
     "ionic:build": "ionic-app-scripts build",
     "ionic:serve": "ionic-app-scripts serve --nolivereload",
-    "ionic:run": "ionic-app-scripts serve --nolivereload --nobrowser",
+    "ionic:run": "ionic-app-scripts serve --livereload --nobrowser",
     "ionic:test": "npm run env:prod && node --max-old-space-size=8192 ./node_modules/@ionic/app-scripts/bin/ionic-app-scripts.js build --release --aot true --environment prod --output-hashing all --sourcemaps false --extract-css true --named-chunks false --build-optimizer true",
     "watch": "ng test --browsers=Chrome",
     "test": "npm run env:dev && npm run test:lint && npm run test:ci",

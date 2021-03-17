@@ -144,7 +144,7 @@
 
   // 3 - General
   ion-content {
-    background-color: $bg-color-dark-theme-2;
+    background-color: $bg-color-dark-theme;
     color: $text-color-dark-theme;
 
     /*
@@ -196,7 +196,7 @@
   .tabs-ios {
     .tabbar {
       background-color: $bg-color-dark-theme;
-      border-radius: 32px 32px 0 0;
+      //border-radius: 32px 32px 0 0;
     }
 
     .tab-button[aria-selected='true'] {
@@ -960,8 +960,11 @@
 
   // 5.2 - Tab Wallets
   page-wallets {
-    ion-content {
-      background: $bg-color-dark-theme-2;
+    .wallets-container {
+      background-color: $bg-color-dark-theme-2;
+      border-radius: 32px 32px 0 0;
+      padding-top: 10px;
+      height: 100%
     }
 
     .collapse > .collapse-btn {

@@ -20,7 +20,6 @@
   <ion-refresher (ionRefresh)="doRefresh($event)" pullMin="90" pullMax="160">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <div class="wrapper">
     <expandable-header [scrollArea]="scrollArea" [fadeFactor]="5" [disableFade]="true" #expandableHeader>
       <ion-toolbar class="wide-header__title">
         <expandable-header-primary>
@@ -107,6 +106,5 @@
           </button>
         </ion-list>
       </div>
-    </div>
   </div>
 </ion-content>
