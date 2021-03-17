@@ -144,8 +144,15 @@
 
   // 3 - General
   ion-content {
-    background-color: $bg-color-dark-theme;
+    background-color: $bg-color-dark-theme-2;
     color: $text-color-dark-theme;
+
+    /*
+    TODO: Kleinen Balken noch wegbekommen.
+    */
+    ion-refresher {
+      background-color: $bg-color-dark-theme;
+    }
   }
 
   ion-loading {
@@ -953,6 +960,10 @@
 
   // 5.2 - Tab Wallets
   page-wallets {
+    ion-content {
+      background: $bg-color-dark-theme-2;
+    }
+
     .collapse > .collapse-btn {
       background: $bg-color-dark-theme-2;
     }

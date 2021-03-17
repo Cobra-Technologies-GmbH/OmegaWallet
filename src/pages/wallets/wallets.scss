@@ -29,6 +29,18 @@ page-integrations {
     color: color($colors, danger);
   }
 
+  .wallet-folder
+  {
+    background-color: #374965;
+    border-radius: 32px;
+    padding: 32px 0 0 0;
+  }
+
+  .wallets-container
+  {
+    background-color: #051C3F;
+  }
+
   page-wallet-activity,
   page-txp {
     @media (max-width: 350px) {
