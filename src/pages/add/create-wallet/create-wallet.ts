@@ -114,7 +114,7 @@ export class CreateWalletPage implements OnInit {
       ? this.coin === 'bch'
         ? this.derivationPathHelperProvider.defaultMultisigBCH
         : this.derivationPathHelperProvider.defaultMultisigBTC
-      : this.coin === 'eur'
+      : false  // this.coin === 'eur'
         ? this.derivationPathHelperProvider.defaultFIAT
         : this.bwcProvider.getCore().Deriver.pathFor(this.coin, 'livenet');
     this.derivationPathForTestnet = this.bwcProvider

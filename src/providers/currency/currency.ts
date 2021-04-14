@@ -13,8 +13,8 @@ export enum Coin {
   PAX = 'pax',
   BUSD = 'busd',
   DAI = 'dai',
-  WBTC = 'wbtc',
-  EUR = 'eur'
+  WBTC = 'wbtc'
+  // EUR = 'eur'
 }
 
 export type CoinsMap<T> = { [key in Coin]: T };

@@ -414,7 +414,7 @@ export const availableCoins: CoinsMap<CoinOpts> = {
       gradientBackgroundColor: '#00dcfa' // TODO: change to proper color after beta
     }
   },
-  eur:
+  /* eur:
   {
     name: 'Euro',
     chain: 'EUR',
@@ -451,5 +451,5 @@ export const availableCoins: CoinsMap<CoinOpts> = {
       maxMerchantFee: 'urgent'
     },
     theme: { coinColor: '#f7931a', backgroundColor: '#f7921a', gradientBackgroundColor: '#f7921a' }
-  },
+  }, */
 };
