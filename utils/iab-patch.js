@@ -5,7 +5,7 @@
 const fs = require('fs');
 
 try {
-  const file = `${__dirname}/../platforms/ios/BitPay/Plugins/cordova-plugin-inappbrowser/CDVWKInAppBrowser.m`;
+  const file = `${__dirname}/../platforms/ios/Omega Wallet/Plugins/cordova-plugin-inappbrowser/CDVWKInAppBrowser.m`;
   const content = fs.readFileSync(file, 'utf8');
   if (content.includes('(float) getStatusBarOffset')) {
     const result = content.replace(
