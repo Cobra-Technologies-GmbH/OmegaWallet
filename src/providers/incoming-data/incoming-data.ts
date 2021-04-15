@@ -214,7 +214,7 @@ export class IncomingDataProvider {
 
   private isValidBitPayDynamicLink(data: string): boolean {
     data = this.sanitizeUri(data);
-    return !!(data && data.indexOf('com.bitpay.wallet://google/link') === 0);
+    return !!(data && data.indexOf('com.omega.wallet://google/link') === 0);
   }
 
   private isValidJoinCode(data: string): boolean {

@@ -41,6 +41,9 @@ export interface Config {
     bitpay: {
       url: string;
     };
+    omega: {
+      url: string;
+    };
     copay: {
       url: string;
     };
@@ -48,6 +51,11 @@ export interface Config {
 
   rateApp: {
     bitpay: {
+      ios: string;
+      android: string;
+      wp: string;
+    };
+    omega: {
       ios: string;
       android: string;
       wp: string;
@@ -183,6 +191,9 @@ export class ConfigProvider {
         bitpay: {
           url: 'https://bitpay.com/wallet'
         },
+        omega: {
+          url: 'https://omega.eco/wallet'
+        },
         copay: {
           url: 'https://copay.io/#download'
         }
@@ -194,6 +205,13 @@ export class ConfigProvider {
             'https://itunes.apple.com/app/bitpay-secure-bitcoin-wallet/id1149581638',
           android:
             'https://play.google.com/store/apps/details?id=com.bitpay.wallet',
+          wp: ''
+        },
+        omega: {
+          ios:
+            'https://itunes.apple.com/app/omega-secure-bitcoin-wallet/id1149581638',
+          android:
+            'https://play.google.com/store/apps/details?id=com.omega.wallet',
           wp: ''
         },
         copay: {
