@@ -80,7 +80,7 @@
     "run:android": "npm run env:dev && ionic cordova run android --device --debug",
     "run:android-release": "npm run env:prod && ionic cordova run android --device --release",
     "log:android": "adb logcat | grep chromium",
-    "sign:android": "rm -f platforms/android/app/build/outputs/apk/release/android-release-signed-aligned.apk; jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ../omega.keystore -signedjar platforms/android/app/build/outputs/apk/release/android-release-signed.apk platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk  omega_play && $ANDROID_HOME/build-tools/28.0.3/zipalign -v 4 platforms/android/app/build/outputs/apk/release/android-release-signed.apk platforms/android/app/build/outputs/apk/release/android-release-signed-aligned.apk",
+    "sign:android": "rm -f platforms/android/app/build/outputs/apk/release/android-release-signed-aligned.apk; jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ../omega.keystore -signedjar platforms/android/app/build/outputs/apk/release/android-release-signed.apk platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk  omega_play && $ANDROID_SDK_ROOT/build-tools/28.0.3/zipalign -v 4 platforms/android/app/build/outputs/apk/release/android-release-signed.apk platforms/android/app/build/outputs/apk/release/android-release-signed-aligned.apk",
     "apply:copay": "cd app-template && node apply.js copay",
     "apply:bitpay": "cd app-template && node apply.js bitpay",
     "apply:omega": "cd app-template && node apply.js omega",
