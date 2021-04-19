@@ -119,27 +119,11 @@
         </div>
       </div>
     </div>
-    <ion-list margin-bottom class="bp-list">
-      <button ion-item *ngIf="showShoppingOption" (click)="goToShop()">
-        <ion-label>
-          <div class="services-list-label" translate>Shop</div>
-        </ion-label>
-      </button>
-      <div *ngIf="showShoppingOption" class="line-divider"></div>
-      <button ion-item *ngIf="showBuyCryptoOption" (click)="goToAmountPage()">
-        <ion-label>
-          <div class="services-list-label" translate>Buy Crypto</div>
-        </ion-label>
-      </button>
-      <div class="line-divider" *ngIf="showBuyCryptoOption"></div>
-      <button ion-item *ngIf="showExchangeCryptoOption" (click)="goToExchangeCryptoPage()">
-        <ion-label>
-          <div class="services-list-label" translate>Exchange Crypto</div>
-        </ion-label>
-      </button>
-      <div class="line-divider" *ngIf="showExchangeCryptoOption"></div>
-    </ion-list>
-
+    <div style="text-align: center;">
+      <img src="assets/img/settings-icons/icon-currency.svg" alt="Shop" height="35" style="margin: 10px;cursor: pointer;" (click)="goToShop()"/>
+      <img *ngIf="showBuyCryptoOption" src="assets/img/icon-coins.svg" alt="Buy Crypto" height="35" style="margin: 10px;cursor: pointer" (click)="goToAmountPage()"/>
+      <img *ngIf="showExchangeCryptoOption" src="assets/img/exchange-crypto/exchange-settings.svg" alt="Exchange Crypto" height="35" style="margin: 10px;cursor: pointer" (click)="goToExchangeCryptoPage()"/>
+    </div>
     <ion-slides *ngIf="showAdvertisements && advertisements && advertisements[0] && !testingAdsEnabled" pager="true" (ionSlideDidChange)="slideChanged()">
       <ion-slide *ngFor="let advertisement of advertisements">
         <div class="message-background no-margin">
