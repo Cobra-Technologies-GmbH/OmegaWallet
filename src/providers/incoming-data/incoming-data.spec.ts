@@ -874,7 +874,7 @@ describe('Provider: Incoming Data Provider', () => {
       });
     });
     it('Should handle Coinbase URI', () => {
-      let data = ['bitpay://coinbase', 'copay://coinbase'];
+      let data = ['bitpay://coinbase', 'copay://coinbase', 'omega://coinbase'];
       data.forEach(element => {
         let stateParams = { code: null };
         let nextView = {

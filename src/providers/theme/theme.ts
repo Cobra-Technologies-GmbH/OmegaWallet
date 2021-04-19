@@ -75,13 +75,13 @@ export class ThemeProvider {
     return new Promise(resolve => {
       if (this.platformProvider.isCordova) {
         cordova.plugins.ThemeDetection.isAvailable(
-          res => {
+          ( res: { value: any; }) => {
             if (res && res.value) {
               cordova.plugins.ThemeDetection.isDarkModeEnabled(
-                success => {
+                (success: { value: any; }) => {
                   return resolve(success && success.value ? 'dark' : 'light');
                 },
-                _ => {
+                ( _: any) => {
                   return resolve('dark');
                 }
               );
@@ -89,7 +89,7 @@ export class ThemeProvider {
               return resolve('dark');
             }
           },
-          _ => {
+          (_: any) => {
             return resolve('dark');
           }
         );
@@ -156,11 +156,11 @@ export class ThemeProvider {
       return this.availableThemes[theme];
     else if (this.availableThemes[this.currentAppTheme])
       return this.availableThemes[this.currentAppTheme];
-    else return this.availableThemes['light'];
+    else return this.availableThemes['dark'];
   }
 
   public isDarkModeEnabled(): boolean {
-    return Boolean(this.currentAppTheme === 'dark');
+    return Boolean(this.currentAppTheme === 'dark' || this.useSystemTheme);
   }
 
   public getCurrentAppTheme() {

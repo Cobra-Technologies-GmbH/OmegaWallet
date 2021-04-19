@@ -247,7 +247,9 @@
       "cordova-clipboard": {},
       "cordova-plugin-x-toast": {},
       "cordova-plugin-x-socialsharing": {
-        "ANDROID_SUPPORT_V4_VERSION": "24.1.1+"
+        "ANDROID_SUPPORT_V4_VERSION": "24.1.1+",
+        "PHOTO_LIBRARY_ADD_USAGE_DESCRIPTION": "This app requires photo library access to function properly.",
+        "PHOTO_LIBRARY_USAGE_DESCRIPTION": "This app requires photo library access to function properly."
       },
       "cordova-plugin-qrscanner": {},
       "cordova-plugin-touch-id": {

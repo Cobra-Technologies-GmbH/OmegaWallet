@@ -83,17 +83,17 @@ export class IncomingDataProvider {
     );
   }
 
-  private isValidBitPayInvoice(data: string): boolean {
-    return !!/^https:\/\/(www.)?(test.|staging.)?bitpay.com\/i\/\w+/.exec(data);
+  private isValidOmegaInvoice(data: string): boolean {
+    return !!/^https:\/\/(www.)?(test.|staging.)?omega.eco\/i\/\w+/.exec(data);
   }
 
-  private isValidBitPayUri(data: string): boolean {
+  private isValidOmegaUri(data: string): boolean {
     data = this.sanitizeUri(data);
-    if (!(data && data.indexOf('bitpay:') === 0)) return false;
+    if (!(data && data.indexOf('omega:') === 0)) return false;
     const address = this.extractAddress(data);
     if (!address) return false;
     let params: URLSearchParams = new URLSearchParams(
-      data.replace(`bitpay:${address}`, '')
+      data.replace(`omega:${address}`, '')
     );
     const coin = params.get('coin');
     if (!coin) return false;
@@ -132,7 +132,7 @@ export class IncomingDataProvider {
   }
 
   private isValidPlainUrl(data: string): boolean {
-    if (this.isValidBitPayInvoice(data)) {
+    if (this.isValidOmegaInvoice(data)) {
       return false;
     }
     data = this.sanitizeUri(data);
@@ -202,17 +202,17 @@ export class IncomingDataProvider {
     );
   }
 
-  private isValidBitPayCardUri(data: string): boolean {
+  private isValidOmegaCardUri(data: string): boolean {
     data = this.sanitizeUri(data);
-    return !!(data && data.indexOf('bitpay://bitpay') === 0);
+    return !!(data && data.indexOf('omega://bitpay') === 0);
   }
 
-  private isValidBitPayRedirLink(data: string): boolean {
+  private isValidOmegaRedirLink(data: string): boolean {
     data = this.sanitizeUri(data);
-    return !!(data && data.indexOf('bitpay://landing') === 0);
+    return !!(data && data.indexOf('omega://landing') === 0);
   }
 
-  private isValidBitPayDynamicLink(data: string): boolean {
+  private isValidOmegaDynamicLink(data: string): boolean {
     data = this.sanitizeUri(data);
     return !!(data && data.indexOf('com.omega.wallet://google/link') === 0);
   }
@@ -336,7 +336,7 @@ export class IncomingDataProvider {
       redirParams && redirParams.amount ? redirParams.amount : '';
     const address = this.extractAddress(data);
     let params: URLSearchParams = new URLSearchParams(
-      data.replace(`bitpay:${address}`, '')
+      data.replace(`omega:${address}`, '')
     );
     let amount = params.get('amount') || amountFromRedirParams;
     const coin: Coin = Coin[params.get('coin').toUpperCase()];
@@ -657,7 +657,7 @@ export class IncomingDataProvider {
 
   private goToBitPayRedir(data: string): void {
     this.logger.debug('Incoming-data (redirect): BitPay Redir');
-    const redir = data.replace('bitpay://landing/', '');
+    const redir = data.replace('omega://landing/', '');
     switch (redir) {
       default:
       case 'card':
@@ -772,7 +772,7 @@ export class IncomingDataProvider {
       this.activePage = redirParams.activePage;
 
     //  Handling of a bitpay invoice url
-    if (this.isValidBitPayInvoice(data)) {
+    if (this.isValidOmegaInvoice(data)) {
       this.handleBitPayInvoice(data);
       return true;
     } else if (data.includes('unlock')) {
@@ -860,17 +860,17 @@ export class IncomingDataProvider {
       return true;
 
       // BitPay Redir Link
-    } else if (this.isValidBitPayRedirLink(data)) {
+    } else if (this.isValidOmegaRedirLink(data)) {
       this.goToBitPayRedir(data);
       return true;
 
       // BitPayCard Authentication
-    } else if (this.isValidBitPayCardUri(data)) {
+    } else if (this.isValidOmegaCardUri(data)) {
       // this.goToBitPayCard(data);
       return true;
 
       // BitPay URI
-    } else if (this.isValidBitPayUri(data)) {
+    } else if (this.isValidOmegaUri(data)) {
       this.handleBitPayUri(data);
       return true;
 
@@ -950,7 +950,7 @@ export class IncomingDataProvider {
 
       return true;
       // Anything else
-    } else if (this.isValidBitPayDynamicLink(data)) {
+    } else if (this.isValidOmegaDynamicLink(data)) {
       const deepLink = this.getParameterByName('deep_link_id', data);
       this.handleDynamicLink(deepLink);
       return true;
@@ -971,7 +971,7 @@ export class IncomingDataProvider {
 
   public parseData(data: string): any {
     if (!data) return;
-    if (this.isValidBitPayInvoice(data)) {
+    if (this.isValidOmegaInvoice(data)) {
       return {
         data,
         type: 'InvoiceUri',
@@ -1080,20 +1080,20 @@ export class IncomingDataProvider {
         title: 'Coinbase URI'
       };
 
-      // BitPayCard Authentication
-    } else if (this.isValidBitPayCardUri(data)) {
+      // OmegaCard Authentication
+    } else if (this.isValidOmegaCardUri(data)) {
       return {
         data,
-        type: 'BitPayCard',
+        type: 'OmegaCard',
         title: 'Omega Card URI'
       };
 
-      // BitPay  URI
-    } else if (this.isValidBitPayUri(data)) {
+      // Omega  URI
+    } else if (this.isValidOmegaUri(data)) {
       return {
         data,
-        type: 'BitPayUri',
-        title: 'BitPay URI'
+        type: 'OmegaUri',
+        title: 'Omega URI'
       };
 
       // Join
