@@ -64,7 +64,7 @@ export class TabsPage {
     this.appName = this.appProvider.info.nameCase;
     this.isCordova = this.platformProvider.isCordova;
     this.scanIconType =
-      this.appName == 'BitPay' ? 'tab-scan' : 'tab-copay-scan';
+      this.appName == 'BitPay' || this.appName == 'Omega' ? 'tab-scan' : 'tab-copay-scan';
 
     if (this.platformProvider.isElectron) {
       this.updateDesktopOnFocus();

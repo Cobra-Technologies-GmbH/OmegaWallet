@@ -57,7 +57,7 @@ export class DisclaimerPage {
   }
 
   openDisclaimer() {
-    let url = 'https://bitpay.com/legal/terms-of-use/#wallet-terms-of-use';
+    let url = 'https://www.omega.eco';
     let optIn = true;
     let title = null;
     let message = this.translate.instant('View Wallet Terms of Use');

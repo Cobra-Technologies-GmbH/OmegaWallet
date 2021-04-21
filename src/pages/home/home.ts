@@ -22,7 +22,8 @@ import {
   PlatformProvider,
   PopupProvider,
   ProfileProvider,
-  ReleaseProvider
+  ReleaseProvider,
+  ThemeProvider
 } from '../../providers';
 import { ActionSheetProvider } from '../../providers/action-sheet/action-sheet';
 import { AnalyticsProvider } from '../../providers/analytics/analytics';
@@ -96,6 +97,7 @@ export class HomePage {
   private hasOldCoinbaseSession: boolean;
   private newReleaseVersion: string;
   private pagesMap: any;
+  public isDarkModeEnabled: boolean;
 
   private isCordova: boolean;
   private zone;
@@ -124,9 +126,11 @@ export class HomePage {
     private dynamicLinkProvider: DynamicLinksProvider,
     private newFeatureData: NewFeatureData,
     private emailProvider: EmailNotificationsProvider,
+    private themeProvider: ThemeProvider,
     private popupProvider: PopupProvider
   ) {
     this.logger.info('Loaded: HomePage');
+    this.isDarkModeEnabled = this.themeProvider.isDarkModeEnabled();
     this.zone = new NgZone({ enableLongStackTrace: false });
     this.subscribeEvents();
     this.persistenceProvider

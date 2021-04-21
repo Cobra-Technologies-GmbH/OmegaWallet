@@ -106,7 +106,10 @@ export class ScanPage {
     this.scanProvider.frontCameraEnabled = false;
     this.scanProvider.deactivate();
     this.unregisterBackButtonAction && this.unregisterBackButtonAction();
-    this.tabBarElement.style.display = 'flex';
+    if(this.tabBarElement != null)
+    {
+      this.tabBarElement.style.display = 'flex';
+    }
   }
 
   ionViewWillEnter() {
@@ -121,8 +124,11 @@ export class ScanPage {
     this.fromConfirm = this.navParams.data.fromConfirm;
     this.fromWalletConnect = this.navParams.data.fromWalletConnect;
 
-    if (this.canGoBack) this.tabBarElement.style.display = 'none';
-
+    if (this.canGoBack && this.tabBarElement != null)
+    {
+      this.tabBarElement.style.display = 'none';
+    }
+     
     if (!env.activateScanner) {
       // test scanner visibility in E2E mode
       this.selectedDevice = true as any;

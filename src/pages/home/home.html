@@ -97,7 +97,11 @@
   <page-feedback-card #showCard></page-feedback-card>
   <div class="data-container">
     <div *ngIf="showTotalBalance" class="total-amount-container">
-      <div class="section-header" translate>Total cash value</div>
+      <div class="section-header">
+        <div></div>
+        <div translate>Total cash value</div>
+        <div></div>
+      </div>
       <div class="total-amount-value">
         <span *ngIf="totalBalanceAlternative" class="total-amount-iso">
           {{totalBalanceAlternativeIsoCode}}
@@ -119,11 +123,32 @@
         </div>
       </div>
     </div>
-    <div style="text-align: center;">
-      <img src="assets/img/settings-icons/icon-currency.svg" alt="Shop" height="35" style="margin: 10px;cursor: pointer;" (click)="goToShop()"/>
-      <img *ngIf="showBuyCryptoOption" src="assets/img/icon-coins.svg" alt="Buy Crypto" height="35" style="margin: 10px;cursor: pointer" (click)="goToAmountPage()"/>
-      <img *ngIf="showExchangeCryptoOption" src="assets/img/exchange-crypto/exchange-settings.svg" alt="Exchange Crypto" height="35" style="margin: 10px;cursor: pointer" (click)="goToExchangeCryptoPage()"/>
-    </div>
+    <ion-row justify-content-center style="margin-top: 10px;">
+      <button (click)="goToShop()" style="background-color: transparent;">
+        <ion-icon>
+          <figure>
+            <img [src]="this.isDarkModeEnabled ? 'assets/img/wallet-details/wd-shop-dm.svg' : 'assets/img/wallet-details/wd-shop.svg'" alt="Shop" width="50"/>
+            <figcaption style="color: white;">Shop</figcaption>
+          </figure>
+        </ion-icon>
+      </button>
+      <button *ngIf="showBuyCryptoOption" (click)="goToAmountPage()" style="background-color: transparent;" >
+        <ion-icon>
+          <figure>
+            <img [src]="this.isDarkModeEnabled ? 'assets/img/wallet-details/wd-buy-dm.svg' : 'assets/img/wallet-details/wd-buy.svg'" alt="Buy" width="50"/>
+            <figcaption style="color: white;">Buy</figcaption>
+          </figure>
+        </ion-icon>
+      </button>
+      <button *ngIf="showExchangeCryptoOption" (click)="goToExchangeCryptoPage()" style="background-color: transparent;" >
+        <ion-icon>
+          <figure>
+            <img [src]="this.isDarkModeEnabled ? 'assets/img/wallet-details/wd-exchange-dm.svg': 'assets/img/wallet-details/wd-exchange.svg'" alt="Exchange" width="50"/>
+            <figcaption style="color: white;">Exchange</figcaption>
+          </figure>
+        </ion-icon>
+      </button>
+    </ion-row>
     <ion-slides *ngIf="showAdvertisements && advertisements && advertisements[0] && !testingAdsEnabled" pager="true" (ionSlideDidChange)="slideChanged()">
       <ion-slide *ngFor="let advertisement of advertisements">
         <div class="message-background no-margin">
