@@ -123,11 +123,11 @@
         </div>
       </div>
     </div>
-    <ion-row justify-content-center style="margin-top: 10px;">
+    <ion-row justify-content-center style="margin-top: 10px; margin-bottom: 10px;">
       <button (click)="goToShop()" style="background-color: transparent;">
         <ion-icon>
           <figure>
-            <img [src]="this.isDarkModeEnabled ? 'assets/img/wallet-details/wd-shop-dm.svg' : 'assets/img/wallet-details/wd-shop.svg'" alt="Shop" width="50"/>
+            <img [src]="isDarkModeEnabled ? 'assets/img/wallet-details/wd-shop-dm.svg' : 'assets/img/wallet-details/wd-shop.svg'" alt="Shop" width="50"/>
             <figcaption style="color: white;">Shop</figcaption>
           </figure>
         </ion-icon>
@@ -135,7 +135,7 @@
       <button *ngIf="showBuyCryptoOption" (click)="goToAmountPage()" style="background-color: transparent;" >
         <ion-icon>
           <figure>
-            <img [src]="this.isDarkModeEnabled ? 'assets/img/wallet-details/wd-buy-dm.svg' : 'assets/img/wallet-details/wd-buy.svg'" alt="Buy" width="50"/>
+            <img [src]="isDarkModeEnabled ? 'assets/img/wallet-details/wd-buy-dm.svg' : 'assets/img/wallet-details/wd-buy.svg'" alt="Buy" width="50"/>
             <figcaption style="color: white;">Buy</figcaption>
           </figure>
         </ion-icon>
@@ -143,7 +143,7 @@
       <button *ngIf="showExchangeCryptoOption" (click)="goToExchangeCryptoPage()" style="background-color: transparent;" >
         <ion-icon>
           <figure>
-            <img [src]="this.isDarkModeEnabled ? 'assets/img/wallet-details/wd-exchange-dm.svg': 'assets/img/wallet-details/wd-exchange.svg'" alt="Exchange" width="50"/>
+            <img [src]="isDarkModeEnabled ? 'assets/img/wallet-details/wd-exchange-dm.svg': 'assets/img/wallet-details/wd-exchange.svg'" alt="Exchange" width="50"/>
             <figcaption style="color: white;">Exchange</figcaption>
           </figure>
         </ion-icon>
@@ -163,7 +163,7 @@
             <ion-row align-items-center>
               <ion-col align-self-start col-4>
                 <div class="message-img">
-                  <img [ngClass]="{'card-img': advertisement.imgSrc === 'assets/img/bitpay-card/bitpay-card-mc-angled-plain.svg'}" src="{{advertisement.imgSrc}}" />
+                  <img [ngClass]="{'card-img': advertisement.imgSrc === 'assets/img/omega-card/omega-card-mc-angled-plain.svg'}" src="{{advertisement.imgSrc}}" />
                 </div>
               </ion-col>
               <ion-col col-8>
@@ -198,7 +198,7 @@
             <ion-row align-items-center>
               <ion-col align-self-start col-4>
                 <div class="message-img">
-                  <img [ngClass]="{'card-img': advertisement.imgSrc === 'assets/img/bitpay-card/bitpay-card-visa.svg'}" src="{{advertisement.imgSrc}}" />
+                  <img [ngClass]="{'card-img': advertisement.imgSrc === 'assets/img/omega-card/omega-card-visa.svg'}" src="{{advertisement.imgSrc}}" />
                 </div>
               </ion-col>
               <ion-col col-8>

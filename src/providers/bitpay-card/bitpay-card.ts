@@ -524,7 +524,7 @@ export class BitPayCardProvider {
       this.homeIntegrationsProvider.register({
         name: 'debitcard',
         title: 'BitPay Visa® Card',
-        icon: 'assets/img/bitpay-card/icon-bitpay.svg',
+        icon: 'assets/img/omega-card/icon-omega.svg',
         page: 'BitPayCardIntroPage',
         show: !!this.configProvider.get().showIntegration['debitcard'],
         linked: !!isActive,

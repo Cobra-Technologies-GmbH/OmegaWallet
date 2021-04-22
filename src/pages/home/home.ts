@@ -351,9 +351,9 @@ export class HomePage {
         body: this.translate.instant(
           'Learn where you can spend your crypto today.'
         ),
-        app: 'bitpay',
+        app: 'omega',
         linkText: this.translate.instant('View Directory'),
-        link: 'https://bitpay.com/directory/?hideGiftCards=true',
+        link: 'https://www.omega.eco',
         imgSrc: 'assets/img/icon-merch-dir.svg',
         isTesting: false,
         dismissible: true
@@ -438,15 +438,15 @@ export class HomePage {
         switch (status) {
           case 'connected':
             hasGalileo
-              ? this.removeAdvertisement('bitpay-card')
-              : this.addBitPayCard();
+              ? this.removeAdvertisement('omega-card')
+              : this.addOmegaCard();
             break;
           case 'disconnected':
-            this.addBitPayCard();
+            this.addOmegaCard();
             break;
           default:
             this.cardExperimentEnabled = cardExperimentEnabled;
-            if (!hasGalileo) this.addBitPayCard();
+            if (!hasGalileo) this.addOmegaCard();
         }
       }
     );
@@ -514,7 +514,7 @@ export class HomePage {
         body: this.translate.instant(
           'Leverage your crypto with an amazon.com gift card.'
         ),
-        app: 'bitpay',
+        app: 'omega',
         linkText: this.translate.instant('Buy Now'),
         link: CardCatalogPage,
         isTesting: false,
@@ -523,29 +523,29 @@ export class HomePage {
       });
   }
 
-  private addBitPayCard() {
+  private addOmegaCard() {
     if (!this.isCordova) return;
     const card: Advertisement = this.cardExperimentEnabled
       ? {
-          name: 'bitpay-card',
+          name: 'omega-card',
           title: this.translate.instant('Get the Omega Card'),
           body: this.translate.instant(
             'Designed for people who want to live life on crypto.'
           ),
-          app: 'bitpay',
+          app: 'omega',
           linkText: this.translate.instant('Order Now'),
           link: BitPayCardIntroPage,
           isTesting: false,
           dismissible: true,
-          imgSrc: 'assets/img/bitpay-card/bitpay-card-mc-angled-plain.svg'
+          imgSrc: 'assets/img/omega-card/omega-card-mc-angled-plain.svg'
         }
       : {
-          name: 'bitpay-card',
+          name: 'omega-card',
           title: this.translate.instant('Coming soon'),
           body: this.translate.instant(
             'Join the waitlist and be first to experience the new card.'
           ),
-          app: 'bitpay',
+          app: 'omega',
           linkText: this.translate.instant('Notify Me'),
           link: PhaseOneCardIntro,
           isTesting: false,
@@ -553,7 +553,7 @@ export class HomePage {
           imgSrc: 'assets/img/icon-bpcard.svg'
         };
     const alreadyVisible = this.advertisements.find(
-      a => a.name === 'bitpay-card'
+      a => a.name === 'omega-card'
     );
     !alreadyVisible && this.advertisements.unshift(card);
   }
@@ -571,7 +571,7 @@ export class HomePage {
               'Reconnect to quickly withdraw and deposit funds.'
             )
           : this.translate.instant('Easily deposit and withdraw funds.'),
-        app: 'bitpay',
+        app: 'omega',
         linkText: this.hasOldCoinbaseSession
           ? this.translate.instant('Reconnect Account')
           : this.translate.instant('Connect Account'),
@@ -601,7 +601,7 @@ export class HomePage {
         name: advertisementName,
         title: `${discountText} off ${discountedCard.displayName}`,
         body: `Save ${discountText} off ${discountedCard.displayName} gift cards. Limited time offer.`,
-        app: 'bitpay',
+        app: 'omega',
         linkText: 'Buy Now',
         link: BuyCardPage,
         linkParams: { cardConfig: discountedCard },
@@ -622,7 +622,7 @@ export class HomePage {
         name: advertisementName,
         title: promo.title,
         body: promo.description,
-        app: 'bitpay',
+        app: 'omega',
         linkText: promo.cta || 'Buy Now',
         link: BuyCardPage,
         linkParams: { cardConfig: promotedCard },
@@ -846,11 +846,11 @@ export class HomePage {
 
   public openCountryBannedLink(): void {
     const url =
-      "https://github.com/bitpay/copay/wiki/Why-can't-I-use-BitPay's-services-in-my-country%3F";
+      "https://www.omega.eco";
     this.externalLinkProvider.open(url);
   }
 
-  public enableBitPayIdPairing() {
+  public enableOmegaIdPairing() {
     this.tapped++;
 
     if (this.tapped >= 10) {
