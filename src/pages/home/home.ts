@@ -37,7 +37,7 @@ import { CardConfig } from '../../providers/gift-card/gift-card.types';
 // Pages
 import { ExchangeCryptoPage } from '../exchange-crypto/exchange-crypto';
 import { BitPayCardIntroPage } from '../integrations/bitpay-card/bitpay-card-intro/bitpay-card-intro';
-import { PhaseOneCardIntro } from '../integrations/bitpay-card/bitpay-card-phases/phase-one/phase-one-intro-page/phase-one-intro-page';
+// import { PhaseOneCardIntro } from '../integrations/bitpay-card/bitpay-card-phases/phase-one/phase-one-intro-page/phase-one-intro-page';
 import { CoinbasePage } from '../integrations/coinbase/coinbase';
 import { BuyCardPage } from '../integrations/gift-cards/buy-card/buy-card';
 import { CardCatalogPage } from '../integrations/gift-cards/card-catalog/card-catalog';
@@ -99,7 +99,7 @@ export class HomePage {
   private pagesMap: any;
   public isDarkModeEnabled: boolean;
 
-  private isCordova: boolean;
+  // private isCordova: boolean;
   private zone;
 
   constructor(
@@ -139,7 +139,7 @@ export class HomePage {
     this.persistenceProvider
       .getTestingAdvertisments()
       .then(testing => (this.testingAdsEnabled = testing === 'enabled'));
-    this.isCordova = this.platformProvider.isCordova;
+    // this.isCordova = this.platformProvider.isCordova;
     this.pagesMap = {
       BuyCardPage,
       BitPayCardIntroPage,
@@ -524,7 +524,8 @@ export class HomePage {
   }
 
   private addOmegaCard() {
-    if (!this.isCordova) return;
+    return;
+    /* if (!this.isCordova) return;
     const card: Advertisement = this.cardExperimentEnabled
       ? {
           name: 'omega-card',
@@ -555,7 +556,7 @@ export class HomePage {
     const alreadyVisible = this.advertisements.find(
       a => a.name === 'omega-card'
     );
-    !alreadyVisible && this.advertisements.unshift(card);
+    !alreadyVisible && this.advertisements.unshift(card); */
   }
 
   private addCoinbase() {
