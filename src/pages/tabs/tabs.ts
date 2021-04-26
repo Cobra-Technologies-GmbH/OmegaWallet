@@ -305,6 +305,8 @@ export class TabsPage {
       return !w.hidden;
     });
 
+    let foundMessage = false;
+
     const pr = wallet => {
       return this.walletProvider
         .fetchStatus(wallet, {})
@@ -323,8 +325,9 @@ export class TabsPage {
             finished: true
           });
 
-          if (!_.isEmpty(st.serverMessages)) {
-            this.events.publish('Local/ServerMessages', {
+          if (!foundMessage && !_.isEmpty(st.serverMessages)) {
+            foundMessage = true;
+            this.events.publish('Local/ServerMessage', {
               serverMessages: st.serverMessages
             });
           }
