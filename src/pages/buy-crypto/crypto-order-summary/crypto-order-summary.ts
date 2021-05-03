@@ -108,12 +108,7 @@ export class CryptoOrderSummaryPage {
   }
 
   private selectFirstAvailableWallet() {
-    const supportedCoins =
-      this.navParams.data.country &&
-      (this.navParams.data.country.EUCountry ||
-        this.navParams.data.country.threeLetterCode == 'CAN')
-        ? this.buyCryptoProvider.getExchangeCoinsSupported('simplex')
-        : this.buyCryptoProvider.getExchangeCoinsSupported();
+    const supportedCoins = this.buyCryptoProvider.getExchangeCoinsSupported();
     // Select first available wallet
     this.wallets = this.profileProvider.getWallets({
       network: env.name == 'development' ? null : 'livenet',
@@ -309,21 +304,7 @@ export class CryptoOrderSummaryPage {
   }
 
   private isCoinSupportedByCountry(): boolean {
-    if (
-      (this.selectedCountry.EUCountry ||
-        this.selectedCountry.threeLetterCode == 'CAN') &&
-      !_.includes(
-        this.buyCryptoProvider.getExchangeCoinsSupported('simplex'),
-        this.coin
-      )
-    ) {
-      this.logger.debug(
-        `Selected coin: ${this.coin} is not currently available for selected country: ${this.selectedCountry.name}. Show warning.`
-      );
-      return false;
-    } else {
       return true;
-    }
   }
 
   private showCoinAndCountryError() {
