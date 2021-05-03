@@ -150,7 +150,7 @@ export class SettingsPage {
     );
   }
 
-  ionViewWillEnter() {
+  async ionViewWillEnter() {
     this.persistenceProvider
       .getBitpayIdPairingFlag()
       .then(res => (this.bitpayIdPairingEnabled = res === 'enabled'));
@@ -206,7 +206,7 @@ export class SettingsPage {
 
     this.showTotalBalance = this.config.totalBalance.show;
 
-    this.featureList = this.newFeatureData.get();
+    this.featureList = await this.newFeatureData.get();
   }
 
   ionViewDidEnter() {
@@ -307,7 +307,7 @@ export class SettingsPage {
   }
 
   public openWhatsNew(): void {
-    if (this.featureList) {
+    if (this.featureList && this.featureList.features.length > 0) {
       const modal = this.modalCtrl.create(NewFeaturePage, {
         featureList: this.featureList
       });
