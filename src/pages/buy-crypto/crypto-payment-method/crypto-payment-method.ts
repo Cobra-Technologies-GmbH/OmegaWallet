@@ -61,7 +61,9 @@ export class CryptoPaymentMethodPage {
             m,
             this.coin,
             this.currency
-          ) &&
+            )
+          )
+        ) &&
         (m.method != 'sepaBankTransfer' ||
           (m.method == 'sepaBankTransfer' && this.country.EUCountry))
       );
