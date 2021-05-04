@@ -85,6 +85,7 @@ export class SettingsPage {
   public lockMethod: string;
   public integrationServices = [];
   public cardServices = [];
+  public externalServices = [];
   public bitpayCardItems = [];
   public showBitPayCard: boolean = false;
   public encryptEnabled: boolean;
@@ -219,7 +220,11 @@ export class SettingsPage {
     // Hide BitPay if linked
     setTimeout(() => {
       this.integrationServices = _.remove(_.clone(integrations), x => {
-        if (x.type == 'card' || (this.platformProvider.isMacApp() && !x.linked))
+        if (
+          x.type == 'card' ||
+          x.type == 'external-services' ||
+          (this.platformProvider.isMacApp() && !x.linked)
+        )
           return false;
         else return x;
       });
@@ -227,9 +232,14 @@ export class SettingsPage {
         if (
           x.name === 'debitcard' ||
           x.type === 'exchange' ||
+          x.type === 'external-services' ||
           (x.name === 'giftcards' && this.platformProvider.isMacApp())
         )
           return false;
+        else return x;
+      });
+      this.externalServices = _.remove(_.clone(integrations), x => {
+        if (x.type !== 'external-services') return false;
         else return x;
       });
     }, 200);
