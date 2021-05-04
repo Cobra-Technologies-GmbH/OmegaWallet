@@ -458,7 +458,6 @@ export class HomePage {
       this.showInfoSheet(params);
     });
     this.events.subscribe('Local/showNewFeaturesSlides', () => {
-      this.logger.debug(`>>> Home call showNewFeaturesSlides`);
       this.showNewFeatureSlides();
     });
   }
