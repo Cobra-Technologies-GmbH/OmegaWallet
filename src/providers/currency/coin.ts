@@ -414,6 +414,43 @@ export const availableCoins: CoinsMap<CoinOpts> = {
       gradientBackgroundColor: '#00dcfa' // TODO: change to proper color after beta
     }
   },
+  doge: {
+    name: 'Dogecoin',
+    chain: 'DOGE',
+    coin: 'doge',
+    unitInfo: {
+      unitName: 'DOGE',
+      unitToSatoshi: 1e8,
+      unitDecimals: 8,
+      unitCode: 'doge'
+    },
+    properties: {
+      hasMultiSig: false,
+      hasMultiSend: true,
+      isUtxo: true,
+      isERCToken: false,
+      isStableCoin: false,
+      singleAddress: false
+    },
+    paymentInfo: {
+      paymentCode: 'BIP73',
+      protocolPrefix: { livenet: 'doge', testnet: 'doge' },
+      ratesApi: 'https://bws.bitpay.com/bws/api/v3/fiatrates/doge',
+      blockExplorerUrls: 'blockchair.com/',
+      blockExplorerUrlsTestnet: 'sochain.com/'
+    },
+    feeInfo: {
+      feeUnit: 'sat/byte',
+      feeUnitAmount: 1e8,
+      blockTime: 10,
+      maxMerchantFee: 'normal'
+    },
+    theme: {
+      coinColor: '#bb9f32',
+      backgroundColor: '#bb9f32',
+      gradientBackgroundColor: '#bb9f32'
+    }
+  }
   /* eur:
   {
     name: 'Euro',

@@ -13,7 +13,8 @@ export enum Coin {
   PAX = 'pax',
   BUSD = 'busd',
   DAI = 'dai',
-  WBTC = 'wbtc'
+  WBTC = 'wbtc',
+  DOGE = 'doge'
   // EUR = 'eur'
 }
 
