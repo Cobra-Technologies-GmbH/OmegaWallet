@@ -58,6 +58,15 @@ export class NewFeaturePage {
     }
   }
 
+  styleFullFitImageDiv(imagePath: string) {
+    return {
+      'background-image': 'url(' + imagePath + ')',
+      'background-repeat': 'no-repeat',
+      'background-position': 'bottom',
+      'background-color': '#F4F6FF'
+    };
+  }
+
   slideChanged() {
     this.endSlide = this.slider.isEnd();
     this.firstSlide = this.slider.isBeginning();
