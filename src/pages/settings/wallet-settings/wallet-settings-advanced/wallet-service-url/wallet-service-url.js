@@ -44,7 +44,7 @@ let WalletServiceUrlPage = class WalletServiceUrlPage {
         this.defaults = this.configProvider.getDefaults();
         this.config = this.configProvider.get();
         let appName = this.app.info.nameCase;
-        this.comment = this.replaceParametersProvider.replace(this.translate.instant("{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and Copayer synchronization. The default configuration points to https://bws.omega.eco (BitPay's public BWS instance)."), { appName });
+        this.comment = this.replaceParametersProvider.replace(this.translate.instant("{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and Copayer synchronization. The default configuration points to https://bws.omega.eco (Omega's public BWS instance)."), { appName });
         this.walletServiceForm.value.bwsurl =
             (this.config.bwsFor &&
                 this.config.bwsFor[this.wallet.credentials.walletId]) ||
