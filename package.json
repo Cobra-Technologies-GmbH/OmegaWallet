@@ -1,8 +1,8 @@
 {
   "name": "omega",
-  "description": "Secure Bitcoin Wallet",
+  "description": "A Secure Bitcoin Wallet",
   "author": "Cobra Technologies GmbH",
-  "version": "12.3.0",
+  "version": "12.3.2",
   "keywords": [
     "bitcoin",
     "wallet",
