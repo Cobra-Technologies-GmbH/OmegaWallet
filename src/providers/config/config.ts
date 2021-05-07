@@ -211,7 +211,7 @@ export class ConfigProvider {
           ios:
             'https://itunes.apple.com/app/omega-secure-bitcoin-wallet/id1149581638',
           android:
-            'https://play.google.com/store/apps/details?id=com.omega.wallet',
+            'https://play.google.com/store/apps/details?id=eco.omega.wallet',
           wp: ''
         },
         copay: {
@@ -293,7 +293,7 @@ export class ConfigProvider {
   }
 
   public load() {
-    return new Promise(resolve => {
+    return new Promise<void>(resolve => {
       this.persistence
         .getConfig()
         .then((config: Config) => {

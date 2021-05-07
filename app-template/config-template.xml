@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.omega.*BUNDLENAME*"
+<widget id="eco.omega.*BUNDLENAME*"
   version="*VERSION*"
   android-versionCode="*ANDROIDVERSION*"
   ios-CFBundleVersion="*IOSBUILDVERSION*"
@@ -8,12 +8,13 @@
     <description>
       *PURPOSELINE*
     </description>
-    <author email="support@bitpay.com" href="*URL*">
-        BitPay Inc.
+    <author email="support@cobra.io" href="*URL*">
+        Cobra Technologies GmbH
     </author>
     <content src="index.html" />
-    <access origin="https://bws.omega.eco" />
-    <access origin="https://omega.ecp" />
+    <access origin="https://omega.eco" />
+    <access origin="https://test.omega.eco" />
+    <access origin="https://staging.omega.eco" />
     <access origin="https://app.omega.eco" />
     <access origin="https://www.omega.eco" />
     <access origin="https://bws.omega.eco" />
