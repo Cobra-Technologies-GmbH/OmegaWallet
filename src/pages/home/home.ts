@@ -22,9 +22,9 @@ import {
   PlatformProvider,
   PopupProvider,
   ProfileProvider,
-  ThemeProvider,
   RateProvider,
-  ReleaseProvider
+  ReleaseProvider,
+  ThemeProvider
 } from '../../providers';
 import { ActionSheetProvider } from '../../providers/action-sheet/action-sheet';
 import { AnalyticsProvider } from '../../providers/analytics/analytics';
