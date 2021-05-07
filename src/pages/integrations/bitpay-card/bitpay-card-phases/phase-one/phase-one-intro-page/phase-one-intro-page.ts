@@ -215,7 +215,7 @@ export class PhaseOneCardIntro {
     });
 
     let actionSheet = this.actionSheetCtrl.create({
-      title: this.translate.instant('From Omega Account'),
+      title: this.translate.instant('From Omega account'),
       buttons: options
     });
     actionSheet.present();

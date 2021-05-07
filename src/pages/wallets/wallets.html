@@ -20,6 +20,7 @@
   <ion-refresher (ionRefresh)="doRefresh($event)" pullMin="90" pullMax="160">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
+  <div class="wrapper">
     <expandable-header [scrollArea]="scrollArea" [fadeFactor]="5" [disableFade]="true" #expandableHeader>
       <ion-toolbar class="wide-header__title">
         <expandable-header-primary>
@@ -60,9 +61,7 @@
         </ion-label>
       </div>
       <ion-list no-lines class="bp-list" [ngClass]="{ collapsed: isCollapsed(walletGroup[0].keyId) }">
-        <div class="wallet-folder">
-          <wallet-item-content *ngFor="let wallet of walletGroup" [wallet]="wallet" (click)="goToWalletDetails(wallet)"></wallet-item-content>
-        </div>
+        <wallet-item-content *ngFor="let wallet of walletGroup" [wallet]="wallet" (click)="goToWalletDetails(wallet)"></wallet-item-content>
       </ion-list>
       <label-tip type="warn" *ngIf="walletGroup && walletGroup[0] && walletGroup[0].needsBackup" header="no-header" margin-top>
         <div label-tip-body>
@@ -106,5 +105,6 @@
           </button>
         </ion-list>
       </div>
+    </div>
   </div>
 </ion-content>

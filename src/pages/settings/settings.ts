@@ -6,15 +6,9 @@ import * as _ from 'lodash';
 
 // providers
 import { Observable } from 'rxjs';
-// providers
-import {
-  BitPayIdProvider,
-  IABCardProvider,
-  ReplaceParametersProvider
-} from '../../providers';
-
 // pages
 import { User } from '../../models/user/user.model';
+import { BitPayIdProvider, IABCardProvider } from '../../providers';
 import { AnalyticsProvider } from '../../providers/analytics/analytics';
 import { AppProvider } from '../../providers/app/app';
 import { BitPayCardProvider } from '../../providers/bitpay-card/bitpay-card';
@@ -75,7 +69,6 @@ import { WalletSettingsPage } from './wallet-settings/wallet-settings';
 })
 export class SettingsPage {
   public appName: string;
-  public aboutApp: string;
   public currentLanguageName: string;
   public languages;
   public config;
@@ -127,8 +120,7 @@ export class SettingsPage {
     private iabCardProvider: IABCardProvider,
     private themeProvider: ThemeProvider,
     private events: Events,
-    private newFeatureData: NewFeatureData,
-    private replaceParametersProvider: ReplaceParametersProvider
+    private newFeatureData: NewFeatureData
   ) {
     this.appName = this.app.info.nameCase;
     this.appVersion = this.app.info.version;
@@ -145,10 +137,6 @@ export class SettingsPage {
 
   ionViewDidLoad() {
     this.logger.info('Loaded: SettingsPage');
-    this.aboutApp = this.replaceParametersProvider.replace(
-      this.translate.instant('About {{appName}}'),
-      { appName: this.appName }
-    );
   }
 
   async ionViewWillEnter() {

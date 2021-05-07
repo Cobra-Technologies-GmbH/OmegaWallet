@@ -97,10 +97,7 @@ export class ScanPage {
     this.scanProvider.frontCameraEnabled = false;
     this.scanProvider.deactivate();
     this.unregisterBackButtonAction && this.unregisterBackButtonAction();
-    if(this.tabBarElement != null)
-    {
-      this.tabBarElement.style.display = 'flex';
-    }
+    this.tabBarElement.style.display = 'flex';
   }
 
   ionViewWillEnter() {
