@@ -1334,6 +1334,18 @@ export class WalletProvider {
 
       if (txp.status != 'accepted') return reject('TX_NOT_ACCEPTED');
 
+      if (txp.raw) {
+        if (
+          txp.coin.toLowerCase() === 'eth' &&
+          this.currencyProvider.isERCToken(txp.coin)
+        ) {
+          txp.raw.forEach((raw, i) => {
+            this.logger.info(`Broadcasting raw tx (${i}): ${raw}`);
+          });
+        } else {
+          this.logger.info(`Broadcasting raw tx: ${txp.raw}`);
+        }
+      }
       wallet.broadcastTxProposal(txp, (err, broadcastedTxp, memo) => {
         if (err) {
           if (_.isArrayBuffer(err)) {
@@ -1436,17 +1448,6 @@ export class WalletProvider {
     });
 
     return Promise.all(updates);
-  }
-
-  public recreate(wallet): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.logger.info('Recreating wallet:', wallet.id);
-      wallet.recreateWallet(err => {
-        wallet.notAuthorized = false;
-        if (err) return reject(err);
-        return resolve();
-      });
-    });
   }
 
   public startScan(wallet): Promise<any> {
