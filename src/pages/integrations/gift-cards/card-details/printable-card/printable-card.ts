@@ -63,7 +63,7 @@ export class PrintableCardComponent {
     const x = this.ctx.canvas.width / 2;
 
     // Amount
-    ctx.font = '30px Roboto';
+    ctx.font = '30px Play';
     ctx.fillStyle = 'black';
     const amount = this.formatCurrencyPipe.transform(
       this.card.amount,
@@ -75,14 +75,14 @@ export class PrintableCardComponent {
     const barcodeHeight = this.card.barcodeImage ? BARCODE_HEIGHT : 0;
 
     // Labels
-    ctx.font = '12px Roboto';
+    ctx.font = '12px Play';
     ctx.fillStyle = 'gray';
     ctx.fillText('Claim Code', x, yPos(200));
     this.card.pin &&
       ctx.fillText('Pin', x, yPos(320 - BARCODE_HEIGHT + barcodeHeight));
 
     // Card Number & Pin
-    ctx.font = '14px Roboto';
+    ctx.font = '14px Play';
     ctx.fillStyle = 'black';
     ctx.fillText(
       this.card.claimCode,
@@ -101,7 +101,7 @@ export class PrintableCardComponent {
     const lineHeight = 11;
     const x2 = this.ctx.canvas.width / 2;
     const y = 400;
-    ctx.font = '8px Roboto';
+    ctx.font = '8px Play';
     ctx.fillStyle = '#a6a6a6';
     wrapText(
       ctx,

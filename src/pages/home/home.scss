@@ -1,4 +1,21 @@
 page-home {
+  ion-row {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    button {
+      background-color: transparent;
+      ion-icon {
+        figure {
+          margin: 1em;
+          figcaption {
+            color: #000;
+            font-family: 'Play';
+            margin-top: 5px;
+          }
+        }
+      }
+    }
+  }
   ion-slides {
     max-height: 220px;
     ion-slide.swiper-slide {
@@ -135,7 +152,7 @@ page-home {
       display: flex;
       justify-content: left;
       align-items: center;
-      color: #4f6ef7;
+      color: #02FE45;
       height: 45px;
     }
     &-img {

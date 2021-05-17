@@ -1,0 +1,37 @@
+// Play Font
+// Google
+// Open Font License
+
+$play-font-path: '#{$font-path}/Play' !default;
+
+@font-face {
+  font-family: 'Play';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Play Light'), local('Play-Light'),
+    url('#{$play-font-path}/Play-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Play';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Play'), local('Play-Regular'),
+  url('#{$play-font-path}/Play-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Play';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Play Medium'), local('Play-Medium'),
+    url('#{$play-font-path}/Play-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Play';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Play Bold'), local('Play-Bold'),
+    url('#{$play-font-path}/Play-Bold.ttf') format('truetype');
+}

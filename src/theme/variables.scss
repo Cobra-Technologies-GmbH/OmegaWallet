@@ -3,7 +3,10 @@
 // Font path is used to include ionicons,
 // roboto, and noto sans fonts
 $font-path: '../assets/fonts';
-$font-family-base: 'Roboto';
+$font-family-base: 'Play';
+$font-family-md-base: "Play";
+$font-family-ios-base: "Play";
+$font-family-wp-base: "Play";
 // The app direction is used to include
 // rtl styles in your app. For more info, please see:
 // http://ionicframework.com/docs/theming/rtl-support/
@@ -145,6 +148,7 @@ $segment-button-md-padding-top: 4px;
 @import 'ionic.ionicons';
 // Fonts
 // --------------------------------------------------
+@import '../assets/fonts/Play';
 @import 'roboto';
 @import 'noto-sans';
 

@@ -36,11 +36,11 @@ export class ThemeProvider {
       },
       dark: {
         name: this.translate.instant('Dark Mode'),
-        bodyColor: '#051C3F',
-        backgroundColor: '#051C3F',
-        fixedScrollBgColor: '#374965',
-        walletDetailsBackgroundStart: '#051C3F',
-        walletDetailsBackgroundEnd: '#051C3F'
+        bodyColor: '#121212',
+        backgroundColor: '#121212',
+        fixedScrollBgColor: '#121212',
+        walletDetailsBackgroundStart: '#121212',
+        walletDetailsBackgroundEnd: '#101010'
       }
     };
   }

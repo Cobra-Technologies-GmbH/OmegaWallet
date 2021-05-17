@@ -120,7 +120,7 @@ export function getDiscountTextColor(merchant, appTheme = 'Light Mode') {
     return merchant.theme === '#ffffff' ||
         merchant.theme === '#000000' ||
         (appTheme === 'Dark Mode' && isDark(merchant.theme))
-        ? '#4f6ef7'
+        ? '#02FE45'
         : merchant.theme;
 }
 //# sourceMappingURL=merchant.js.map

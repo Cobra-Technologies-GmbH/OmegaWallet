@@ -96,45 +96,53 @@
 
   <page-feedback-card #showCard></page-feedback-card>
 
-  <div *ngIf="showTotalBalance" class="total-amount-container">
-    <div class="section-header" translate>Total cash value</div>
-    <div class="total-amount-value">
-      <span *ngIf="totalBalanceAlternative">
-        {{totalBalanceAlternative | number:'1.2-2'}} {{totalBalanceAlternativeIsoCode}}
-      </span>
-      <span *ngIf="fetchingStatus">
-        <ion-spinner></ion-spinner>
-      </span>
-    </div>
-    <div class="average-container">
-      <div *ngIf="totalBalanceChange || totalBalanceChange === 0" [ngClass]="totalBalanceChange >= 0 ? 'possitive-avg' : 'negative-avg'">
-        <span class="average"><span *ngIf="totalBalanceChange > 0">+</span>{{ totalBalanceChange | number: '1.2-2' }}%</span>
+  <ion-row justify-content-center>
+    <div *ngIf="showTotalBalance" class="total-amount-container">
+      <div class="section-header" translate>Total cash value</div>
+      <div class="total-amount-value">
+        <span *ngIf="totalBalanceAlternative">
+          {{totalBalanceAlternative | number:'1.2-2'}} {{totalBalanceAlternativeIsoCode}}
+        </span>
+        <span *ngIf="fetchingStatus">
+          <ion-spinner></ion-spinner>
+        </span>
       </div>
-      <span *ngIf="totalBalanceChange || totalBalanceChange === 0" class="date" translate>Last day</span>
+      <div class="average-container">
+        <div *ngIf="totalBalanceChange || totalBalanceChange === 0" [ngClass]="totalBalanceChange >= 0 ? 'possitive-avg' : 'negative-avg'">
+          <span class="average"><span *ngIf="totalBalanceChange > 0">+</span>{{ totalBalanceChange | number: '1.2-2' }}%</span>
+        </div>
+        <span *ngIf="totalBalanceChange || totalBalanceChange === 0" class="date" translate>Last day</span>
+      </div>
     </div>
-  </div>
+  </ion-row>
 
-  <ion-list margin-bottom class="bp-list">
-    <button ion-item *ngIf="showShoppingOption" (click)="goToShop()">
-      <ion-label>
-        <div class="services-list-label" translate>Shop</div>
-      </ion-label>
+  <ion-row justify-content-center>
+    <button *ngIf="showShoppingOption" (click)="goToShop()">
+      <ion-icon>
+        <figure>
+          <img [src]="isDarkModeEnabled ? 'assets/img/wallet-details/wd-shop-dm.svg' : 'assets/img/wallet-details/wd-shop.svg'" alt="Shop" width="50"/>
+          <figcaption class="main-label">Shop</figcaption>
+        </figure>
+      </ion-icon>
     </button>
-    <div *ngIf="showShoppingOption" class="line-divider"></div>
-    <button ion-item *ngIf="showBuyCryptoOption" (click)="goToAmountPage()">
-      <ion-label>
-        <div class="services-list-label" translate>Buy Crypto</div>
-      </ion-label>
+   <button *ngIf="showBuyCryptoOption" (click)="goToAmountPage()">
+      <ion-icon>
+        <figure>
+          <img [src]="isDarkModeEnabled ? 'assets/img/wallet-details/wd-buy-dm.svg' : 'assets/img/wallet-details/wd-buy.svg'" alt="Buy" width="50"/>
+          <figcaption class="main-label">Buy</figcaption>
+        </figure>
+      </ion-icon>
     </button>
-    <div class="line-divider" *ngIf="showBuyCryptoOption"></div>
-    <button ion-item *ngIf="showExchangeCryptoOption" (click)="goToExchangeCryptoPage()">
-      <ion-label>
-        <div class="services-list-label" translate>Exchange Crypto</div>
-      </ion-label>
+    <button *ngIf="showExchangeCryptoOption" (click)="goToExchangeCryptoPage()">
+      <ion-icon>
+        <figure>
+          <img [src]="isDarkModeEnabled ? 'assets/img/wallet-details/wd-exchange-dm.svg': 'assets/img/wallet-details/wd-exchange.svg'" alt="Exchange" width="50"/>
+          <figcaption class="main-label">Exchange</figcaption>
+        </figure>
+      </ion-icon>
     </button>
-    <div class="line-divider" *ngIf="showExchangeCryptoOption"></div>
-  </ion-list>
-
+  </ion-row>
+  
   <ion-slides *ngIf="showAdvertisements && advertisements && advertisements[0] && !testingAdsEnabled" pager="true" (ionSlideDidChange)="slideChanged()">
     <ion-slide *ngFor="let advertisement of advertisements">
       <div class="message-background no-margin">

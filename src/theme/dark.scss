@@ -39,14 +39,15 @@
 .dark {
   // 1 - Definitions
   // 1.1 - Backgrounds
-  $bg-color-dark-theme: #051C3F;
-  $bg-color-dark-theme-2: #374965;
-  $bg-color-dark-theme-3: #374965;
+  $bg-color-dark-theme: #121212;
+  $bg-color-dark-theme-2: #1d1d1d;
+  $bg-color-dark-theme-3: #383838;
   $bg-color-dark-theme-4: rgba(56, 56, 56, 0.8);
+  $bg-color-dark-tabbar: #000;
 
-  $bg-color-dark-theme-toolbar: #051C3F;
-  $bg-color-dark-theme-message: #374965;
-  $gradient-dark-theme: #374965;
+  $bg-color-dark-theme-toolbar: #121212;
+  $bg-color-dark-theme-message: #1d1d1d;
+  $gradient-dark-theme: #101010;
 
   // 1.2 - Text
   $text-color-dark-theme: rgba(255, 255, 255, 0.87);
@@ -188,7 +189,7 @@
   .tabs-md,
   .tabs-ios {
     .tabbar {
-      background-color: $bg-color-dark-theme;
+      background-color: $bg-color-dark-tabbar;
     }
 
     .tab-button[aria-selected='true'] {
@@ -559,11 +560,6 @@
     }
   }
 
-  .wide-header__title {
-    color: $text-color-dark-theme;
-    background: $bg-color-dark-theme;
-  }
-
   wide-header-page,
   card-catalog-page {
     .wide-header {
@@ -579,12 +575,12 @@
 
   // 3.5 - Toolbar
   .content-ios .toolbar-background-ios {
-    background: $bg-color-dark-theme;
+    background: $bg-color-dark-theme-toolbar;
   }
 
   .toolbar-background-md,
   .toolbar-background-ios {
-    background: $bg-color-dark-theme;
+    background: $bg-color-dark-theme-toolbar;
     color: $text-color-dark-theme;
   }
 
@@ -597,7 +593,7 @@
   .toolbar-content-md,
   .toolbar-content-ios {
     color: $text-color-dark-theme;
-
+    
     .bar-buttons-md,
     .bar-buttons-ios {
       .bar-button .button-inner {
@@ -611,7 +607,7 @@
   }
 
   .header .toolbar-background {
-    background-color: $bg-color-dark-theme;
+    background-color: $bg-color-dark-theme-toolbar;
   }
 
   .toolbar {
@@ -805,7 +801,7 @@
   page-pin {
     ion-header {
       .toolbar-background {
-        background-color: $bg-color-dark-theme;
+        background-color: $bg-color-dark-theme-toolbar;
       }
     }
     ion-content {
@@ -904,6 +900,17 @@
               }
             }
           }
+        }
+      }
+    }
+  }
+
+  ion-row {
+    ion-icon
+    {
+      figure {
+        figcaption.main-label {
+          color: $text-color-dark-theme;
         }
       }
     }
@@ -1053,7 +1060,7 @@
     }
 
     .toolbar-background {
-      background: $bg-color-dark-theme !important;
+      background: $bg-color-dark-theme-toolbar !important;
     }
 
     .search-button img {
@@ -1351,7 +1358,7 @@
 
   merchant-page {
     .cover {
-      background-image: linear-gradient(180deg, #051C3F 0%, #374965 100%);
+      background-image: linear-gradient(180deg, #121212 0%, #1d1d1d 100%);
     }
 
     .body {
@@ -1666,7 +1673,7 @@
 
     .toolbar {
       .toolbar-background {
-        background: $bg-color-dark-theme;
+        background: $bg-color-dark-theme-toolbar;
       }
     }
 

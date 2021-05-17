@@ -10,23 +10,23 @@
 // colors so you can add, rename and remove colors as needed.
 // The "primary" color is the only required color in the map.
 $color-primary: #02FE45;
-$color-secondary: #1a3a8b;
-$color-secondary-dark: #002855;
+$color-secondary: #01AD2C;
+$color-secondary-dark: #005E18;
 $icon-border-radius: 50%;
 $txp-icon-border-radius: 2rem;
 $toolbar-background: white;
-$toolbar-scanner: rgba(30, 49, 134, 0.8);
+$toolbar-scanner: rgba(1, 147, 38, 0.8);
 $onboarding-welcome-bg: url(../assets/img/onboarding-welcome-bg.svg);
 $onboarding-comment-color: rgba(255, 255, 255, 0.5);
 $onboarding-primary-color: #fff;
-$onboarding-gradient-top-color: #2a3f90;
+$onboarding-gradient-top-color: #017F20;
 $slider-bg-color: linear-gradient(
   90deg,
-  rgba(79, 110, 247, 1) 0%,
-  rgba(69, 98, 226, 1) 100%
+  rgba(2, 254, 69, 1) 0%,
+  rgba(2, 221, 57, 1) 100%
 );
 $slider-bg-button: linear-gradient(
   180deg,
-  rgba(50, 83, 181, 1) 0%,
-  rgba(42, 66, 154, 1) 100%
+  rgba(1, 178, 45, 1) 0%,
+  rgba(1, 127, 32, 1) 100%
 );

@@ -152,8 +152,6 @@ ion-header.bp-header .toolbar {
   bottom: calc(env(safe-area-inset-bottom));
   padding: 15px 15px calc(5vw + 1vh) 15px;
   padding: 15px 15px -webkit-calc(5vw + 1vh) 15px;
-  background-color: #374965;
-  border-radius: 32px 32px 0 0;
 
   .button {
     margin: 1.2rem auto;
@@ -212,7 +210,7 @@ ion-spinner * {
     margin-left: 15px;
     height: 41px;
     width: 41px;
-    border-radius: 50%;
+    border-radius: 20%;
     background-color: rgba(155, 163, 174, 0.12);
     color: #d8d8d8;
     box-shadow: none;
@@ -518,7 +516,7 @@ ion-app,
 }
 
 .button-default {
-  color: black;
+  color: white;
 }
 
 .button-secondary {
@@ -795,7 +793,7 @@ ion-tabs {
   }
 
   .tab-badge {
-    font-family: 'Roboto';
+    font-family: 'Play';
   }
 }
 
