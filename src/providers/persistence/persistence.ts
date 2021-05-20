@@ -79,6 +79,7 @@ const Keys = {
   BITPAY_ID_PAIRING_TOKEN: network => `bitpayIdToken-${network}`,
   BITPAY_ID_USER_INFO: network => `bitpayIdUserInfo-${network}`,
   BITPAY_ID_SETTINGS: network => `bitpayIdSettings-${network}`,
+  OMEGA_ID_SETTINGS: network => `omegaIdSettings-${network}`,
   APP_THEME: 'app-theme',
   USER_LOCATION: 'user-location',
   COUNTRIES: 'countries',
@@ -830,6 +831,18 @@ export class PersistenceProvider {
     return this.storage.get(Keys.BITPAY_ID_SETTINGS(network));
   }
 
+  setOmegaIdSettings(network: Network, userSettings: any) {
+    return this.storage.set(Keys.OMEGA_ID_SETTINGS(network), userSettings);
+  }
+
+  getOmegaIdSettings(network: Network) {
+    return this.storage.get(Keys.OMEGA_ID_SETTINGS(network));
+  }
+
+  removeOmegaIdSettings(network: Network) {
+    return this.storage.remove(Keys.OMEGA_ID_SETTINGS(network));
+  }
+
   setCardNotificationBadge(value) {
     return this.storage.set('cardNotificationBadge', value);
   }
@@ -841,6 +854,7 @@ export class PersistenceProvider {
   removeBitPayIdSettings(network: Network) {
     return this.storage.remove(Keys.BITPAY_ID_SETTINGS(network));
   }
+
   setBitpayIdPairingFlag(value: string) {
     this.logger.debug('card experiment enabled: ', value);
     return this.storage.set('BitpayIdPairingFlag', value);

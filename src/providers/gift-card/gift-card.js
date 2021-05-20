@@ -55,7 +55,7 @@ let GiftCardProvider = class GiftCardProvider extends InvoiceProvider {
         this.events.subscribe('BitPayId/Disconnected', () => __awaiter(this, void 0, void 0, function* () {
             yield this.getSupportedCardConfigMap(true);
         }));
-        this.events.subscribe('BitPayId/SettingsChanged', () => __awaiter(this, void 0, void 0, function* () {
+        this.events.subscribe('OmegaId/SettingsChanged', () => __awaiter(this, void 0, void 0, function* () {
             yield this.getSupportedCardConfigMap(true);
         }));
     }

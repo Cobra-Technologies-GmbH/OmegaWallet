@@ -43,7 +43,7 @@ export class BitPayIdProvider {
       this.NETWORK == 'livenet'
         ? 'https://bitpay.com'
         : 'https://test.bitpay.com';
-    this.logger.log(`Omega ID provider initialized with ${this.NETWORK}`);
+    this.logger.log(`BitPay ID provider initialized with ${this.NETWORK}`);
   }
 
   public getEnvironment() {

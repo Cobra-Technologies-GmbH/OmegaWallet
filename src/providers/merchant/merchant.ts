@@ -33,9 +33,9 @@ export class MerchantProvider {
   }
   listenForAuthChanges() {
     const authChangeEvents = [
-      'BitPayId/Connected',
-      'BitPayId/Disconnected',
-      'BitPayId/SettingsChanged',
+      'OmegaId/Connected',
+      'OmegaId/Disconnected',
+      'OmegaId/SettingsChanged',
       'GiftCards/GiftCardPurchased'
     ];
     authChangeEvents.forEach(authChangeEvent =>

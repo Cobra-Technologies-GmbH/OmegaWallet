@@ -1,4 +1,3 @@
-import { Observable, Subscription } from 'rxjs';
 import { Component, Renderer2, ViewChild } from '@angular/core';
 import { Device } from '@ionic-native/device';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
@@ -13,12 +12,14 @@ import {
   Platform
 } from 'ionic-angular';
 import { ImageLoaderConfig } from 'ionic-image-loader';
+import { Observable, Subscription } from 'rxjs';
 
 // Providers
 import {
   AppProvider,
   BitPayCardProvider,
   BitPayIdProvider,
+  OmegaIdProvider,
   BitPayProvider,
   BuyCryptoProvider,
   CoinbaseProvider,
@@ -155,6 +156,7 @@ export class CopayApp {
     private iabCardProvider: IABCardProvider,
     private bitpayProvider: BitPayProvider,
     private bitpayIdProvider: BitPayIdProvider,
+    private omegaIdProvider: OmegaIdProvider,
     private themeProvider: ThemeProvider,
     private logsProvider: LogsProvider,
     private dynamicLinksProvider: DynamicLinksProvider,
@@ -244,7 +246,8 @@ export class CopayApp {
       this.bitpayProvider,
       this.bitpayIdProvider,
       this.iabCardProvider,
-      this.giftCardProvider
+      this.giftCardProvider,
+      this.omegaIdProvider
     ].forEach(provider => provider.setNetwork(this.NETWORK));
 
     this.logger.debug('Setting Cached Total Balance');

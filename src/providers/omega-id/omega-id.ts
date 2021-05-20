@@ -13,7 +13,7 @@ import { Network, PersistenceProvider } from '../persistence/persistence';
 import { PlatformProvider } from '../platform/platform';
 
 @Injectable()
-export class BitPayIdProvider {
+export class OmegaIdProvider {
   private NETWORK: string;
   private BITPAY_API_URL: string;
   private deviceName = 'unknown device';
@@ -28,7 +28,7 @@ export class BitPayIdProvider {
     private iab: InAppBrowserProvider,
     private events: Events
   ) {
-    this.logger.debug('BitPayProvider initialized');
+    this.logger.debug('OmegaProvider initialized');
     if (this.platformProvider.isElectron) {
       this.deviceName = this.platformProvider.getOS().OSName;
     } else if (this.platformProvider.isCordova) {

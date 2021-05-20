@@ -31,32 +31,6 @@
             "url": "http://localhost:8100",
             "sourceMaps": true,
             "webRoot": "${workspaceFolder}/www"
-        },
-        {
-            "name": "Launch via NPM",
-            "request": "launch",
-            "runtimeArgs": [
-                "start",
-                "debug"
-            ],
-            "runtimeExecutable": "npm",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "type": "pwa-node",
-            "sourceMaps": true,
-            "stopOnEntry": false,
-            "internalConsoleOptions": "openOnSessionStart",
-            "outFiles": [
-                "${workspaceFolder}/out/**/*.js"
-            ]
-        },
-        {
-            "type": "node-terminal",
-            "name": "Run Script: apply:omega",
-            "request": "launch",
-            "command": "npm run apply:omega",
-            "cwd": "${workspaceFolder}"
         }
     ]
 }
