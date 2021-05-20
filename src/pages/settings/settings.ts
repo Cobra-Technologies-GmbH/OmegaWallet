@@ -49,6 +49,7 @@ import { LanguagePage } from './language/language';
 import { LocalThemePage } from './local-theme/local-theme';
 import { LockPage } from './lock/lock';
 import { NotificationsPage } from './notifications/notifications';
+import { OmegaIdPage } from './omega-id/omega-id';
 import { SharePage } from './share/share';
 import { WalletSettingsPage } from './wallet-settings/wallet-settings';
 
@@ -243,10 +244,32 @@ export class SettingsPage {
     return index;
   }
 
+  public openOmegaIdPage(): void {
+    this.navCtrl.push(OmegaIdPage, this.bitPayIdUserInfo);
+    // if (this.bitPayIdUserInfo) {
+    //   this.navCtrl.push(OmegaIdPage, this.bitPayIdUserInfo);
+    // } else {
+    //   // This is where Bitpay is linking the Creditcards to the account.
+    //   this.iabCardProvider.loadingWrapper(() => {
+    //     this.logger.log('settings - pairing');
+    //     this.iabCardProvider.show();
+    //     setTimeout(() => {
+    //       this.iabCardProvider.sendMessage(
+    //         {
+    //           message: 'pairingOnly'
+    //         },
+    //         () => {}
+    //       );
+    //     }, 100);
+    //   });
+    // }
+  }
+
   public openBitPayIdPage(): void {
     if (this.bitPayIdUserInfo) {
       this.navCtrl.push(BitPayIdPage, this.bitPayIdUserInfo);
     } else {
+      // This is where Bitpay is linking the Creditcards to the account.
       this.iabCardProvider.loadingWrapper(() => {
         this.logger.log('settings - pairing');
         this.iabCardProvider.show();

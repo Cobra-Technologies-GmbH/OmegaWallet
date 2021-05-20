@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IonicImageLoader } from 'ionic-image-loader';
 import { MarkdownModule } from 'ngx-markdown';
@@ -62,6 +62,25 @@ import { COMPONENTS } from '../components/components';
 import { LanguageLoader } from '../providers/language-loader/language-loader';
 import { ProvidersModule } from '../providers/providers.module';
 
+/* Azure AD B2C */
+import { Configuration } from 'msal';
+import { 
+  MsalModule,
+  MsalInterceptor,
+  MSAL_CONFIG,
+  MSAL_CONFIG_ANGULAR,
+  MsalService,
+  MsalAngularConfiguration } from '@azure/msal-angular';
+import { msalConfig, msalAngularConfig } from './app-config';
+
+export function MSALConfigFactory(): Configuration {
+  return msalConfig;
+}
+
+export function MSALAngularConfigFactory(): MsalAngularConfiguration {
+  return msalAngularConfig;
+}
+
 export function translateParserFactory() {
   return new InterpolatedTranslateParser();
 }
@@ -120,6 +139,7 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
     HttpClientModule,
     MarkdownModule.forRoot(),
     MomentModule,
+    MsalModule,
     NgxBarcodeModule,
     NgxQRCodeModule,
     ProvidersModule,
@@ -142,7 +162,21 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
       provide: ErrorHandler,
       useClass: IonicErrorHandler
     },
-    FormatCurrencyPipe
+    FormatCurrencyPipe,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MsalInterceptor,
+      multi: true
+    },
+    {
+      provide: MSAL_CONFIG,
+      useFactory: MSALConfigFactory
+    },
+    {
+      provide: MSAL_CONFIG_ANGULAR,
+      useFactory: MSALAngularConfigFactory
+    },
+    MsalService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

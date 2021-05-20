@@ -1,3 +1,4 @@
+import { Observable, Subscription } from 'rxjs';
 import { Component, Renderer2, ViewChild } from '@angular/core';
 import { Device } from '@ionic-native/device';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
@@ -12,7 +13,6 @@ import {
   Platform
 } from 'ionic-angular';
 import { ImageLoaderConfig } from 'ionic-image-loader';
-import { Observable, Subscription } from 'rxjs';
 
 // Providers
 import {
@@ -373,7 +373,7 @@ export class CopayApp {
 
     if (
       this.platformProvider.isCordova &&
-      this.appProvider.info.name === 'bitpay'
+        (this.appProvider.info.name === 'bitpay' || this.appProvider.info.name === 'omega')
     ) {
       const host =
         this.NETWORK === 'testnet' ? 'test.bitpay.com' : 'bitpay.com';

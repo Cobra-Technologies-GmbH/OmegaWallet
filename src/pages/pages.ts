@@ -110,6 +110,7 @@ import { LanguagePage } from '../pages/settings/language/language';
 import { LocalThemePage } from '../pages/settings/local-theme/local-theme';
 import { LockPage } from '../pages/settings/lock/lock';
 import { NotificationsPage } from '../pages/settings/notifications/notifications';
+import { OmegaIdPage } from '../pages/settings/omega-id/omega-id';
 import { SharePage } from '../pages/settings/share/share';
 
 /* Wallet Group Settings */
@@ -210,6 +211,7 @@ export const PAGES = [
   LockMethodPage,
   RecoveryKeyPage,
   CollectEmailPage,
+  OmegaIdPage,
   ...GIFT_CARD_PAGES,
   GravatarPage,
   FingerprintModalPage,
