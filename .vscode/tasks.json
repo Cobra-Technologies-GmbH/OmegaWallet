@@ -14,8 +14,27 @@
         "script": "apply:omega"
       },
       {
+        "label": "Build npm run prepare:omega",
+        "type": "npm",
+        "script": "prepare:omega"
+      },
+      {
+        "label": "Build npm run build:android",
+        "type": "npm",
+        "script": "build:android",
+      },
+      {
+        "label": "Build Typescript",
+        "type": "typescript",
+        "tsconfig": "tsconfig.json",
+        "problemMatcher": [
+            "$tsc"
+        ],
+      },
+      {
         "label": "PreBuild Omega",
-        "dependsOn": ["Build npm run apply:omega"],
+        "dependsOrder": "sequence",
+        "dependsOn": ["Build npm run apply:omega", "Build Typescript", "Build npm run prepare:omega"],
         "group":
         {
           "kind": "build",

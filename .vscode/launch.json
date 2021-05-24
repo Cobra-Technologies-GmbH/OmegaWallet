@@ -2,7 +2,20 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch via NPM",
+            "name": "Simulate Android in browser",
+            "type": "cordova",
+            "request": "launch",
+            "platform": "android",
+            "target": "chrome",
+
+            "simulatePort": 8000,
+            "livereload": true,
+            "cwd": "${workspaceFolder}",
+            "sourceMaps": true,
+            "preLaunchTask": "PreBuild Omega"
+        },
+        {
+            "name": "Launch ionic:serve via NPM",
             "request": "launch",
             "runtimeArgs": [
                 "run-script",
