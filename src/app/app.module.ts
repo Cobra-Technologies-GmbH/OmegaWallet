@@ -141,7 +141,8 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
     {
       provide: ErrorHandler,
       useClass: IonicErrorHandler
-    }
+    },
+    FormatCurrencyPipe
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
