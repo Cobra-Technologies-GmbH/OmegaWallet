@@ -2,35 +2,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "chrome",
-            "request": "attach",
-            "name": "Attach Device Debugger",
-            "port": 9222,
-            "url": "file:///android_asset/www/index.html",
-            "webRoot": "${workspaceFolder}/src"
-        },
-        {
-            "name": "Launch Main Process",
-            "type": "pwa-node",
+            "name": "Launch via NPM",
             "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
-            "windows": {
-                "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron.cmd"
-            },
-            "args": [
-                "."
+            "runtimeArgs": [
+                "run-script",
+                "ionic:serve"
             ],
-            "outputCapture": "std",
-            "preLaunchTask": "Build npm run build:desktop"
-        },
-        {
-            "name": "Run Browser",
-            "type": "pwa-chrome",
-            "request": "launch",
-            "url": "http://localhost:8100",
-            "sourceMaps": true,
-            "webRoot": "${workspaceFolder}/www"
+            "runtimeExecutable": "npm",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "pwa-node",
+            "preLaunchTask": "PreBuild Omega"
         }
     ]
 }

@@ -12,6 +12,10 @@ npm-debug.log*
 
 yarn.lock
 
+#Exclude typescript generated files
+src/**/*.map
+src/**/*.js
+
 # iOS
 build.json
 

@@ -6,40 +6,18 @@
       {
         "label": "Build npm run build:desktop",
         "type": "npm",
-        "script": "build:desktop",
-        "group": {
-          "kind": "build",
-          "isDefault": true
-        }
+        "script": "build:desktop"
       },
       {
-        "label": "Build Typescript",
-        "type": "typescript",
-        "tsconfig": "tsconfig.json",
-        "problemMatcher": [
-          "$tsc"
-        ],
-        "group": {
-          "kind": "build",
-          "isDefault": true
-        }
-      },
-      {
-        "label": "Build Windows Desktop Application",
-        "dependsOn": [
-          "Build Typescript",
-          "Build npm run build:desktop"
-        ],
-        "group": {
-          "kind": "build",
-          "isDefault": true
-        }
-      },
-      {
-        "label": "Build npm run build:browser",
+        "label": "Build npm run apply:omega",
         "type": "npm",
-        "script": "build:browser",
-        "group": {
+        "script": "apply:omega"
+      },
+      {
+        "label": "PreBuild Omega",
+        "dependsOn": ["Build npm run apply:omega"],
+        "group":
+        {
           "kind": "build",
           "isDefault": true
         }
