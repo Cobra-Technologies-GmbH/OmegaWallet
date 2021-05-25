@@ -1,13 +1,20 @@
 {
     "version": "0.2.0",
     "configurations": [
+        
+        {
+            "name": "Launch Chrome",
+            "request": "launch",
+            "type": "pwa-chrome",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}/src"
+        },
         {
             "name": "Simulate Android in browser",
             "type": "cordova",
             "request": "launch",
             "platform": "android",
             "target": "chrome",
-
             "simulatePort": 8000,
             "livereload": true,
             "cwd": "${workspaceFolder}",
@@ -15,11 +22,11 @@
             "preLaunchTask": "PreBuild Omega"
         },
         {
-            "name": "Launch ionic:serve via NPM",
+            "name": "Launch ionic:run via NPM",
             "request": "launch",
             "runtimeArgs": [
                 "run-script",
-                "ionic:serve"
+                "ionic:run"
             ],
             "runtimeExecutable": "npm",
             "skipFiles": [

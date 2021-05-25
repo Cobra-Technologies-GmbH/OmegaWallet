@@ -6,22 +6,26 @@
       {
         "label": "Build npm run build:desktop",
         "type": "npm",
-        "script": "build:desktop"
+        "script": "build:desktop",
+        "group": "build"
       },
       {
         "label": "Build npm run apply:omega",
         "type": "npm",
-        "script": "apply:omega"
+        "script": "apply:omega",
+        "group": "build"
       },
       {
         "label": "Build npm run prepare:omega",
         "type": "npm",
-        "script": "prepare:omega"
+        "script": "prepare:omega"        ,
+        "group": "build"
       },
       {
         "label": "Build npm run build:android",
         "type": "npm",
         "script": "build:android",
+        "group": "build"
       },
       {
         "label": "Build Typescript",
@@ -30,6 +34,7 @@
         "problemMatcher": [
             "$tsc"
         ],
+        "group": "build"
       },
       {
         "label": "PreBuild Omega",
