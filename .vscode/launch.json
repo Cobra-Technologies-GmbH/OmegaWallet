@@ -2,12 +2,18 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Launch Chrome on http://localhost:8100",
+            "request": "launch",
+            "type": "pwa-chrome",
+            "url": "http://localhost:8100",
+            "webRoot": "${workspaceFolder}/src"
+        },
+        {
             "name": "Simulate Android in browser",
             "type": "cordova",
             "request": "launch",
             "platform": "android",
             "target": "chrome",
-
             "simulatePort": 8000,
             "livereload": true,
             "cwd": "${workspaceFolder}",
