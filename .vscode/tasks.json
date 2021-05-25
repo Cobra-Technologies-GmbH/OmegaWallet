@@ -34,7 +34,7 @@
       {
         "label": "PreBuild Omega",
         "dependsOrder": "sequence",
-        "dependsOn": ["Build npm run apply:omega", "Build Typescript", "Build npm run prepare:omega"],
+        "dependsOn": ["Build npm run apply:omega", "Build npm run prepare:omega"],
         "group":
         {
           "kind": "build",
