@@ -10,6 +10,13 @@
             "webRoot": "${workspaceFolder}/src"
         },
         {
+            "name": "Launch Chrome on http://localhost:8100",
+            "request": "launch",
+            "type": "pwa-chrome",
+            "url": "http://localhost:8100",
+            "webRoot": "${workspaceFolder}/src"
+        },
+        {
             "name": "Simulate Android in browser",
             "type": "cordova",
             "request": "launch",
