@@ -90,6 +90,7 @@ export class SettingsPage {
   public readOnlyWalletsGroup: any[];
   public bitpayIdPairingEnabled: boolean;
   public bitPayIdUserInfo: any;
+  public omegaIdUserInfo: any;
   private network = Network[this.bitPayIdProvider.getEnvironment().network];
   private user$: Observable<User>;
   public showReorder: boolean = false;
@@ -156,6 +157,19 @@ export class SettingsPage {
       this.user$.subscribe(async user => {
         if (user) {
           this.bitPayIdUserInfo = user;
+          this.changeRef.detectChanges();
+        }
+      });
+      // check for user info
+      this.persistenceProvider
+        .getOmegaIdUserInfo(this.network)
+        .then((user: User) => {
+          this.omegaIdUserInfo = user;
+        });
+
+      this.user$.subscribe(async user => {
+        if (user) {
+          this.omegaIdUserInfo = user;
           this.changeRef.detectChanges();
         }
       });
@@ -244,25 +258,27 @@ export class SettingsPage {
     return index;
   }
 
-  public openOmegaIdPage(): void {
-    this.navCtrl.push(OmegaIdPage, this.bitPayIdUserInfo);
-    // if (this.bitPayIdUserInfo) {
-    //   this.navCtrl.push(OmegaIdPage, this.bitPayIdUserInfo);
-    // } else {
-    //   // This is where Bitpay is linking the Creditcards to the account.
-    //   this.iabCardProvider.loadingWrapper(() => {
-    //     this.logger.log('settings - pairing');
-    //     this.iabCardProvider.show();
-    //     setTimeout(() => {
-    //       this.iabCardProvider.sendMessage(
-    //         {
-    //           message: 'pairingOnly'
-    //         },
-    //         () => {}
-    //       );
-    //     }, 100);
-    //   });
-    // }
+  public openOmegaIdPage(): void
+  {
+    if(this.omegaIdUserInfo)
+    {
+      this.navCtrl.push(OmegaIdPage, this.omegaIdUserInfo);
+    }
+    else
+    {
+      this.iabCardProvider.loadingWrapper(() => {
+        this.logger.log('settings - pairing');
+        this.iabCardProvider.show();
+        setTimeout(() => {
+          this.iabCardProvider.sendMessage(
+            {
+              message: 'pairingOnly'
+            },
+            () => {}
+          );
+        }, 100);
+      });
+    }
   }
 
   public openBitPayIdPage(): void {

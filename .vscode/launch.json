@@ -1,14 +1,6 @@
 {
     "version": "0.2.0",
     "configurations": [
-        
-        {
-            "name": "Launch Chrome",
-            "request": "launch",
-            "type": "pwa-chrome",
-            "url": "http://localhost:8080",
-            "webRoot": "${workspaceFolder}/src"
-        },
         {
             "name": "Launch Chrome on http://localhost:8100",
             "request": "launch",

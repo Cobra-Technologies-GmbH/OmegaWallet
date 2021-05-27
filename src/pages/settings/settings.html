@@ -224,8 +224,8 @@
           <ion-icon class="item-img" item-start>
             <img src="assets/img/omega-card/icon-omega.svg" width="25">
           </ion-icon>
-          <span class="main-label">{{ bitPayIdUserInfo ? bitPayIdUserInfo.email : 'Connect your Omega ID' | translate}}</span>
-          <ion-note item-end *ngIf="bitPayIdUserInfo">
+          <span class="main-label">{{ omegaIdUserInfo ? omegaIdUserInfo.email : 'Connect your Omega ID' | translate}}</span>
+          <ion-note item-end *ngIf="omegaIdUserInfo">
             <span translate>Linked</span>
           </ion-note>
         </button>
@@ -233,7 +233,7 @@
 
       <ng-container *ngIf="isCordova && !isCopay" >
         <ion-item-divider tappable (click)="mdesFlag()">
-          {{'Omega Account' | translate}}
+          {{'BitPay Account' | translate}}
         </ion-item-divider>
 
         <button ion-item (click)="openBitPayIdPage()">
