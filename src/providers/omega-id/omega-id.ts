@@ -5,18 +5,52 @@ import { Logger } from '../../providers/logger/logger';
 // providers
 import { Device } from '@ionic-native/device';
 import * as bitauthService from 'bitauth';
-import { Events } from 'ionic-angular';
+import { Config, Events } from 'ionic-angular';
 import { User } from '../../models/user/user.model';
 import { AppIdentityProvider } from '../app-identity/app-identity';
 import { InAppBrowserProvider } from '../in-app-browser/in-app-browser';
 import { Network, PersistenceProvider } from '../persistence/persistence';
+import { Account, AuthResponse, Configuration, UserAgentApplication } from 'msal';
 import { PlatformProvider } from '../platform/platform';
+import { buildConfiguration } from 'msal/lib-commonjs/Configuration';
+
 
 @Injectable()
 export class OmegaIdProvider {
   private NETWORK: string;
   private OMEGA_API_URL: string;
   private deviceName = 'unknown device';
+  private apiConfig = { b2cScopes: ["https://fabrikamb2c.onmicrosoft.com/helloapi/demo.read"], webApi: "https://fabrikamb2chello.azurewebsites.net/hello" };
+  private loginRequest = { scopes: ["openid", ...this.apiConfig.b2cScopes] };
+  private b2cPolicies = {
+    names: {
+        signUpSignIn: "B2C_1_SuSi",
+        editProfile: "B2C_1_Edit"
+    },
+    authorities: {
+        signUpSignIn: {
+            authority: "https://cobraidentity.b2clogin.com/cobraidentity.onmicrosoft.com/B2C_1_SuSi",
+        },
+        editProfile: {
+            authority: "https://cobraidentity.b2clogin.com/cobraidentity.onmicrosoft.com/B2C_1_Edit"
+        }
+    },
+    authorityDomain: "cobraidentity.b2clogin.com"
+  }
+  private msalConfig: Configuration = {
+    auth: {
+      clientId: "84375cab-362c-4265-8b08-c3a824fbc280", // This is the ONLY mandatory field; everything else is optional.
+      authority: this.b2cPolicies.authorities.signUpSignIn.authority, // Choose sign-up/sign-in user-flow as your default.
+      knownAuthorities: [this.b2cPolicies.authorityDomain], // You must identify your tenant's domain as a known authority.
+      redirectUri: "http://localhost:6420", // You must register this URI on Azure Portal/App Registration. Defaults to "window.location.href".
+    },
+    cache: {
+      cacheLocation: "sessionStorage", // Configures cache location. "sessionStorage" is more secure, but "localStorage" gives you SSO between tabs.
+      storeAuthStateInCookie: false, // If you wish to store cache items in cookies as well as browser cache, set this to "true".
+    }
+  };
+  private myConfig: Configuration = buildConfiguration(this.msalConfig);
+  private myMSALObj: UserAgentApplication = new UserAgentApplication(this.myConfig);
 
   constructor(
     private http: HttpClient,
@@ -33,6 +67,33 @@ export class OmegaIdProvider {
       this.deviceName = this.platformProvider.getOS().OSName;
     } else if (this.platformProvider.isCordova) {
       this.deviceName = this.device.model;
+    }
+  }
+
+  public signIn()
+  {
+    this.myMSALObj.loginPopup(this.loginRequest)
+      .then(this.handleResponse)
+      .catch(error => {console.log(error);});
+  }
+
+  private handleResponse(response: AuthResponse)
+  {
+    if (response !== null)
+    {
+        //setAccount(response.account);
+    } else {
+        //selectAccount();
+    }
+  }
+
+  public selectAccount()
+  {
+    var currentAccounts: Account[] = this.myMSALObj.getAllAccounts();
+
+    if (currentAccounts.length < 1)
+    {
+      return;
     }
   }
 

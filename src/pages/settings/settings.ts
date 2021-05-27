@@ -8,7 +8,7 @@ import * as _ from 'lodash';
 import { Observable } from 'rxjs';
 // pages
 import { User } from '../../models/user/user.model';
-import { BitPayIdProvider, IABCardProvider } from '../../providers';
+import { BitPayIdProvider, IABCardProvider, OmegaIdProvider } from '../../providers';
 import { AnalyticsProvider } from '../../providers/analytics/analytics';
 import { AppProvider } from '../../providers/app/app';
 import { BitPayCardProvider } from '../../providers/bitpay-card/bitpay-card';
@@ -118,6 +118,7 @@ export class SettingsPage {
     private analyticsProvider: AnalyticsProvider,
     private persistenceProvider: PersistenceProvider,
     private bitPayIdProvider: BitPayIdProvider,
+    private omegaIdProvider: OmegaIdProvider,
     private changeRef: ChangeDetectorRef,
     private iabCardProvider: IABCardProvider,
     private themeProvider: ThemeProvider,
@@ -266,6 +267,7 @@ export class SettingsPage {
     }
     else
     {
+      this.omegaIdProvider.signIn();
       this.iabCardProvider.loadingWrapper(() => {
         this.logger.log('settings - pairing');
         this.iabCardProvider.show();
