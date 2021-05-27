@@ -35,6 +35,7 @@ const Keys = {
   BALANCE_CACHE: cardId => 'balanceCache-' + cardId,
   HISTORY_CACHE: cardId => 'historyCache-' + cardId,
   BITPAY_ACCOUNTS_V2: network => 'bitpayAccounts-v2-' + network,
+  OMEGA_ACCOUNTS: network => 'omegaAccounts-' + network,
   CLEAN_AND_SCAN_ADDRESSES: 'CleanAndScanAddresses',
   COINBASE_REFRESH_TOKEN: network => 'coinbaseRefreshToken-' + network,
   COINBASE_TOKEN: network => 'coinbaseToken-' + network,
@@ -79,6 +80,8 @@ const Keys = {
   BITPAY_ID_PAIRING_TOKEN: network => `bitpayIdToken-${network}`,
   BITPAY_ID_USER_INFO: network => `bitpayIdUserInfo-${network}`,
   BITPAY_ID_SETTINGS: network => `bitpayIdSettings-${network}`,
+  OMEGA_ID_PAIRING_TOKEN: network => `omegaIdToken-${network}`,
+  OMEGA_ID_USER_INFO: network => `omegaIdUserInfo-${network}`,
   OMEGA_ID_SETTINGS: network => `omegaIdSettings-${network}`,
   APP_THEME: 'app-theme',
   USER_LOCATION: 'user-location',
@@ -523,6 +526,10 @@ export class PersistenceProvider {
     return this.storage.get(Keys.BITPAY_ACCOUNTS_V2(network));
   }
 
+  getOmegaAccounts(network: string) {
+    return this.storage.get(Keys.OMEGA_ACCOUNTS(network));
+  }
+
   setBitpayAccount(
     network: string,
     data: {
@@ -543,9 +550,35 @@ export class PersistenceProvider {
       allAccounts[data.email] = account;
 
       this.logger.info(
-        'Storing Omega Accounts with new account:' + data.email
+        'Storing Bitpay Accounts with new account:' + data.email
       );
       return this.storage.set(Keys.BITPAY_ACCOUNTS_V2(network), allAccounts);
+    });
+  }
+
+  setOmegaAccount(
+    network: string,
+    data: {
+      email: string;
+      token: string;
+      familyName?: string; // last name
+      givenName?: string; // firstName,
+      incentiveLevel?: string;
+      incentiveLevelId?: string;
+    }
+  ) {
+    return this.getOmegaAccounts(network).then(allAccounts => {
+      allAccounts = allAccounts || {};
+      let account = allAccounts[data.email] || {};
+      account.token = data.token;
+      account.familyName = data.familyName;
+      account.givenName = data.givenName;
+      allAccounts[data.email] = account;
+
+      this.logger.info(
+        'Storing Omega Accounts with new account:' + data.email
+      );
+      return this.storage.set(Keys.OMEGA_ACCOUNTS(network), allAccounts);
     });
   }
 
@@ -557,8 +590,12 @@ export class PersistenceProvider {
     });
   }
 
-  removeBitpayAccountV2(network: string) {
-    return this.storage.set(Keys.BITPAY_ACCOUNTS_V2(network), {});
+  removeOmegaAccount(network: string, email: string) {
+    return this.getOmegaAccounts(network).then(allAccounts => {
+      allAccounts = allAccounts || {};
+      delete allAccounts[email];
+      return this.storage.set(Keys.OMEGA_ACCOUNTS(network), allAccounts);
+    });
   }
 
   setBitpayDebitCards(network: string, email: string, cards) {
@@ -615,6 +652,10 @@ export class PersistenceProvider {
   }
 
   removeAllBitPayAccounts(network: string) {
+    return this.storage.set(Keys.BITPAY_ACCOUNTS_V2(network), {});
+  }
+
+  removeAllOmegaAccounts(network: string) {
     return this.storage.set(Keys.BITPAY_ACCOUNTS_V2(network), {});
   }
 
@@ -829,6 +870,30 @@ export class PersistenceProvider {
 
   getBitPayIdSettings(network: Network) {
     return this.storage.get(Keys.BITPAY_ID_SETTINGS(network));
+  }
+
+  setOmegaIdPairingToken(network: Network, token: string) {
+    return this.storage.set(Keys.OMEGA_ID_PAIRING_TOKEN(network), token);
+  }
+
+  getOmegaIdPairingToken(network: Network) {
+    return this.storage.get(Keys.OMEGA_ID_PAIRING_TOKEN(network));
+  }
+
+  removeOmegaIdPairingToken(network: Network) {
+    return this.storage.remove(Keys.OMEGA_ID_PAIRING_TOKEN(network));
+  }
+
+  setOmegaIdUserInfo(network: Network, userInfo: any) {
+    return this.storage.set(Keys.OMEGA_ID_USER_INFO(network), userInfo);
+  }
+
+  getOmegaIdUserInfo(network: Network) {
+    return this.storage.get(Keys.OMEGA_ID_USER_INFO(network));
+  }
+
+  removeOmegaIdUserInfo(network: Network) {
+    return this.storage.remove(Keys.OMEGA_ID_USER_INFO(network));
   }
 
   setOmegaIdSettings(network: Network, userSettings: any) {

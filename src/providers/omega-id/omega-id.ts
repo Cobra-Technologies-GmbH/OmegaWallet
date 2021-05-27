@@ -15,7 +15,7 @@ import { PlatformProvider } from '../platform/platform';
 @Injectable()
 export class OmegaIdProvider {
   private NETWORK: string;
-  private BITPAY_API_URL: string;
+  private OMEGA_API_URL: string;
   private deviceName = 'unknown device';
 
   constructor(
@@ -38,10 +38,10 @@ export class OmegaIdProvider {
 
   public setNetwork(network: string) {
     this.NETWORK = network;
-    this.BITPAY_API_URL =
+    this.OMEGA_API_URL =
       this.NETWORK == 'livenet'
-        ? 'https://bitpay.com'
-        : 'https://test.bitpay.com';
+        ? 'https://omega.eco'
+        : 'https://test.omega.eco';
     this.logger.log(`Omega ID provider initialized with ${this.NETWORK}`);
   }
 
@@ -93,7 +93,7 @@ export class OmegaIdProvider {
           json['params'].pubkey = appIdentity.pub;
           json['params'] = JSON.stringify(json.params);
 
-          const url = `${this.BITPAY_API_URL}/api/v2/`;
+          const url = `${this.OMEGA_API_URL}/api/v2/`;
           let headers = new HttpHeaders().set(
             'content-type',
             'application/json'
@@ -127,7 +127,7 @@ export class OmegaIdProvider {
                 return;
               }
 
-              this.logger.debug('BitPayID: successfully paired');
+              this.logger.debug('OmegaID: successfully paired');
               const { data } = user;
               const {
                 email,
@@ -144,12 +144,12 @@ export class OmegaIdProvider {
               }
 
               await Promise.all([
-                this.persistenceProvider.setBitPayIdPairingToken(
+                this.persistenceProvider.setOmegaIdPairingToken(
                   network,
                   token.data
                 ),
-                this.persistenceProvider.setBitPayIdUserInfo(network, data),
-                this.persistenceProvider.setBitpayAccount(network, {
+                this.persistenceProvider.setOmegaIdUserInfo(network, data),
+                this.persistenceProvider.setOmegaAccount(network, {
                   email,
                   token: token.data,
                   familyName: familyName || '',
@@ -178,10 +178,10 @@ export class OmegaIdProvider {
     params: any = {},
     userShopperToken?: string
   ) {
-    const url = `${this.BITPAY_API_URL}/api/v2/`;
+    const url = `${this.OMEGA_API_URL}/api/v2/`;
     let token =
       userShopperToken ||
-      (await this.persistenceProvider.getBitPayIdPairingToken(
+      (await this.persistenceProvider.getOmegaIdPairingToken(
         Network[this.NETWORK]
       ));
     const json = {
@@ -211,11 +211,11 @@ export class OmegaIdProvider {
     this.logger.debug('Refreshing user info');
     const userInfo = await this.apiCall('getBasicInfo');
     const network = Network[this.getEnvironment().network];
-    await this.persistenceProvider.setBitPayIdUserInfo(network, userInfo);
+    await this.persistenceProvider.setOmegaIdUserInfo(network, userInfo);
   }
 
   public async unlockInvoice(invoiceId: string): Promise<string> {
-    const isPaired = !!(await this.persistenceProvider.getBitPayIdPairingToken(
+    const isPaired = !!(await this.persistenceProvider.getOmegaIdPairingToken(
       Network[this.NETWORK]
     ));
     if (!isPaired) return 'pairingRequired';
@@ -246,24 +246,24 @@ export class OmegaIdProvider {
     });
   }
 
-  public async disconnectBitPayID(successCallback, errorCallback) {
+  public async disconnectOmegaID(successCallback, errorCallback) {
     const network = Network[this.getEnvironment().network];
 
     // @ts-ignore
-    const user: any = await this.persistenceProvider.getBitPayIdUserInfo(
+    const user: any = await this.persistenceProvider.getOmegaIdUserInfo(
       network
     );
 
     try {
       await Promise.all([
-        this.persistenceProvider.removeBitPayIdPairingToken(network),
-        this.persistenceProvider.removeBitPayIdUserInfo(network),
-        this.persistenceProvider.removeBitpayAccountV2(network)
+        this.persistenceProvider.removeOmegaIdPairingToken(network),
+        this.persistenceProvider.removeOmegaIdUserInfo(network),
+        this.persistenceProvider.removeAllOmegaAccounts(network)
       ]);
       this.iab.refs.card.executeScript(
         {
           code: `window.postMessage(${JSON.stringify({
-            message: 'bitpayIdDisconnected'
+            message: 'omegaIdDisconnected'
           })}, '*')`
         },
         () => {

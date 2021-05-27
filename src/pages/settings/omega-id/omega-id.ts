@@ -1,6 +1,8 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { Events, NavParams } from 'ionic-angular';
-import { Logger, OmegaIdProvider, PersistenceProvider } from '../../../providers'
+import { TranslateService } from '@ngx-translate/core';
+import { Events, NavController, NavParams } from 'ionic-angular';
+import { ActionSheetProvider, Logger, OmegaIdProvider, PersistenceProvider, PopupProvider } from '../../../providers'
+import { InAppBrowserProvider } from '../../../providers/in-app-browser/in-app-browser';
 
 @Component({
     selector: 'omega-id',
@@ -19,9 +21,14 @@ export class OmegaIdPage
         private logger: Logger,
         private events: Events,
         private navParams: NavParams,
+        private navCtrl: NavController,
         private changeDetectorRef: ChangeDetectorRef,
         private omegaIdProvider: OmegaIdProvider,
-        private persistenceProvider: PersistenceProvider
+        private persistenceProvider: PersistenceProvider,
+        private popupProvider: PopupProvider,
+        private actionSheetProvider: ActionSheetProvider,
+        private iab: InAppBrowserProvider,
+        private translate: TranslateService
     )
     {}
 
@@ -47,5 +54,74 @@ export class OmegaIdPage
     getDefaultOmegaIdSettings()
     {
         return { syncGiftCardPurchases: false };
+    }
+
+    async onSettingsChange()
+    {
+        await this.persistenceProvider.setOmegaIdSettings(
+            this.network,
+            this.omegaIdSettings
+        );
+    }
+
+    disconnectOmegaId()
+    {
+        this.popupProvider.ionicConfirm
+        (
+            this.translate.instant('Disconnect Omega ID'),
+            this.translate.instant
+            (
+                'Are you sure you would like to disconnect your Omega ID?'
+            )
+        )
+        .then
+        (
+            res =>
+            {
+                if (res)
+                {
+                    this.omegaIdProvider.disconnectOmegaID
+                    (
+                        () =>
+                        {
+                            const infoSheet = this.actionSheetProvider.createInfoSheet
+                            (
+                                'in-app-notification',
+                                {
+                                    title: 'Omega ID',
+                                    body: this.translate.instant
+                                    (
+                                        'Omega ID successfully disconnected.'
+                                    )
+                                }
+                            );
+                            this.iab.refs.card.executeScript
+                            (
+                                {
+                                    code: `window.postMessage(${JSON.stringify({message: 'omegaIdDisconnected'})}, '*')`
+                                },
+                                () =>
+                                {
+                                    infoSheet.present();
+                                    setTimeout(() => 
+                                    {
+                                        this.navCtrl.popToRoot();
+                                    }, 400);
+                                }
+                            );
+                            this.events.publish('OmegaId/Disconnected');
+                            this.events.publish('CardAdvertisementUpdate',
+                            {
+                                status: 'disconnected'
+                            });
+                        },
+                        err =>
+                        {
+                            this.logger.log(err);
+                        }
+                    );
+                }
+            }
+        );
     }
 }
