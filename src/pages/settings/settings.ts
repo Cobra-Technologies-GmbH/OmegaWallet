@@ -1,14 +1,16 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Events, ModalController, NavController } from 'ionic-angular';
-
 import * as _ from 'lodash';
+
+import { OmegaUserInfoType } from '../../providers/omega-id/omega-id';
 
 // providers
 import { Observable } from 'rxjs';
+
 // pages
 import { User } from '../../models/user/user.model';
-import { BitPayIdProvider, IABCardProvider, OmegaIdProvider } from '../../providers';
+import { BitPayIdProvider, IABCardProvider } from '../../providers';
 import { AnalyticsProvider } from '../../providers/analytics/analytics';
 import { AppProvider } from '../../providers/app/app';
 import { BitPayCardProvider } from '../../providers/bitpay-card/bitpay-card';
@@ -49,6 +51,7 @@ import { LanguagePage } from './language/language';
 import { LocalThemePage } from './local-theme/local-theme';
 import { LockPage } from './lock/lock';
 import { NotificationsPage } from './notifications/notifications';
+import { OmegaIdLinkPage } from './omega-id-link/omega-id-link';
 import { OmegaIdPage } from './omega-id/omega-id';
 import { SharePage } from './share/share';
 import { WalletSettingsPage } from './wallet-settings/wallet-settings';
@@ -90,7 +93,7 @@ export class SettingsPage {
   public readOnlyWalletsGroup: any[];
   public bitpayIdPairingEnabled: boolean;
   public bitPayIdUserInfo: any;
-  public omegaIdUserInfo: any;
+  public omegaIdUserInfo: OmegaUserInfoType;
   private network = Network[this.bitPayIdProvider.getEnvironment().network];
   private user$: Observable<User>;
   public showReorder: boolean = false;
@@ -118,7 +121,7 @@ export class SettingsPage {
     private analyticsProvider: AnalyticsProvider,
     private persistenceProvider: PersistenceProvider,
     private bitPayIdProvider: BitPayIdProvider,
-    private omegaIdProvider: OmegaIdProvider,
+    // private omegaIdProvider: OmegaIdProvider,
     private changeRef: ChangeDetectorRef,
     private iabCardProvider: IABCardProvider,
     private themeProvider: ThemeProvider,
@@ -161,20 +164,14 @@ export class SettingsPage {
           this.changeRef.detectChanges();
         }
       });
-      // check for user info
-      this.persistenceProvider
-        .getOmegaIdUserInfo(this.network)
-        .then((user: User) => {
-          this.omegaIdUserInfo = user;
-        });
-
-      this.user$.subscribe(async user => {
-        if (user) {
-          this.omegaIdUserInfo = user;
-          this.changeRef.detectChanges();
-        }
-      });
     }
+
+    // check for user info
+    this.persistenceProvider
+    .getOmegaIdUserInfo(this.network)
+    .then((user: OmegaUserInfoType) => {
+      this.omegaIdUserInfo = user;
+    });
 
     this.currentLanguageName = this.language.getName(
       this.language.getCurrent()
@@ -267,19 +264,14 @@ export class SettingsPage {
     }
     else
     {
-      this.omegaIdProvider.signIn();
-      this.iabCardProvider.loadingWrapper(() => {
-        this.logger.log('settings - pairing');
-        this.iabCardProvider.show();
-        setTimeout(() => {
-          this.iabCardProvider.sendMessage(
-            {
-              message: 'pairingOnly'
-            },
-            () => {}
-          );
-        }, 100);
-      });
+      // Simulieren
+      this.logger.log('settings - link Omega Account');
+
+      this.navCtrl.push(OmegaIdLinkPage);
+      // Login irgentwie
+      // this.omegaIdUserInfo = this.omegaIdProvider.linkAccount('swtrse');
+      // this.persistenceProvider.setOmegaIdUserInfo(this.network, this.omegaIdUserInfo);
+      // this.persistenceProvider.setOmegaAccount(this.network, this.omegaIdUserInfo);
     }
   }
 

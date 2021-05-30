@@ -4,6 +4,8 @@ import { Events, NavController, NavParams } from 'ionic-angular';
 import { ActionSheetProvider, Logger, OmegaIdProvider, PersistenceProvider, PopupProvider } from '../../../providers'
 import { InAppBrowserProvider } from '../../../providers/in-app-browser/in-app-browser';
 
+import { OmegaUserInfoType } from '../../..//providers/omega-id/omega-id';
+
 @Component({
     selector: 'omega-id',
     templateUrl: 'omega-id.html'
@@ -11,7 +13,7 @@ import { InAppBrowserProvider } from '../../../providers/in-app-browser/in-app-b
 
 export class OmegaIdPage
 {
-    public userBasicInfo;
+    public userBasicInfo : OmegaUserInfoType;
     public network;
     public originalOmegaIdSettings: string;
     public omegaIdSettings = this.getDefaultOmegaIdSettings();

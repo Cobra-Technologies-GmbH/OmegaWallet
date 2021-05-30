@@ -9,6 +9,8 @@ import { FileStorage } from './storage/file-storage';
 import { LocalStorage } from './storage/local-storage';
 // TODO import { RamStorage } from './storage/ram-storage';
 
+import { OmegaUserInfoType } from '../../providers/omega-id/omega-id';
+
 export enum Network {
   livenet = 'livenet',
   testnet = 'testnet'
@@ -558,25 +560,15 @@ export class PersistenceProvider {
 
   setOmegaAccount(
     network: string,
-    data: {
-      email: string;
-      token: string;
-      familyName?: string; // last name
-      givenName?: string; // firstName,
-      incentiveLevel?: string;
-      incentiveLevelId?: string;
-    }
+    data: OmegaUserInfoType
   ) {
     return this.getOmegaAccounts(network).then(allAccounts => {
       allAccounts = allAccounts || {};
-      let account = allAccounts[data.email] || {};
-      account.token = data.token;
-      account.familyName = data.familyName;
-      account.givenName = data.givenName;
-      allAccounts[data.email] = account;
+      let account = allAccounts[data.username] || {};
+      allAccounts[data.username] = account;
 
       this.logger.info(
-        'Storing Omega Accounts with new account:' + data.email
+        'Storing Omega Accounts with new account:' + data.username
       );
       return this.storage.set(Keys.OMEGA_ACCOUNTS(network), allAccounts);
     });
@@ -590,10 +582,10 @@ export class PersistenceProvider {
     });
   }
 
-  removeOmegaAccount(network: string, email: string) {
+  removeOmegaAccount(network: string, username: string) {
     return this.getOmegaAccounts(network).then(allAccounts => {
       allAccounts = allAccounts || {};
-      delete allAccounts[email];
+      delete allAccounts[username];
       return this.storage.set(Keys.OMEGA_ACCOUNTS(network), allAccounts);
     });
   }
@@ -884,7 +876,7 @@ export class PersistenceProvider {
     return this.storage.remove(Keys.OMEGA_ID_PAIRING_TOKEN(network));
   }
 
-  setOmegaIdUserInfo(network: Network, userInfo: any) {
+  setOmegaIdUserInfo(network: Network, userInfo: OmegaUserInfoType) {
     return this.storage.set(Keys.OMEGA_ID_USER_INFO(network), userInfo);
   }
 

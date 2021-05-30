@@ -110,6 +110,7 @@ import { LanguagePage } from '../pages/settings/language/language';
 import { LocalThemePage } from '../pages/settings/local-theme/local-theme';
 import { LockPage } from '../pages/settings/lock/lock';
 import { NotificationsPage } from '../pages/settings/notifications/notifications';
+import { OmegaIdLinkPage } from '../pages/settings/omega-id-link/omega-id-link';
 import { OmegaIdPage } from '../pages/settings/omega-id/omega-id';
 import { SharePage } from '../pages/settings/share/share';
 
@@ -211,6 +212,7 @@ export const PAGES = [
   LockMethodPage,
   RecoveryKeyPage,
   CollectEmailPage,
+  OmegaIdLinkPage,
   OmegaIdPage,
   ...GIFT_CARD_PAGES,
   GravatarPage,

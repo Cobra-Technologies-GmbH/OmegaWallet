@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar> <ion-title> {{'Omega ID' |translate}} </ion-title> </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="omega-id-link__container">
+    <img
+      src="assets/img/app/icon-flat.svg"
+      class="omega-id-link__icon"
+      width="40"
+    />
+  </div>
+  <ion-item style="background: #121212; color: rgba(255, 255, 255, 0.6); border-bottom: 1px;">
+    <ion-label stacked>{{ 'Username' | translate }}</ion-label>
+    <ion-input (ionChange)="changeUsername(username)" [(ngModel)]="username" type="text" required></ion-input>
+  </ion-item>
+  <button
+    ion-button
+    class="button-standard button-secondary omega-id-link__disconnect-button"
+    (click)="linkOmegaId()"
+  >
+    {{'Link' | translate}}
+  </button>
+</ion-content>
