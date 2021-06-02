@@ -87,6 +87,8 @@ export class CardCatalogPage extends WideHeaderPage {
       .then(async allMerchants => {
         const merchants = allMerchants.filter(merchant =>
           this.giftCardsOnly ? merchant.giftCards.length : true
+          // Alle über BitPay abgewickelten Gutscheine ausblenden.
+          && !merchant.hasDirectIntegration
         );
         this.allMerchants = merchants;
         if (merchants.length < 10) {
