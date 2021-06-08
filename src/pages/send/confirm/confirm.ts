@@ -1507,10 +1507,22 @@ export class ConfirmPage {
         if (this.isCordova) this.slideButton.isConfirmed(false);
         this.onGoingProcessProvider.clear();
         this.showErrorInfoSheet(err);
-        this.logger.warn('Broadcast error: removing payment proposal');
-        this.walletProvider.removeTx(wallet, txp).catch(() => {
-          this.logger.warn('Could not delete payment proposal');
-        });
+        if (txp.payProUrl || this.navParams.data.isEthMultisigInstantiation) {
+          this.logger.warn('Paypro error: removing payment proposal');
+          this.walletProvider.removeTx(wallet, txp).catch(() => {
+            this.logger.warn('Could not delete payment proposal');
+          });
+        } else if (this.isSpeedUpTx) {
+          this.logger.warn('Speed up transaction error: removing transaction');
+          this.walletProvider.removeTx(wallet, txp).catch(() => {
+            this.logger.warn('Could not delete transaction');
+          });
+        }
+        if (err.includes('Broadcasting timeout')) {
+          this.navigateBack(
+            txp.payProUrl && txp.payProUrl.includes('redir=wc') ? 'wc' : null
+          );
+        }
       });
   }
 
@@ -1569,7 +1581,10 @@ export class ConfirmPage {
       'RippleUri',
       'InvoiceUri'
     ]);
+    this.navigateBack(redir, walletId);
+  }
 
+  private navigateBack(redir?: string, walletId?: string) {
     this.navCtrl.popToRoot().then(_ => {
       if (this.fromCoinbase) {
         this.coinbaseProvider.logEvent({
