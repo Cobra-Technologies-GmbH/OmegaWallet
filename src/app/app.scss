@@ -844,8 +844,8 @@ ion-icon {
   &[class*='tab-transact'] {
     background: $transact;
     background-size: contain;
-    width: 36px;
-    height: 36px !important;
+    width: 72px;
+    height: 72px !important;
 
     .tab-button[aria-selected='true'] & {
       background: $transact;
