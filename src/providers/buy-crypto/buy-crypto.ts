@@ -8,7 +8,7 @@ import { ConfigProvider } from '../config/config';
 import { HomeIntegrationsProvider } from '../home-integrations/home-integrations';
 import { Logger } from '../logger/logger';
 import { PlatformProvider } from '../platform/platform';
-import { SimplexProvider } from '../simplex/simplex';
+// import { SimplexProvider } from '../simplex/simplex';
 import { WyreProvider } from '../wyre/wyre';
 
 @Injectable()
@@ -25,14 +25,14 @@ export class BuyCryptoProvider {
     private homeIntegrationsProvider: HomeIntegrationsProvider,
     private logger: Logger,
     private translate: TranslateService,
-    private simplexProvider: SimplexProvider,
+    // private simplexProvider: SimplexProvider,
     private wyreProvider: WyreProvider,
     private platformProvider: PlatformProvider
   ) {
     this.logger.debug('BuyCrypto Provider initialized');
 
     this.exchangeCoinsSupported = _.union(
-      this.simplexProvider.supportedCoins,
+      // this.simplexProvider.supportedCoins,
       this.wyreProvider.supportedCoins
     );
     this.paymentMethodsAvailable = {
@@ -97,11 +97,11 @@ export class BuyCryptoProvider {
 
   private isCurrencySupported(exchange: string, currency: string): boolean {
     switch (exchange) {
-      case 'simplex':
-        return _.includes(
-          this.simplexProvider.supportedFiatAltCurrencies,
-          currency.toUpperCase()
-        );
+      // case 'simplex':
+      //   return _.includes(
+      //     this.simplexProvider.supportedFiatAltCurrencies,
+      //     currency.toUpperCase()
+      //   );
       case 'wyre':
         return _.includes(
           this.wyreProvider.supportedFiatAltCurrencies,
@@ -114,8 +114,8 @@ export class BuyCryptoProvider {
 
   private isCoinSupported(exchange: string, coin: string) {
     switch (exchange) {
-      case 'simplex':
-        return _.includes(this.simplexProvider.supportedCoins, coin);
+      // case 'simplex':
+      //   return _.includes(this.simplexProvider.supportedCoins, coin);
       case 'wyre':
         return _.includes(this.wyreProvider.supportedCoins, coin);
       default:
@@ -141,7 +141,7 @@ export class BuyCryptoProvider {
       simplexPaymentRequests,
       wyrePaymentRequests
     ]: any = await Promise.all([
-      this.simplexProvider.getSimplex(),
+      // this.simplexProvider.getSimplex(),
       this.wyreProvider.getWyre()
     ]);
     return {
@@ -152,8 +152,8 @@ export class BuyCryptoProvider {
 
   public getExchangeCoinsSupported(exchange?: string): string[] {
     switch (exchange) {
-      case 'simplex':
-        return this.simplexProvider.supportedCoins;
+      // case 'simplex':
+      //   return this.simplexProvider.supportedCoins;
       case 'wyre':
         return this.wyreProvider.supportedCoins;
       default:

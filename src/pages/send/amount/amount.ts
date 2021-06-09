@@ -16,7 +16,7 @@ import {
 import * as _ from 'lodash';
 
 // Providers
-import { ActionSheetProvider, IABCardProvider } from '../../../providers';
+import { ActionSheetProvider, IABCardProvider, WyreProvider } from '../../../providers';
 import { Config, ConfigProvider } from '../../../providers/config/config';
 import { Coin, CurrencyProvider } from '../../../providers/currency/currency';
 import { ElectronProvider } from '../../../providers/electron/electron';
@@ -27,7 +27,7 @@ import { Logger } from '../../../providers/logger/logger';
 import { PlatformProvider } from '../../../providers/platform/platform';
 import { ProfileProvider } from '../../../providers/profile/profile';
 import { RateProvider } from '../../../providers/rate/rate';
-import { SimplexProvider } from '../../../providers/simplex/simplex';
+// import { SimplexProvider } from '../../../providers/simplex/simplex';
 import { TxFormatProvider } from '../../../providers/tx-format/tx-format';
 
 // Pages
@@ -125,7 +125,8 @@ export class AmountPage {
     private profileProvider: ProfileProvider,
     private navCtrl: NavController,
     private iabCardProvider: IABCardProvider,
-    private simplexProvider: SimplexProvider,
+    // private simplexProvider: SimplexProvider,
+    private wyreProvider: WyreProvider,
     private formBuilder: FormBuilder,
     private translate: TranslateService
   ) {
@@ -755,8 +756,9 @@ export class AmountPage {
       title: this.translate.instant('Select Currency'),
       cssClass: 'buy-crypto-currency-' + this.altCurrenciesToShow.length
     };
-
-    this.supportedFiatAltCurrencies = this.simplexProvider.getSupportedFiatAltCurrencies();
+    
+    this.supportedFiatAltCurrencies = this.wyreProvider.getSupportedFiatAltCurrencies();
+    // this.supportedFiatAltCurrencies = this.simplexProvider.getSupportedFiatAltCurrencies();
 
     this.supportedFiatAltCurrencies.forEach((currency: string) => {
       if (this.altCurrenciesToShow.indexOf(currency) < 0)
@@ -770,7 +772,8 @@ export class AmountPage {
 
   private isSupportedFiat(isoCode: string): boolean {
     return (
-      this.simplexProvider.getSupportedFiatAltCurrencies().indexOf(isoCode) > -1
+      // this.simplexProvider.getSupportedFiatAltCurrencies().indexOf(isoCode) > -1
+      this.wyreProvider.getSupportedFiatAltCurrencies().indexOf(isoCode) > -1
     );
   }
 

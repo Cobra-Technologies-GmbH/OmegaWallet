@@ -14,7 +14,7 @@ import { Logger } from '../../../providers/logger/logger';
 import { OnGoingProcessProvider } from '../../../providers/on-going-process/on-going-process';
 import { PopupProvider } from '../../../providers/popup/popup';
 import { ProfileProvider } from '../../../providers/profile/profile';
-import { SimplexProvider } from '../../../providers/simplex/simplex';
+// import { SimplexProvider } from '../../../providers/simplex/simplex';
 import { ThemeProvider } from '../../../providers/theme/theme';
 import { WalletProvider } from '../../../providers/wallet/wallet';
 import { WyreProvider } from '../../../providers/wyre/wyre';
@@ -75,7 +75,7 @@ export class CryptoOffersPage {
     private logger: Logger,
     private onGoingProcessProvider: OnGoingProcessProvider,
     private navParams: NavParams,
-    private simplexProvider: SimplexProvider,
+    // private simplexProvider: SimplexProvider,
     private navCtrl: NavController,
     private profileProvider: ProfileProvider,
     private currencyProvider: CurrencyProvider,
@@ -118,7 +118,7 @@ export class CryptoOffersPage {
         this.coin,
         this.currency
       ) && !this.navParams.data.isPromotionActiveForCountry; // TODO: We temporarily remove Wyre from European Union countries. When the Simplex promotion ends we have to remove this condition
-    if (this.offers.simplex.showOffer) this.getSimplexQuote();
+    // if (this.offers.simplex.showOffer) this.getSimplexQuote();
     if (this.offers.wyre.showOffer) this.getWyreQuote();
   }
 
@@ -134,9 +134,9 @@ export class CryptoOffersPage {
 
   public goTo(key: string) {
     switch (key) {
-      case 'simplex':
-        this.goToSimplexBuyPage();
-        break;
+      // case 'simplex':
+      //   this.goToSimplexBuyPage();
+      //   break;
 
       case 'wyre':
         this.goToWyreBuyPage();
@@ -188,9 +188,9 @@ export class CryptoOffersPage {
       .then((res: boolean) => {
         if (res) {
           switch (exchange) {
-            case 'simplex':
-              this.continueToSimplex();
-              break;
+            // case 'simplex':
+            //   this.continueToSimplex();
+            //   break;
             case 'wyre':
               this.continueToWyre(url);
               break;
@@ -207,16 +207,20 @@ export class CryptoOffersPage {
       });
   }
 
-  private setFiatCurrency() {
-    if (this.currency === this.coin.toUpperCase()) {
+  private setFiatCurrency()
+  {
+    if (this.currency === this.coin.toUpperCase())
+    {
       const config = this.configProvider.get();
       this.fiatCurrency = _.includes(
-        this.simplexProvider.supportedFiatAltCurrencies,
+        this.wyreProvider.supportedFiatAltCurrencies,
         config.wallet.settings.alternativeIsoCode
       )
         ? config.wallet.settings.alternativeIsoCode
         : 'usd';
-    } else {
+    } 
+      else
+    {
       this.fiatCurrency = this.currency;
     }
   }
@@ -231,185 +235,185 @@ export class CryptoOffersPage {
 
   // SIMPLEX
 
-  public goToSimplexBuyPage() {
-    if (this.offers.simplex.errorMsg) return;
-    this.openPopUpConfirmation('simplex');
-  }
+  // public goToSimplexBuyPage() {
+  //   if (this.offers.simplex.errorMsg) return;
+  //   this.openPopUpConfirmation('simplex');
+  // }
 
-  public continueToSimplex(): void {
-    this.walletProvider
-      .getAddress(this.wallet, false)
-      .then(address => {
-        const quoteData = {
-          quoteId: this.offers.simplex.quoteData.quote_id,
-          currency: this.currency,
-          fiatTotalAmount: this.offers.simplex.quoteData.fiat_money
-            .total_amount,
-          cryptoAmount: this.offers.simplex.quoteData.digital_money.amount
-        };
-        this.simplexProvider
-          .simplexPaymentRequest(this.wallet, address, quoteData)
-          .then(req => {
-            if (req && req.error && !_.isEmpty(req.error)) {
-              this.showSimplexError(req.error);
-              return;
-            }
+  // public continueToSimplex(): void {
+  //   this.walletProvider
+  //     .getAddress(this.wallet, false)
+  //     .then(address => {
+  //       const quoteData = {
+  //         quoteId: this.offers.simplex.quoteData.quote_id,
+  //         currency: this.currency,
+  //         fiatTotalAmount: this.offers.simplex.quoteData.fiat_money
+  //           .total_amount,
+  //         cryptoAmount: this.offers.simplex.quoteData.digital_money.amount
+  //       };
+  //       this.simplexProvider
+  //         .simplexPaymentRequest(this.wallet, address, quoteData)
+  //         .then(req => {
+  //           if (req && req.error && !_.isEmpty(req.error)) {
+  //             this.showSimplexError(req.error);
+  //             return;
+  //           }
 
-            this.logger.debug('Simplex creating payment request: SUCCESS');
+  //           this.logger.debug('Simplex creating payment request: SUCCESS');
 
-            const remoteData: any = {
-              address,
-              api_host: req.api_host,
-              app_provider_id: req.app_provider_id,
-              order_id: req.order_id,
-              payment_id: req.payment_id
-            };
+  //           const remoteData: any = {
+  //             address,
+  //             api_host: req.api_host,
+  //             app_provider_id: req.app_provider_id,
+  //             order_id: req.order_id,
+  //             payment_id: req.payment_id
+  //           };
 
-            let newData = {
-              address,
-              created_on: Date.now(),
-              crypto_amount: this.offers.simplex.quoteData.digital_money.amount,
-              coin: this.wallet.coin.toUpperCase(),
-              fiat_base_amount: this.offers.simplex.quoteData.fiat_money
-                .base_amount,
-              fiat_total_amount: this.offers.simplex.quoteData.fiat_money
-                .total_amount,
-              fiat_total_amount_currency: this.currency,
-              order_id: req.order_id,
-              payment_id: req.payment_id,
-              status: 'paymentRequestSent',
-              user_id: this.wallet.id
-            };
-            this.simplexProvider
-              .saveSimplex(newData, null)
-              .then(() => {
-                this.logger.debug(
-                  'Saved Simplex with status: ' + newData.status
-                );
-                this.analyticsProvider.logEvent('buy_crypto_payment_request', {
-                  exchange: 'simplex',
-                  userId: this.wallet.id,
-                  fiatAmount: this.amount,
-                  fiatCurrency: this.currency.toUpperCase(),
-                  paymentMethod: this.paymentMethod.method,
-                  coin: this.wallet.coin
-                });
-                const paymentUrl: string = this.simplexProvider.getPaymentUrl(
-                  this.wallet,
-                  quoteData,
-                  remoteData
-                );
-                this.openExternalLink(paymentUrl);
+  //           let newData = {
+  //             address,
+  //             created_on: Date.now(),
+  //             crypto_amount: this.offers.simplex.quoteData.digital_money.amount,
+  //             coin: this.wallet.coin.toUpperCase(),
+  //             fiat_base_amount: this.offers.simplex.quoteData.fiat_money
+  //               .base_amount,
+  //             fiat_total_amount: this.offers.simplex.quoteData.fiat_money
+  //               .total_amount,
+  //             fiat_total_amount_currency: this.currency,
+  //             order_id: req.order_id,
+  //             payment_id: req.payment_id,
+  //             status: 'paymentRequestSent',
+  //             user_id: this.wallet.id
+  //           };
+  //           this.simplexProvider
+  //             .saveSimplex(newData, null)
+  //             .then(() => {
+  //               this.logger.debug(
+  //                 'Saved Simplex with status: ' + newData.status
+  //               );
+  //               this.analyticsProvider.logEvent('buy_crypto_payment_request', {
+  //                 exchange: 'simplex',
+  //                 userId: this.wallet.id,
+  //                 fiatAmount: this.amount,
+  //                 fiatCurrency: this.currency.toUpperCase(),
+  //                 paymentMethod: this.paymentMethod.method,
+  //                 coin: this.wallet.coin
+  //               });
+  //               const paymentUrl: string = this.simplexProvider.getPaymentUrl(
+  //                 this.wallet,
+  //                 quoteData,
+  //                 remoteData
+  //               );
+  //               this.openExternalLink(paymentUrl);
 
-                setTimeout(() => {
-                  this.navCtrl.popToRoot();
-                }, 2500);
-              })
-              .catch(err => {
-                this.showSimplexError(err);
-              });
-          })
-          .catch(err => {
-            this.showSimplexError(err);
-          });
-      })
-      .catch(err => {
-        return this.showSimplexError(err);
-      });
-  }
+  //               setTimeout(() => {
+  //                 this.navCtrl.popToRoot();
+  //               }, 2500);
+  //             })
+  //             .catch(err => {
+  //               this.showSimplexError(err);
+  //             });
+  //         })
+  //         .catch(err => {
+  //           this.showSimplexError(err);
+  //         });
+  //     })
+  //     .catch(err => {
+  //       return this.showSimplexError(err);
+  //     });
+  // }
 
-  private getSimplexQuote(): void {
-    this.logger.debug('Simplex getting quote');
+  // private getSimplexQuote(): void {
+  //   this.logger.debug('Simplex getting quote');
 
-    this.offers.simplex.amountLimits = this.simplexProvider.getFiatCurrencyLimits(
-      this.fiatCurrency,
-      this.coin
-    );
+  //   this.offers.simplex.amountLimits = this.simplexProvider.getFiatCurrencyLimits(
+  //     this.fiatCurrency,
+  //     this.coin
+  //   );
 
-    if (
-      this.amount < this.offers.simplex.amountLimits.min ||
-      this.amount > this.offers.simplex.amountLimits.max
-    ) {
-      this.offers.simplex.errorMsg = `The ${this.fiatCurrency} amount must be between ${this.offers.simplex.amountLimits.min} and ${this.offers.simplex.amountLimits.max}`;
-      return;
-    } else {
-      let paymentMethod: string[] = [];
-      switch (this.paymentMethod.method) {
-        case 'sepaBankTransfer':
-          paymentMethod.push('simplex_account');
-          break;
-        default:
-          paymentMethod.push('credit_card');
-          break;
-      }
-      const data = {
-        digital_currency: this.wallet.coin.toUpperCase(),
-        fiat_currency: this.fiatCurrency,
-        requested_currency: this.fiatCurrency,
-        requested_amount: this.amount,
-        end_user_id: this.walletId,
-        payment_methods: paymentMethod
-      };
+  //   if (
+  //     this.amount < this.offers.simplex.amountLimits.min ||
+  //     this.amount > this.offers.simplex.amountLimits.max
+  //   ) {
+  //     this.offers.simplex.errorMsg = `The ${this.fiatCurrency} amount must be between ${this.offers.simplex.amountLimits.min} and ${this.offers.simplex.amountLimits.max}`;
+  //     return;
+  //   } else {
+  //     let paymentMethod: string[] = [];
+  //     switch (this.paymentMethod.method) {
+  //       case 'sepaBankTransfer':
+  //         paymentMethod.push('simplex_account');
+  //         break;
+  //       default:
+  //         paymentMethod.push('credit_card');
+  //         break;
+  //     }
+  //     const data = {
+  //       digital_currency: this.wallet.coin.toUpperCase(),
+  //       fiat_currency: this.fiatCurrency,
+  //       requested_currency: this.fiatCurrency,
+  //       requested_amount: this.amount,
+  //       end_user_id: this.walletId,
+  //       payment_methods: paymentMethod
+  //     };
 
-      this.simplexProvider
-        .getQuote(this.wallet, data)
-        .then(data => {
-          if (data && data.quote_id) {
-            this.offers.simplex.quoteData = data;
-            this.offers.simplex.amountCost = data.fiat_money.total_amount;
-            this.offers.simplex.buyAmount = data.fiat_money.base_amount;
-            this.offers.simplex.fee =
-              data.fiat_money.total_amount - data.fiat_money.base_amount;
+  //     this.simplexProvider
+  //       .getQuote(this.wallet, data)
+  //       .then(data => {
+  //         if (data && data.quote_id) {
+  //           this.offers.simplex.quoteData = data;
+  //           this.offers.simplex.amountCost = data.fiat_money.total_amount;
+  //           this.offers.simplex.buyAmount = data.fiat_money.base_amount;
+  //           this.offers.simplex.fee =
+  //             data.fiat_money.total_amount - data.fiat_money.base_amount;
 
-            this.offers.simplex.fiatMoney = Number(
-              this.offers.simplex.buyAmount / data.digital_money.amount
-            ).toFixed(
-              this.currencyProvider.getPrecision(this.coin).unitDecimals
-            );
-            this.offers.simplex.amountReceiving = data.digital_money.amount.toString();
-            this.logger.debug('Simplex getting quote: SUCCESS');
-          } else {
-            if (data.message && _.isString(data.message)) {
-              this.logger.error('Simplex error: ' + data.message);
-            }
-            if (data.error && _.isString(data.error)) {
-              this.logger.error('Simplex error: ' + data.error);
-              if (data.errors) {
-                this.logger.error(data.errors);
-              }
-            }
-            let err = this.translate.instant(
-              "Can't get rates at this moment. Please try again later"
-            );
-            this.showSimplexError(err);
-          }
-        })
-        .catch(err => {
-          this.logger.error('Simplex getting quote: FAILED');
-          this.showSimplexError(err);
-        });
-    }
-  }
+  //           this.offers.simplex.fiatMoney = Number(
+  //             this.offers.simplex.buyAmount / data.digital_money.amount
+  //           ).toFixed(
+  //             this.currencyProvider.getPrecision(this.coin).unitDecimals
+  //           );
+  //           this.offers.simplex.amountReceiving = data.digital_money.amount.toString();
+  //           this.logger.debug('Simplex getting quote: SUCCESS');
+  //         } else {
+  //           if (data.message && _.isString(data.message)) {
+  //             this.logger.error('Simplex error: ' + data.message);
+  //           }
+  //           if (data.error && _.isString(data.error)) {
+  //             this.logger.error('Simplex error: ' + data.error);
+  //             if (data.errors) {
+  //               this.logger.error(data.errors);
+  //             }
+  //           }
+  //           let err = this.translate.instant(
+  //             "Can't get rates at this moment. Please try again later"
+  //           );
+  //           this.showSimplexError(err);
+  //         }
+  //       })
+  //       .catch(err => {
+  //         this.logger.error('Simplex getting quote: FAILED');
+  //         this.showSimplexError(err);
+  //       });
+  //   }
+  // }
 
-  private showSimplexError(err?) {
-    this.onGoingProcessProvider.clear();
+  // private showSimplexError(err?) {
+  //   this.onGoingProcessProvider.clear();
 
-    let msg = this.translate.instant(
-      'Could not get crypto offer. Please, try again later.'
-    );
-    if (err) {
-      if (_.isString(err)) {
-        msg = err;
-      } else {
-        if (err.error && err.error.error) msg = err.error.error;
-        else if (err.message) msg = err.message;
-      }
-    }
+  //   let msg = this.translate.instant(
+  //     'Could not get crypto offer. Please, try again later.'
+  //   );
+  //   if (err) {
+  //     if (_.isString(err)) {
+  //       msg = err;
+  //     } else {
+  //       if (err.error && err.error.error) msg = err.error.error;
+  //       else if (err.message) msg = err.message;
+  //     }
+  //   }
 
-    this.logger.error('Simplex error: ' + msg);
+  //   this.logger.error('Simplex error: ' + msg);
 
-    this.offers.simplex.errorMsg = msg;
-  }
+  //   this.offers.simplex.errorMsg = msg;
+  // }
 
   // WYRE
 

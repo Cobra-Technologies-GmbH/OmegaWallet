@@ -51,8 +51,8 @@ import { CoinbaseTxDetailsPage } from '../pages/integrations/coinbase/coinbase-t
 import { CoinbaseWithdrawPage } from '../pages/integrations/coinbase/coinbase-withdraw/coinbase-withdraw';
 
 // Integrations: Simplex
-import { SimplexPage } from '../pages/integrations/simplex/simplex';
-import { SimplexDetailsPage } from '../pages/integrations/simplex/simplex-details/simplex-details';
+// import { SimplexPage } from '../pages/integrations/simplex/simplex';
+// import { SimplexDetailsPage } from '../pages/integrations/simplex/simplex-details/simplex-details';
 
 // Integrations: Wyre
 import { WyrePage } from '../pages/integrations/wyre/wyre';
@@ -234,8 +234,8 @@ export const PAGES = [
   SelectCurrencyPage,
   SelectInvoicePage,
   CoinbaseSettingsPage,
-  SimplexPage,
-  SimplexDetailsPage,
+  // SimplexPage,
+  // SimplexDetailsPage,
   WyrePage,
   WyreDetailsPage,
   NotificationsPage,
