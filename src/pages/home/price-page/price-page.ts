@@ -16,7 +16,8 @@ import {
   AnalyticsProvider,
   ConfigProvider,
   Logger,
-  SimplexProvider
+  // SimplexProvider
+  WyreProvider
 } from '../../../providers';
 import { DateRanges, RateProvider } from '../../../providers/rate/rate';
 
@@ -46,7 +47,8 @@ export class PricePage {
     private formatCurrencyPipe: FormatCurrencyPipe,
     private configProvider: ConfigProvider,
     private logger: Logger,
-    private simplexProvider: SimplexProvider,
+    // private simplexProvider: SimplexProvider,
+    private wyreProvider: WyreProvider,
     private analyticsProvider: AnalyticsProvider
   ) {
     this.card = _.clone(this.navParams.data.card);
@@ -182,7 +184,8 @@ export class PricePage {
   }
 
   private setFiatIsoCode() {
-    this.fiatCodes = this.simplexProvider.getSupportedFiatAltCurrencies();
+    // this.fiatCodes = this.simplexProvider.getSupportedFiatAltCurrencies();
+    this.fiatCodes = this.wyreProvider.getSupportedFiatAltCurrencies();
     const { alternativeIsoCode } = this.configProvider.get().wallet.settings;
     this.fiatIsoCode = this.rateProvider.isAltCurrencyAvailable(
       alternativeIsoCode

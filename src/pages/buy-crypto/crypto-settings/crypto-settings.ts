@@ -3,7 +3,7 @@ import { NavController } from 'ionic-angular';
 import * as _ from 'lodash';
 
 // Pages
-import { SimplexPage } from '../../../pages/integrations/simplex/simplex';
+// import { SimplexPage } from '../../../pages/integrations/simplex/simplex';
 import { WyrePage } from '../../../pages/integrations/wyre/wyre';
 
 // Providers
@@ -50,9 +50,9 @@ export class CryptoSettingsPage {
     });
   }
 
-  public goToSimplexPage(): void {
-    this.navCtrl.push(SimplexPage);
-  }
+  // public goToSimplexPage(): void {
+  //   this.navCtrl.push(SimplexPage);
+  // }
 
   public goToWyrePage(): void {
     this.navCtrl.push(WyrePage);

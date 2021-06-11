@@ -64,7 +64,7 @@ import { BitPayCardIntroPage } from '../pages/integrations/bitpay-card/bitpay-ca
 import { PhaseOneCardIntro } from '../pages/integrations/bitpay-card/bitpay-card-phases/phase-one/phase-one-intro-page/phase-one-intro-page';
 import { CoinbasePage } from '../pages/integrations/coinbase/coinbase';
 import { SelectInvoicePage } from '../pages/integrations/invoice/select-invoice/select-invoice';
-import { SimplexPage } from '../pages/integrations/simplex/simplex';
+// import { SimplexPage } from '../pages/integrations/simplex/simplex';
 import { WalletConnectPage } from '../pages/integrations/wallet-connect/wallet-connect';
 import { WyrePage } from '../pages/integrations/wyre/wyre';
 import { DisclaimerPage } from '../pages/onboarding/disclaimer/disclaimer';
@@ -116,7 +116,7 @@ export class CopayApp {
     JoinWalletPage,
     AddWalletPage,
     PaperWalletPage,
-    SimplexPage,
+    // SimplexPage,
     SelectInvoicePage,
     WalletConnectPage,
     WalletDetailsPage,
