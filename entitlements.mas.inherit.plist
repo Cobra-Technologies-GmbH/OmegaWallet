@@ -6,7 +6,5 @@
     <true/>
     <key>com.apple.security.inherit</key>
     <true/>
-    <key>com.apple.developer.payment-pass-provisioning</key>
-    <true/>
   </dict>
 </plist>
