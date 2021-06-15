@@ -34,6 +34,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { AddPage } from '../add/add';
 import { CryptoSettingsPage } from '../buy-crypto/crypto-settings/crypto-settings';
 import { ExchangeCryptoSettingsPage } from '../exchange-crypto/exchange-crypto-settings/exchange-crypto-settings';
+import { SendFeedbackPage } from '../feedback/send-feedback/send-feedback';
 import { BitPaySettingsPage } from '../integrations/bitpay-card/bitpay-settings/bitpay-settings';
 import { CoinbaseSettingsPage } from '../integrations/coinbase/coinbase-settings/coinbase-settings';
 import { GiftCardsSettingsPage } from '../integrations/gift-cards/gift-cards-settings/gift-cards-settings';
@@ -331,6 +332,10 @@ export class SettingsPage {
 
   public openAltCurrencyPage(): void {
     this.navCtrl.push(AltCurrencyPage);
+  }
+
+  public openSendFeedbackPage(): void {
+    this.navCtrl.push(SendFeedbackPage);
   }
 
   public openLanguagePage(): void {

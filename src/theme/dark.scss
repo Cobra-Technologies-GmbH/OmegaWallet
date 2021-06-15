@@ -1423,6 +1423,12 @@
         filter: invert(1);
       }
     }
+
+    .message {
+      &-background {
+        background-color: $bg-color-dark-theme-message;
+      }
+    }
   }
 
   page-alt-currency,

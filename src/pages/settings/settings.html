@@ -18,6 +18,33 @@
       </ion-toolbar>
     </expandable-header>
 
+    <ion-slides pager="true" (ionSlideDidChange)="slideChanged()">
+      <ion-slide>
+        <div class="message-background no-margin">
+          <div class="message-header">
+          </div>
+          <div class="message-content">
+            <ion-row align-items-center>
+              <ion-col align-self-start col-4>
+                <div class="message-img">
+                  <img src="assets/img/settings-icons/icon-send-feedback.svg" style="height: 30px;">
+                </div>
+              </ion-col>
+              <ion-col col-8>
+                <div class="message-title message-title-adv">
+                  Send Feedback
+                </div>
+              </ion-col>
+            </ion-row>
+            <div (click)="openSendFeedbackPage()">
+              <div class="line-divider"></div>
+              <span class="message-button">Open</span>
+            </div>
+          </div>
+        </div>
+      </ion-slide>
+    </ion-slides>
+
     <ion-list class="bp-list">
       <ion-item-divider> {{ 'General' | translate }} </ion-item-divider>
 
