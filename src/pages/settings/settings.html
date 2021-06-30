@@ -46,7 +46,9 @@
     </ion-slides>
 
     <ion-list class="bp-list">
-      <ng-container *ngIf="isCordova && !isCopay">
+      <!--Show this in browser too-->
+      <ng-container>
+      <!-- <ng-container *ngIf="isCordova && !isCopay"> -->
         <ion-item-divider tappable (click)="mdesFlag()">
           {{'Account' | translate}}
         </ion-item-divider>
