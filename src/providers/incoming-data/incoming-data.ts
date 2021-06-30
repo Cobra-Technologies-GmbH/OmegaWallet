@@ -23,11 +23,13 @@ export interface RedirParams {
   amount?: string;
   coin?: Coin;
   fromHomeCard?: boolean;
+  fromFooterMenu?: boolean;
 }
 
 @Injectable()
 export class IncomingDataProvider {
   private activePage: string;
+  private fromFooterMenu: boolean;
 
   constructor(
     private actionSheetProvider: ActionSheetProvider,
@@ -59,7 +61,7 @@ export class IncomingDataProvider {
   }
 
   public finishIncomingData(data: any): void {
-    let nextView = {};
+    let nextView: any = {};
     if (data) {
       const stateParams = {
         addressbookEntry:
@@ -73,6 +75,7 @@ export class IncomingDataProvider {
         params: stateParams
       };
     }
+    nextView.params.fromFooterMenu = this.fromFooterMenu;
     this.incomingDataRedir(nextView);
   }
 
@@ -723,9 +726,10 @@ export class IncomingDataProvider {
   private goToCoinbase(data: string): void {
     this.logger.debug('Incoming-data (redirect): Coinbase URL');
 
-    let code = this.getParameterByName('code', data);
-    let stateParams = { code };
-    let nextView = {
+    const code = this.getParameterByName('code', data);
+    const state = this.getParameterByName('state', data);
+    const stateParams = { code, state };
+    const nextView = {
       name: 'CoinbasePage',
       params: stateParams
     };
@@ -836,6 +840,8 @@ export class IncomingDataProvider {
   public redir(data: string, redirParams?: RedirParams): boolean {
     if (redirParams && redirParams.activePage)
       this.activePage = redirParams.activePage;
+    if (redirParams && redirParams.activePage)
+      this.fromFooterMenu = redirParams.fromFooterMenu;
 
     //  Handling of a bitpay invoice url
     if (this.isValidOmegaInvoice(data)) {
@@ -1420,7 +1426,7 @@ export class IncomingDataProvider {
 
   private async handleUnlock(data) {
     try {
-      const url = data.split('?')[1];
+      const url = data.split('?r=')[1];
       const invoiceId = url.split('i/')[1];
 
       const result = await this.bitPayIdProvider.unlockInvoice(invoiceId);

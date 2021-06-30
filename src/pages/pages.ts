@@ -61,6 +61,7 @@ import { WyreDetailsPage } from '../pages/integrations/wyre/wyre-details/wyre-de
 
 // Integrations: Wallet Connect
 import { WalletConnectPage } from '../pages/integrations/wallet-connect/wallet-connect';
+import { WalletConnectSettingsPage } from '../pages/integrations/wallet-connect/wallet-connect-settings/wallet-connect-settings';
 
 // Integrations: BitPayCard
 import { BitPayCardPage } from '../pages/integrations/bitpay-card/bitpay-card';
@@ -106,6 +107,7 @@ import { AddressbookViewPage } from '../pages/settings/addressbook/view/view';
 import { AdvancedPage } from '../pages/settings/advanced/advanced';
 import { AltCurrencyPage } from '../pages/settings/alt-currency/alt-currency';
 import { BitPayIdPage } from '../pages/settings/bitpay-id/bitpay-id';
+import { FeePolicyPage } from '../pages/settings/fee-policy/fee-policy';
 import { LanguagePage } from '../pages/settings/language/language';
 import { LocalThemePage } from '../pages/settings/local-theme/local-theme';
 import { LockPage } from '../pages/settings/lock/lock';
@@ -221,6 +223,7 @@ export const PAGES = [
   HomePage,
   CardsPage,
   WalletsPage,
+  FeePolicyPage,
   LanguagePage,
   LockPage,
   MerchantPage,
@@ -265,6 +268,7 @@ export const PAGES = [
   KeyNamePage,
   KeyOnboardingPage,
   WalletConnectPage,
+  WalletConnectSettingsPage,
   WalletDetailsPage,
   WalletRecoverPage,
   WalletMnemonicRecoverPage,

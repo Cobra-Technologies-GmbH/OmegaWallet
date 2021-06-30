@@ -93,8 +93,8 @@ export class WalletConnectProvider {
 
   public register(): void {
     this.homeIntegrationsProvider.register({
-      name: 'walletConnect',
-      title: this.translate.instant('WalletConnect'),
+      name: 'newWalletConnect',
+      title: 'WalletConnect',
       icon: 'assets/img/wallet-connect.svg',
       showIcon: true,
       logo: null,
@@ -102,7 +102,7 @@ export class WalletConnectProvider {
       background:
         'linear-gradient(to bottom,rgba(60, 63, 69, 1) 0,rgba(45, 47, 51, 1) 100%)',
       page: 'WalletConnectPage',
-      show: !!this.configProvider.get().showIntegration['walletConnect'],
+      show: !!this.configProvider.get().showIntegration['newWalletConnect'],
       type: 'external-services'
     });
   }
@@ -161,15 +161,21 @@ export class WalletConnectProvider {
     }
   }
 
-  public getConnectionData() {
+  public async getConnectionData() {
     return {
       connected: this.connected,
       peerMeta: this.peerMeta,
       walletId: this.walletId,
-      requests: this.requests,
+      requests: await this.getPendingRequests(),
       address: this.address,
       activeChainId: this.activeChainId
     };
+  }
+
+  public async getPendingRequests() {
+    return _.isEmpty(this.requests)
+      ? this.persistenceProvider.getWalletConnectPendingRequests()
+      : this.requests;
   }
 
   public async setAccountInfo(wallet) {
@@ -235,6 +241,7 @@ export class WalletConnectProvider {
       if (!alreadyExist) {
         this.requests.push(_payload);
         this.requests = _.uniqBy(this.requests, 'id');
+        this.persistenceProvider.setWalletConnectPendingRequests(this.requests);
         this.events.publish('Update/Requests', this.requests);
         this.incomingDataProvider.redir('wc:');
       }
@@ -373,6 +380,7 @@ export class WalletConnectProvider {
       this.logger.debug('walletConnector.killSession');
       this.walletConnector.killSession();
       await this.persistenceProvider.removeWalletConnect();
+      await this.persistenceProvider.removeWalletConnectPendingRequests();
       this.peerMeta = null;
       this.connected = false;
     }
@@ -381,6 +389,13 @@ export class WalletConnectProvider {
   public closeRequest(id): void {
     const filteredRequests = this.requests.filter(request => request.id !== id);
     this.requests = filteredRequests;
+    this.persistenceProvider
+      .getWalletConnectPendingRequests()
+      .then(requests => {
+        this.persistenceProvider.setWalletConnectPendingRequests(
+          _.reject(requests, { id })
+        );
+      });
     this.events.publish('Update/Requests', this.requests);
   }
 

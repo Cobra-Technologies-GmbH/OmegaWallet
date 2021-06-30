@@ -879,7 +879,7 @@ describe('Provider: Incoming Data Provider', () => {
     it('Should handle Coinbase URI', () => {
       let data = ['bitpay://coinbase', 'copay://coinbase', 'omega://coinbase'];
       data.forEach(element => {
-        let stateParams = { code: null };
+        let stateParams = { code: null, state: null };
         let nextView = {
           name: 'CoinbasePage',
           params: stateParams
@@ -938,7 +938,8 @@ describe('Provider: Incoming Data Provider', () => {
         privateKey: '123',
         toAddress: null,
         coin: 'btc',
-        addressbookEntry: null
+        addressbookEntry: null,
+        fromFooterMenu: undefined
       };
       const nextView = {
         name: 'PaperWalletPage',
@@ -953,7 +954,8 @@ describe('Provider: Incoming Data Provider', () => {
         toAddress: 'xxx',
         coin: 'bch',
         privateKey: null,
-        addressbookEntry: null
+        addressbookEntry: null,
+        fromFooterMenu: undefined
       };
       const nextView = {
         name: 'AmountPage',
@@ -968,7 +970,8 @@ describe('Provider: Incoming Data Provider', () => {
         toAddress: null,
         coin: 'bch',
         privateKey: null,
-        addressbookEntry: 'xxx'
+        addressbookEntry: 'xxx',
+        fromFooterMenu: undefined
       };
       const nextView = {
         name: 'AddressbookAddPage',

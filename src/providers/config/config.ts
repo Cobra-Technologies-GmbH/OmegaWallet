@@ -82,6 +82,7 @@ export interface Config {
     exchangecrypto: boolean;
     giftcards: boolean;
     walletConnect: boolean;
+    newWalletConnect: boolean;
   };
 
   pushNotifications: {
@@ -141,6 +142,11 @@ export interface Config {
 
   navigation: {
     type: string;
+  };
+
+  feeLevels: {
+    btc: string;
+    eth: string;
   };
 }
 
@@ -240,7 +246,8 @@ export class ConfigProvider {
         buycrypto: true,
         exchangecrypto: true,
         giftcards: true,
-        walletConnect: true
+        walletConnect: false,
+        newWalletConnect: false
       },
 
       pushNotifications: {
@@ -294,6 +301,11 @@ export class ConfigProvider {
 
       navigation: {
         type: 'transact'
+      },
+
+      feeLevels: {
+        btc: 'normal',
+        eth: 'normal'
       }
     };
   }
@@ -403,6 +415,9 @@ export class ConfigProvider {
       if (this.configCache.showIntegration.coinbase !== false) {
         this.configCache.showIntegration.coinbase = this.configDefault.showIntegration.coinbase;
       }
+      if (this.configCache.showIntegration.newWalletConnect !== true) {
+        this.configCache.showIntegration.newWalletConnect = this.configDefault.showIntegration.newWalletConnect;
+      }
     }
     if (!this.configCache.pushNotifications) {
       this.configCache.pushNotifications = this.configDefault.pushNotifications;
@@ -445,6 +460,10 @@ export class ConfigProvider {
 
     if (!this.configCache.navigation) {
       this.configCache.navigation = this.configDefault.navigation;
+    }
+
+    if (!this.configCache.feeLevels) {
+      this.configCache.feeLevels = this.configDefault.feeLevels;
     }
   }
 

@@ -4,6 +4,7 @@ import { Logger } from '../../providers/logger/logger';
 
 // providers
 import { BwcProvider } from '../../providers/bwc/bwc';
+import { ConfigProvider } from '../../providers/config/config';
 import { Coin, CurrencyProvider } from '../../providers/currency/currency';
 
 import * as _ from 'lodash';
@@ -30,16 +31,26 @@ export class FeeProvider {
     private logger: Logger,
     private bwcProvider: BwcProvider,
     private currencyProvider: CurrencyProvider,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private configProvider: ConfigProvider
   ) {
     this.logger.debug('FeeProvider initialized');
   }
 
-  public getFeeOpts() {
+  public getFeeOpts(coin?: string) {
     const feeOpts = {
-      urgent: this.translate.instant('Urgent'),
-      priority: this.translate.instant('Priority'),
-      normal: this.translate.instant('Normal'),
+      urgent:
+        coin == 'eth'
+          ? this.translate.instant('High')
+          : this.translate.instant('Urgent'),
+      priority:
+        coin == 'eth'
+          ? this.translate.instant('Average')
+          : this.translate.instant('Priority'),
+      normal:
+        coin == 'eth'
+          ? this.translate.instant('Low')
+          : this.translate.instant('Normal'),
       economy: this.translate.instant('Economy'),
       superEconomy: this.translate.instant('Super Economy'),
       custom: this.translate.instant('Custom')
@@ -105,10 +116,11 @@ export class FeeProvider {
         indexFound >= 0 &&
         this.cache[indexFound].updateTs > Date.now() - this.CACHE_TIME_TS * 1000
       ) {
-        if (chain === 'eth' && network === 'livenet') {
-          this.cache[indexFound].data = this.processFeeLevels(
+        if (chain === 'eth') {
+          const feeLevels = this.removeLowFeeLevels(
             this.cache[indexFound].data
           );
+          this.cache[indexFound].data = feeLevels;
         }
         return resolve({
           levels: this.cache[indexFound].data,
@@ -122,8 +134,8 @@ export class FeeProvider {
         if (errLivenet) {
           return reject(this.translate.instant('Could not get dynamic fee'));
         }
-        if (chain === 'eth' && network === 'livenet') {
-          feeLevels = this.processFeeLevels(feeLevels);
+        if (chain === 'eth') {
+          feeLevels = this.removeLowFeeLevels(feeLevels);
         }
         if (indexFound >= 0) {
           this.cache[indexFound] = {
@@ -145,29 +157,15 @@ export class FeeProvider {
     });
   }
 
-  processFeeLevels(feelevels) {
-    const normalFee = feelevels.find(f => f.level === 'normal').feePerKb;
-    const economyFee = feelevels.find(f => f.level === 'economy').feePerKb;
-    if (!normalFee || !economyFee) {
-      return feelevels;
-    }
-    if (normalFee > economyFee + Number.parseInt((normalFee / 2).toFixed(0))) {
-      const objIndex = feelevels.findIndex(f => f.level === 'economy');
-      feelevels[objIndex].feePerKb =
-        economyFee + Number.parseInt(((normalFee - economyFee) / 2).toFixed(0));
-    }
-    const superEconomyFee = feelevels.find(f => f.level === 'superEconomy')
-      .feePerKb;
-    if (
-      normalFee >
-      superEconomyFee + Number.parseInt((normalFee / 2).toFixed(0))
-    ) {
-      const objIndex = feelevels.findIndex(f => f.level === 'superEconomy');
-      feelevels[objIndex].feePerKb =
-        superEconomyFee +
-        Number.parseInt(((normalFee - superEconomyFee) / 2).toFixed(0));
-    }
-    return feelevels;
+  private removeLowFeeLevels(feelevels) {
+    // Difference between low and normal fee levels is often mistakenly very wide
+    const economyFeeIdx = feelevels.findIndex(f => f.level === 'economy');
+    const superEconomyFeeIdx = feelevels.findIndex(
+      f => f.level === 'superEconomy'
+    );
+    if (superEconomyFeeIdx >= 0) delete feelevels[superEconomyFeeIdx];
+    if (economyFeeIdx >= 0) delete feelevels[economyFeeIdx];
+    return _.compact(feelevels);
   }
 
   public getSpeedUpTxFee(network: string, txSize: number): Promise<number> {
@@ -181,5 +179,25 @@ export class FeeProvider {
       );
       return Number(fee.toFixed());
     });
+  }
+
+  public getCoinCurrentFeeLevel(coin): string {
+    let feeLevel;
+    switch (coin) {
+      case 'btc':
+        feeLevel = this.configProvider.get().feeLevels.btc || 'normal';
+        break;
+      case 'eth':
+        feeLevel = this.configProvider.get().feeLevels.eth || 'normal';
+        break;
+      default:
+        feeLevel = 'normal';
+        break;
+    }
+    return feeLevel;
+  }
+
+  public getCurrentFeeLevels(coin: string): string {
+    return this.configProvider.get().feeLevels[coin];
   }
 }

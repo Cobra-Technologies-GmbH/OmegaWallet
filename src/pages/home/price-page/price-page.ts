@@ -70,9 +70,14 @@ export class PricePage {
         this.card.historicalRates = response[this.card.unitCode];
         this.updateValues();
         this.setPrice();
-        this.redrawCanvas();
+        if (this.canvas.chart) {
+          this.redrawCanvas();
+        } else {
+          this.canvas.loading = false;
+        }
       },
       err => {
+        this.canvas.loading = false;
         this.logger.error('Error getting rates:', err);
       }
     );
@@ -128,15 +133,12 @@ export class PricePage {
   }
 
   private redrawCanvas() {
-    this.canvas.loading = false;
-    if (!this.canvas.chart) return;
-
     const data = this.card.historicalRates.map(rate => [rate.ts, rate.rate]);
     this.canvas.chart.updateOptions(
       {
         chart: {
           animations: {
-            enabled: true
+            enabled: false
           }
         },
         series: [
@@ -151,9 +153,10 @@ export class PricePage {
         }
       },
       false,
-      true,
-      true
+      false,
+      false
     );
+    this.canvas.loading = false;
   }
 
   private drawCanvas() {

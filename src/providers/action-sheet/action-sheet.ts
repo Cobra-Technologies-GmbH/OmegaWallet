@@ -29,6 +29,7 @@ export type InfoSheetType =
   | 'copied-gift-card-claim-code'
   | 'copied-invoice-url'
   | 'default-error'
+  | 'erc20-eth-fee-info'
   | 'gift-card-archived'
   | 'gift-cards-unavailable'
   | 'hide-gift-card-discount-item'
@@ -101,6 +102,11 @@ export interface WalletReceiveParams {
 export interface WalletTabOptionsParams {
   walletsGroups: any;
 }
+
+export interface FooterMenuParams {
+  clipboardData: string;
+}
+
 @Injectable()
 export class ActionSheetProvider {
   constructor(private domProvider: DomProvider) {}
@@ -187,9 +193,12 @@ export class ActionSheetProvider {
       .instance;
   }
 
-  public createFooterMenu(): FooterMenuComponent {
-    return this.setupSheet<FooterMenuComponent>(FooterMenuComponent, null)
-      .instance;
+  public createFooterMenu(params?: FooterMenuParams): FooterMenuComponent {
+    return this.setupSheet<FooterMenuComponent>(
+      FooterMenuComponent,
+      null,
+      params
+    ).instance;
   }
 
   private setupSheet<T extends ActionSheetParent>(

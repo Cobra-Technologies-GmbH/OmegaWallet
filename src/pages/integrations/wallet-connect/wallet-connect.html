@@ -1,29 +1,18 @@
 <ion-header>
   <ion-navbar>
-    <ion-title class="bp-title">Wallet Connect</ion-title>
-    <ion-buttons *ngIf="connected" right>
-      <button (click)="killSession()" ion-button>
-        {{'Disconnect' | translate }}
-      </button>
-    </ion-buttons>
+    <ion-title class="bp-title">
+      <img src="assets/img/wallet-connect.svg" width="20">
+      WalletConnect
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content no-bounce>
   <div *ngIf="!connected">
-    <label-tip type="info" header="no-header" class="no-arrowhead">
-      <div label-tip-body>
-        <span translate>WalletConnect is an open source protocol for connecting decentralized applications to mobile wallets with QR code scanning or deep linking.</span>
-        <br>
-        <br>
-        <a class="pointer" (click)="openExternalLink('https://walletconnect.org/')" translate>Read more</a>
-      </div>
-    </label-tip>
-
-    <div class="uri-header-wrapper">
+    <div *ngIf="wallet" class="uri-header-wrapper">
       <ion-item class="search-wrapper">
-        <ion-input placeholder="{{'Enter the wallet connect uri' | translate}}" [(ngModel)]="uri"></ion-input>
+        <ion-input placeholder="{{'Enter WalletConnect URI' | translate}}" [(ngModel)]="uri"></ion-input>
         <ion-icon *ngIf="isCordova" item-end class="scan-icon" (click)="openScanner()">
           <img src="assets/img/scan-ico.svg">
         </ion-icon>
@@ -37,33 +26,42 @@
         </ion-label>
       </ion-item>
       <wallet-item-content [wallet]="wallet" (click)="showWallets()"></wallet-item-content>
+
+      <button margin-top ion-button class="button-standard" [disabled]="!uri" (click)="initWalletConnect()">
+        {{'Connect' | translate}}
+      </button>
     </ion-list>
 
-    <button ion-button class="button-standard" [disabled]="!uri" (click)="initWalletConnect()">
-      {{'Connect' | translate}}
-    </button>
+    <label-tip *ngIf="!wallet" type="warn" class="no-arrowhead" margin-top>
+      <div label-tip-title>
+        <span translate>ETH wallet is required</span>
+      </div>
+      <div label-tip-body>
+        <span translate>WalletConnect requires at least one ETH wallet with backup to work properly. Please, create a new ETH wallet and try again.</span>
+      </div>
+    </label-tip>
   </div>
 
-  <div *ngIf="connected && wallet">
+  <div *ngIf="connected">
     <ion-list class="bp-list">
-      <ion-item *ngIf="peerMeta && peerMeta.name">
-        <ion-label>
-          <div class="main-label">
-            <div class="main-label">
-              {{ 'Connected with' | translate}}
-              <span class="peer-meta-name">{{ peerMeta.name | uppercase }}</span>
-            </div>
-            <div class="secondary-label">{{ peerMeta.url }}</div>
-          </div>
-        </ion-label>
-      </ion-item>
 
-      <div class="description" *ngIf="peerMeta && peerMeta.description">
-        {{ peerMeta.description }}
+      <div *ngIf="peerMeta">
+        <div class="item-label" translate>Connected to</div>
+        <ion-item *ngIf="peerMeta && peerMeta.name">
+          <ion-label>
+            <div class="main-label">
+              <div class="peer-meta-name">{{ peerMeta.name | uppercase }}</div>
+              <div class="secondary-label">{{ peerMeta.url }}</div>
+            </div>
+          </ion-label>
+        </ion-item>
+        <div class="description" *ngIf="peerMeta && peerMeta.description">
+          {{ peerMeta.description }}
+        </div>
       </div>
       
-      <div class="item-label" translate>{{ 'Linked wallet' | translate }}</div>
-      <ion-item *ngIf="peerMeta && peerMeta.name">
+      <div class="item-label" translate>Linked wallet</div>
+      <ion-item *ngIf="wallet">
         <coin-icon item-start [coin]="wallet.coin" [network]="wallet.network"></coin-icon>
         <ion-label>
           <div class="main-label">
@@ -73,12 +71,12 @@
         </ion-label>
       </ion-item>
       
-      <div class="item-label" translate>{{ 'Pending Call Requests' | translate }}</div>
-      <action-card *ngIf="requests.length === 0" class='zero-state'>
-        <div action-card-title class="main-label">
+      <div class="item-label" translate>Pending Call Requests</div>
+      <ion-item *ngIf="requests?.length === 0">
+        <ion-label>
           {{'No pending call requests' | translate}}
-        </div>
-      </action-card>
+        </ion-label>
+      </ion-item>
 
       <div *ngFor="let request of requests">
         <action-card>
@@ -88,9 +86,6 @@
               <ion-note item-end>
                 {{ request.id }}
               </ion-note>
-            </div>
-            <div (click)="rejectRequest(request)">
-              <ion-icon ios="md-close" md="md-close"></ion-icon>
             </div>
           </div>
           <div action-card-body>
@@ -167,16 +162,25 @@
               </div>
             </div>
           </div>
-          <div action-card-button (click)="approveRequest(request)">
-            <span *ngIf="request.method === 'eth_sendTransaction'">
-              {{'Continue' | translate }}
-            </span>
-            <span *ngIf="request.method === 'eth_signTypedData' || request.method === 'personal_sign'">
-              {{'Approve' | translate }}
-            </span>
+          <div action-card-button>
+            <ion-row>
+              <ion-col>
+                <button (click)="rejectRequest(request)" ion-button class="button-standard" color="primary" outline>
+                  {{ 'Reject' | translate }}
+                </button>
+              </ion-col>
+              <ion-col>
+                <button (click)="approveRequest(request)" ion-button class="button-standard" color="primary">
+                  {{ buttonAction[request.method] || 'Confirm' | translate }}
+                </button>
+              </ion-col>
+            </ion-row>
           </div>
         </action-card>
       </div>
     </ion-list>
   </div>
+  <button *ngIf="connected" (click)="killSession()" ion-button class="button-standard" color="danger" margin-top>
+    {{'Disconnect' | translate }}
+  </button>
 </ion-content>

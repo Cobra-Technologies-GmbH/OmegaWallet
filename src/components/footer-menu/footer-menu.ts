@@ -12,7 +12,8 @@ import { ActionSheetParent } from '../action-sheet/action-sheet-parent';
 })
 export class FooterMenuComponent extends ActionSheetParent {
   public optionsMenu: object;
-  private isCordova: boolean;
+  public isCordova: boolean;
+  public clipboardData: string;
   private appName: string;
 
   constructor(
@@ -40,7 +41,7 @@ export class FooterMenuComponent extends ActionSheetParent {
               .alternativeIsoCode
           }
         },
-        logEvent: 'menu_buy_crytpo_clicked'
+        logEvent: 'menu_buy_crypto_button_clicked'
       },
       exchange: {
         imgSrc: `assets/img/footer-menu/exchange.svg`,
@@ -54,7 +55,7 @@ export class FooterMenuComponent extends ActionSheetParent {
               .alternativeIsoCode
           }
         },
-        logEvent: 'menu_exchange_crypto_clicked'
+        logEvent: 'menu_exchange_crypto_button_clicked'
       },
       receive: {
         imgSrc: `assets/img/footer-menu/receive.svg`,
@@ -98,19 +99,12 @@ export class FooterMenuComponent extends ActionSheetParent {
           params: {}
         },
         logEvent: 'menu_buy_giftcards_clicked'
-      },
-      scan: {
-        imgSrc: `assets/img/footer-menu/scan.svg`,
-        mainLabel: this.translate.instant('Scan'),
-        secondaryLabel: this.translate.instant('Scan QR code'),
-        showOption: this.isCordova,
-        nextView: {
-          name: 'ScanPage',
-          params: {}
-        },
-        logEvent: 'menu_scan_button_clicked'
       }
     };
+  }
+
+  ngOnInit() {
+    this.clipboardData = this.params.clipboardData;
   }
 
   public optionClicked(opt) {
@@ -120,5 +114,30 @@ export class FooterMenuComponent extends ActionSheetParent {
       });
     }
     this.dismiss(opt.nextView);
+  }
+
+  public openScanPage() {
+    this.analyticsProvider.logEvent('scan_button_clicked', {
+      from: 'footerMenu'
+    });
+    const nextView = {
+      name: 'ScanPage',
+      params: {
+        fromFooterMenu: true
+      }
+    };
+    this.dismiss(nextView);
+  }
+
+  public processClipboardData() {
+    this.analyticsProvider.logEvent('clipboard_clicked', {
+      from: 'footerMenu'
+    });
+    const nextView = {
+      params: {
+        fromFooterMenu: true
+      }
+    };
+    this.dismiss(nextView);
   }
 }

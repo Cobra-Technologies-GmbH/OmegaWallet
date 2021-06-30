@@ -14,6 +14,7 @@ import { AddressProvider } from '../../../../providers/address/address';
 import { AppProvider } from '../../../../providers/app/app';
 import { CurrencyProvider } from '../../../../providers/currency/currency';
 import { Logger } from '../../../../providers/logger/logger';
+import { PlatformProvider } from '../../../../providers/platform/platform';
 import { PopupProvider } from '../../../../providers/popup/popup';
 
 // validators
@@ -31,6 +32,8 @@ export class AddressbookAddPage {
   public isXRP: boolean;
   public addressInfo;
   public networks;
+  public coins: string[];
+  public allowNetworkSelection: boolean;
 
   private destinationTagregex: RegExp;
 
@@ -44,9 +47,11 @@ export class AddressbookAddPage {
     private appProvider: AppProvider,
     private formBuilder: FormBuilder,
     private logger: Logger,
+    private platformProvider: PlatformProvider,
     private popupProvider: PopupProvider
   ) {
     this.networks = ['livenet', 'testnet'];
+    this.isCordova = this.platformProvider.isCordova;
     this.destinationTagregex = /^[0-9]{1,}$/;
     this.addressBookAdd = this.formBuilder.group({
       name: [
@@ -83,7 +88,8 @@ export class AddressbookAddPage {
       .valueChanges.subscribe(val => this.analizeAddress(val));
   }
 
-  analizeAddress(address: string, network?: string) {
+  analizeAddress(address: string, network?: string, coin?: string) {
+    this.coins = [];
     this.addressInfo = undefined;
     this.isXRP = false;
     if (address && this.addressBookAdd.get('address').valid) {
@@ -96,12 +102,29 @@ export class AddressbookAddPage {
         this.addressBookAdd.controls['network'].setValue(
           this.addressInfo.network
         );
-        this.addressBookAdd.controls['coin'].setValue(this.addressInfo.coin);
         const chain = this.currencyProvider.getChain(this.addressInfo.coin);
+        this.coins.push(chain);
         this.addressBookAdd.controls['network'].disable();
+        this.allowNetworkSelection = false;
         if (['XRP', 'ETH'].includes(chain.toUpperCase())) {
           this.addressBookAdd.controls['network'].enable();
+          this.allowNetworkSelection = true;
+          if (chain.toUpperCase() === 'ETH') {
+            this.coins.push(
+              ...this.currencyProvider.availableTokens.map(t => t.symbol)
+            );
+          }
         }
+      }
+
+      if (
+        this.coins &&
+        coin &&
+        this.coins.find(c => c.toUpperCase() === coin.toUpperCase())
+      ) {
+        this.addressBookAdd.controls['coin'].setValue(coin);
+      } else {
+        this.addressBookAdd.controls['coin'].setValue(this.addressInfo.coin);
       }
     }
   }
@@ -134,14 +157,11 @@ export class AddressbookAddPage {
   }
 
   public save(): void {
-    this.addressBookAdd.controls['address'].setValue(
-      this.parseAddress(this.addressBookAdd.value.address)
-    );
     this.ab
       .add({
         name: this.addressBookAdd.value.name,
         email: this.addressBookAdd.value.email,
-        address: this.addressBookAdd.value.address,
+        address: this.parseAddress(this.addressBookAdd.value.address),
         tag: this.addressBookAdd.value.tag,
         network: this.addressBookAdd.value.network,
         coin: this.addressBookAdd.value.coin

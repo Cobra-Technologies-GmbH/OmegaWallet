@@ -8,8 +8,6 @@
 1.6 - Toggles
 1.7 - Overriding Ionic Variables
 
-2 - Transition between themes
-
 3 - General
 3.1 - Lists
 3.2 - Label tip
@@ -71,12 +69,6 @@
   // 1.7 - Overriding Ionic Variables
   $background-color: $bg-color-dark-theme;
 
-  // 2 - Transition between themes
-  // This is just to make a smooth transition between themes
-  @mixin transition {
-    transition: all, color, 150ms cubic-bezier(0, 0, 0.3, 0.3) !important;
-  }
-
   @include toolbar-button-color($text-color-dark-theme);
 
   // TODO: Remove text opacity from default styles
@@ -103,42 +95,6 @@
 
         img {
           filter: invert(1);
-        }
-      }
-    }
-  }
-
-  page-local-theme,
-  page-navigation {
-    ion-content.add-bottom-safe-area {
-      .fixed-content,
-      .scroll-content {
-        @include transition();
-      }
-    }
-
-    ion-content.add-padding-bottom,
-    .add-padding-bottom ion-content {
-      .fixed-content,
-      .scroll-content {
-        @include transition();
-      }
-    }
-
-    ion-content,
-    .content-ios .toolbar-background-ios,
-    .toolbar-background-md,
-    .toolbar-title,
-    .header .toolbar-background {
-      @include transition();
-    }
-
-    // Lists
-    .bp-list.settings-list {
-      .item {
-        &.item-ios,
-        &.item-md {
-          @include transition();
         }
       }
     }
@@ -289,6 +245,7 @@
     .alert-input {
       color: $text-color-dark-theme;
       background: $bg-color-dark-theme;
+      color: $text-color-dark-theme;
     }
     .alert-message {
       color: $text-color-dark-theme;
@@ -1806,6 +1763,34 @@
     .filter-container {
       .labels {
         color: $text-color-dark-theme;
+      }
+    }
+  }
+
+  page-fee-policy {
+    .description {
+      color: $text-color-dark-theme-2;
+    }
+
+    ion-list {
+      .item-divider-ios {
+        background-color: $bg-color-dark-theme;
+      }
+      .item {
+        &.item-ios,
+        &.item-md {
+          .item-inner {
+            background-color: $bg-color-dark-theme;
+          }
+        }
+      }
+      .network-fee-policy {
+        &-title {
+          color: $text-color-dark-theme;
+        }
+        &-rate {
+          color: $text-color-dark-theme;
+        }
       }
     }
   }

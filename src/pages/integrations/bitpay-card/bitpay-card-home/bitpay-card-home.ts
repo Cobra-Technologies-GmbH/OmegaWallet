@@ -1,7 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Events, NavController } from 'ionic-angular';
 // Providers
-import { AppProvider, IABCardProvider } from '../../../../providers';
+import {
+  AnalyticsProvider,
+  AppProvider,
+  IABCardProvider,
+  Logger,
+  PlatformProvider
+} from '../../../../providers';
 
 // Pages
 import { animate, style, transition, trigger } from '@angular/animations';
@@ -63,6 +69,9 @@ export class BitPayCardHome implements OnInit {
     private navCtrl: NavController,
     private iabCardProvider: IABCardProvider,
     private persistenceProvider: PersistenceProvider,
+    private analyticsProvider: AnalyticsProvider,
+    private logger: Logger,
+    private platformProvider: PlatformProvider,
     private events: Events
   ) {
     this.persistenceProvider.getWaitingListStatus().then(status => {
@@ -79,6 +88,7 @@ export class BitPayCardHome implements OnInit {
     this.disableAddCard =
       this.bitpayCardItems &&
       this.bitpayCardItems.find(c => c.provider === 'galileo');
+    this.runCardAudienceEvents();
   }
 
   public goToBitPayCardIntroPage() {
@@ -87,6 +97,57 @@ export class BitPayCardHome implements OnInit {
 
   public trackBy(index) {
     return index;
+  }
+
+  public async runCardAudienceEvents() {
+    try {
+      const allCards = await this.persistenceProvider.getBitpayDebitCards(
+        'livenet'
+      );
+      const galileoCards = allCards.filter(c => c.provider === 'galileo');
+      const hasPhysicalCard = galileoCards.some(c => c.cardType === 'physical');
+      const hasVirtualCard = galileoCards.some(c => c.cardType === 'virtual');
+      const deviceUUID = await this.platformProvider.getDeviceUUID();
+      const hasReportedFirebaseHasFundedCard = await this.persistenceProvider.getHasReportedFirebaseHasFundedCard();
+
+      if (!!galileoCards.length) {
+        if (!hasReportedFirebaseHasFundedCard) {
+          const cardHasBalance = galileoCards.some(c => c.cardBalance > 0);
+          const event = cardHasBalance
+            ? 'has_funded_card_2'
+            : 'has_not_funded_card_2';
+          this.analyticsProvider.logEvent(event, {
+            uuid: deviceUUID
+          });
+          await this.persistenceProvider.setHasReportedFirebaseHasFundedCard();
+        }
+
+        const hasReportedFirebaseHasPhysicalCard = await this.persistenceProvider.getHasReportedFirebaseHasPhysicalCardFlag();
+        const hasReportedFirebaseHasVirtualCard = await this.persistenceProvider.getHasReportedFirebaseHasVirtualCardFlag();
+
+        if (!hasReportedFirebaseHasPhysicalCard) {
+          if (hasPhysicalCard) {
+            this.analyticsProvider.logEvent('has_physical_card', {
+              uuid: deviceUUID
+            });
+          }
+          await this.persistenceProvider.setHasReportedFirebaseHasPhysicalCardFlag();
+        }
+
+        if (!hasReportedFirebaseHasVirtualCard) {
+          if (hasVirtualCard) {
+            this.analyticsProvider.logEvent('has_virtual_card', {
+              uuid: deviceUUID
+            });
+          }
+          await this.persistenceProvider.setHasReportedFirebaseHasVirtualCardFlag();
+        }
+      }
+    } catch (e) {
+      this.logger.debug(
+        'Error occurred during card audience events: ' + e.message
+      );
+    }
   }
 
   public async goToCard(cardId) {

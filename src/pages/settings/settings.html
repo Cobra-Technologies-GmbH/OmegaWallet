@@ -45,29 +45,38 @@
       </ion-slide>
     </ion-slides>
 
-    <ion-list class="bp-list">
-      <!--Show this in browser too-->
-      <ng-container>
-      <!-- <ng-container *ngIf="isCordova && !isCopay"> -->
-        <ion-item-divider tappable (click)="mdesFlag()">
-          {{'Account' | translate}}
-        </ion-item-divider>
-
+      <ng-container *ngIf="isCordova && !isCopay">
         <button ion-item (click)="openOmegaIdPage()">
-          <ion-icon *ngIf="!omegaIdUserInfo" class="item-img icon-settings" item-start name="contact"></ion-icon>
-          <ion-icon *ngIf="omegaIdUserInfo" class="item-img icon-settings" item-start>
-            <img src="assets/img/omega-card/icon-omega.svg">
+
+          <ion-icon *ngIf="!omegaIdUserInfo" class="item-img icon-login" item-start>
+            <img src="assets/img/omega-card/icon-omega.svg" width="60">
           </ion-icon>
+          <ion-icon *ngIf="omegaIdUserInfo && !omegaIdUserInfo?.givenName" class="item-img icon-login" item-start>
+            <img src="assets/img/omega-card/icon-omega.svg" width="60">
+          </ion-icon>
+          <ion-icon *ngIf="omegaIdUserInfo && omegaIdUserInfo?.givenName" class="item-img icon-login" item-start>
+            <span class="icon-bitpay-id">
+              {{accountInitials}}
+            </span>
+          </ion-icon>
+
           <ion-label>
-            <span class="main-label">{{ omegaIdUserInfo ? omegaIdUserInfo.username : 'Log in or Sign Up' | translate}}</span>
+            <span class="main-label">
+              <span *ngIf="!omegaIdUserInfo" translate>Log in or Sign Up</span>
+              <span class="bitpay-name" *ngIf="omegaIdUserInfo && !omegaIdUserInfo?.givenName">
+                <span translate>Omega Account</span>
+                <div class="bitpay-email">{{ omegaIdUserInfo?.email }}</div>
+              </span>
+              <span class="bitpay-name" *ngIf="omegaIdUserInfo && omegaIdUserInfo?.givenName">
+                {{ omegaIdUserInfo?.givenName }} {{ omegaIdUserInfo?.familyName }}
+                <div class="bitpay-email">{{ omegaIdUserInfo?.email }}</div>
+              </span>
+            </span>
           </ion-label>
-          <ion-note item-end *ngIf="omegaIdUserInfo">
-            <span translate>Linked</span>
-          </ion-note>
         </button>
       </ng-container>
 
-      <ion-item-divider> {{ 'General' | translate }} </ion-item-divider>
+      <ion-item-divider tappable (click)="mdesFlag()"> {{ 'General' | translate }} </ion-item-divider>
 
       <button ion-item (click)="openWhatsNew()" *ngIf="featureList && featureList.features.length > 0">
         <ion-icon class="item-img icon-settings" item-start>
@@ -176,6 +185,13 @@
           <img src="assets/img/settings-icons/icon-address-book.svg" />
         </ion-icon>
         <span class="main-label" translate>Address Book</span>
+      </button>
+
+      <button ion-item (click)="openFeePolicyPage()">
+        <ion-icon class="item-img icon-settings" item-start>
+          <img src="assets/img/settings-icons/icon-fee-policy.svg" />
+        </ion-icon>
+        <span class="main-label" translate>Network Fee Policies</span>
       </button>
       
       <ion-item class="align-with-button">

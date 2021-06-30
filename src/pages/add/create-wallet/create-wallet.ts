@@ -110,13 +110,7 @@ export class CreateWalletPage implements OnInit {
     this.multisigAddresses = [];
     this.tc = this.isShared ? this.defaults.wallet.totalCopayers : 1;
     this.copayers = _.range(2, this.defaults.limits.totalCopayers + 1);
-    this.derivationPathByDefault = this.isShared
-      ? this.coin === 'bch'
-        ? this.derivationPathHelperProvider.defaultMultisigBCH
-        : this.derivationPathHelperProvider.defaultMultisigBTC
-      : false  // this.coin === 'eur'
-        ? this.derivationPathHelperProvider.defaultFIAT
-        : this.bwcProvider.getCore().Deriver.pathFor(this.coin, 'livenet');
+    this.derivationPathByDefault = this.getDerivationPathByDefault();
     this.derivationPathForTestnet = this.bwcProvider
       .getCore()
       .Deriver.pathFor(this.coin, 'testnet');
@@ -482,23 +476,29 @@ export class CreateWalletPage implements OnInit {
     });
   }
 
-  public onFocusDate(e: TextInput)
-  {
-    if (e.readonly)
-    {
-      e.readonly = false;
-      e.type = 'date';
-      e.blur;
-      e.focus;
-    }
-  }
+  private getDerivationPathByDefault(): string {
+    let derivationPathByDefault: string;
 
-  public onBlurDate(e: TextInput)
-  {
-    if(e != null)
-    {
-      e.type='text';
-      e.readonly = true;
+    if (!this.isShared) {
+      derivationPathByDefault = this.bwcProvider
+        .getCore()
+        .Deriver.pathFor(this.coin, 'livenet');
+    } else {
+      switch (this.coin) {
+        case 'bch':
+          derivationPathByDefault = this.derivationPathHelperProvider
+            .defaultMultisigBCH;
+          break;
+        case 'doge':
+          derivationPathByDefault = this.derivationPathHelperProvider
+            .defaultMultisigDOGE;
+          break;
+        default:
+          derivationPathByDefault = this.derivationPathHelperProvider
+            .defaultMultisigBTC;
+      }
     }
+
+    return derivationPathByDefault;
   }
 }

@@ -11,7 +11,6 @@ import {
   ActionSheetProvider,
   AnalyticsProvider,
   ErrorsProvider,
-  ExternalLinkProvider,
   Logger,
   PersistenceProvider,
   PlatformProvider,
@@ -42,6 +41,13 @@ export class WalletConnectPage {
   public wallet;
   public address: string;
   public activeChainId: number = 1;
+  public buttonAction = {
+    eth_sendTransaction: 'Confirm',
+    eth_signTransaction: 'Approve',
+    eth_sign: 'Approve',
+    personal_sign: 'Approve',
+    eth_signTypedData: 'Approve'
+  };
 
   constructor(
     private actionSheetProvider: ActionSheetProvider,
@@ -57,7 +63,6 @@ export class WalletConnectPage {
     private navCtrl: NavController,
     private events: Events,
     private platformProvider: PlatformProvider,
-    private externalLinkProvider: ExternalLinkProvider,
     private replaceParametersProvider: ReplaceParametersProvider
   ) {
     this.isCordova = this.platformProvider.isCordova;
@@ -65,9 +70,6 @@ export class WalletConnectPage {
     this.events.subscribe('Local/UriScan', this.updateAddressHandler);
     this.events.subscribe('Update/ConnectionData', this.setConnectionData);
     this.events.subscribe('Update/Requests', this.setRequests);
-  }
-
-  ngOnInit(): void {
     this.initWallet();
   }
 
@@ -82,7 +84,7 @@ export class WalletConnectPage {
     this.uri = data.value;
   };
 
-  private setConnectionData: any = _ => {
+  private setConnectionData: any = async _ => {
     const {
       connected,
       activeChainId,
@@ -90,7 +92,7 @@ export class WalletConnectPage {
       address,
       peerMeta,
       requests
-    } = this.walletConnectProvider.getConnectionData();
+    } = await this.walletConnectProvider.getConnectionData();
     this.connected = connected;
     this.activeChainId = activeChainId;
     this.wallet = this.profileProvider.getWallet(walletId);
@@ -118,11 +120,7 @@ export class WalletConnectPage {
         onlyComplete: true,
         backedUp: true
       });
-      if (_.isEmpty(this.wallets)) {
-        return;
-      } else {
-        this.onWalletSelect(this.wallets[0]);
-      }
+      if (!_.isEmpty(this.wallets)) this.onWalletSelect(this.wallets[0]);
     }
   }
 
@@ -305,9 +303,5 @@ export class WalletConnectPage {
       { fromWalletConnect: true },
       { animate: false }
     );
-  }
-
-  public openExternalLink(url: string) {
-    this.externalLinkProvider.open(url);
   }
 }
