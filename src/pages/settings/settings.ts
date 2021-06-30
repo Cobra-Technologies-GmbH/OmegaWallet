@@ -46,7 +46,6 @@ import { AddressbookPage } from './addressbook/addressbook';
 import { AdvancedPage } from './advanced/advanced';
 import { AltCurrencyPage } from './alt-currency/alt-currency';
 import { BitPayIdPage } from './bitpay-id/bitpay-id';
-import { FeePolicyPage } from './fee-policy/fee-policy';
 import { KeySettingsPage } from './key-settings/key-settings';
 import { LanguagePage } from './language/language';
 import { LocalThemePage } from './local-theme/local-theme';
@@ -385,10 +384,6 @@ export class SettingsPage {
 
   public openNotificationsPage(): void {
     this.navCtrl.push(NotificationsPage);
-  }
-
-  public openFeePolicyPage(): void {
-    this.navCtrl.push(FeePolicyPage);
   }
 
   public openWalletSettingsPage(walletId: string): void {

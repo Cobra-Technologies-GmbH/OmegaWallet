@@ -25,7 +25,6 @@ export interface Config {
       alternativeName: string;
       alternativeIsoCode: string;
       defaultLanguage: string;
-      feeLevel: string;
     };
   };
 
@@ -173,8 +172,7 @@ export class ConfigProvider {
           unitCode: 'btc',
           alternativeName: 'Eurozone Euro',
           alternativeIsoCode: 'EUR',
-          defaultLanguage: '',
-          feeLevel: 'normal'
+          defaultLanguage: ''
         }
       },
 
