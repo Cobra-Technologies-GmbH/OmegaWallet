@@ -109,6 +109,7 @@ import { BitPayIdPage } from '../pages/settings/bitpay-id/bitpay-id';
 import { LanguagePage } from '../pages/settings/language/language';
 import { LocalThemePage } from '../pages/settings/local-theme/local-theme';
 import { LockPage } from '../pages/settings/lock/lock';
+import { NavigationPage } from '../pages/settings/navigation/navigation';
 import { NotificationsPage } from '../pages/settings/notifications/notifications';
 import { OmegaIdLinkPage } from '../pages/settings/omega-id-link/omega-id-link';
 import { OmegaIdPage } from '../pages/settings/omega-id/omega-id';
@@ -274,6 +275,7 @@ export const PAGES = [
   CoinSelectorPage,
   SlideToAcceptPage,
   LocalThemePage,
+  NavigationPage,
   NewFeaturePage,
   // Phases: card pages
   PhaseOneCardIntro

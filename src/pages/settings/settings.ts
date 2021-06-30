@@ -50,6 +50,7 @@ import { KeySettingsPage } from './key-settings/key-settings';
 import { LanguagePage } from './language/language';
 import { LocalThemePage } from './local-theme/local-theme';
 import { LockPage } from './lock/lock';
+import { NavigationPage } from './navigation/navigation';
 import { NotificationsPage } from './notifications/notifications';
 import { OmegaIdLinkPage } from './omega-id-link/omega-id-link';
 import { OmegaIdPage } from './omega-id/omega-id';
@@ -103,6 +104,7 @@ export class SettingsPage {
   public tapped = 0;
   public certOnlyTapped = 0;
   public appVersion: string;
+  public navigation: string;
   private featureList: any;
   constructor(
     private navCtrl: NavController,
@@ -217,6 +219,7 @@ export class SettingsPage {
 
     // Get Theme
     this.appTheme = this.themeProvider.getCurrentAppTheme();
+    this.navigation = this.themeProvider.getCurrentNavigationType();
 
     // Hide BitPay if linked
     setTimeout(() => {
@@ -365,6 +368,10 @@ export class SettingsPage {
 
   public openThemePage(): void {
     this.navCtrl.push(LocalThemePage);
+  }
+
+  public openNavigationPage(): void {
+    this.navCtrl.push(NavigationPage);
   }
 
   public openLockPage(): void {

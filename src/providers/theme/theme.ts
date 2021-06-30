@@ -12,8 +12,10 @@ declare var cordova: any;
 @Injectable()
 export class ThemeProvider {
   public currentAppTheme: string;
+  public currentNavigationType: string;
 
   public availableThemes;
+  public availableNavigationTypes;
 
   public useSystemTheme: boolean = false;
 
@@ -43,6 +45,15 @@ export class ThemeProvider {
         walletDetailsBackgroundEnd: '#101010'
       }
     };
+
+    this.availableNavigationTypes = {
+      transact: {
+        name: this.translate.instant('Transact')
+      },
+      scan: {
+        name: this.translate.instant('Scan')
+      }
+    };
   }
 
   private isEnabled(): boolean {
@@ -51,9 +62,10 @@ export class ThemeProvider {
   }
 
   public load() {
-    return new Promise<void>(resolve => {
-      if (!this.isEnabled()) return resolve();
+    return new Promise(resolve => {
       const config = this.configProvider.get();
+      this.currentNavigationType = config.navigation.type;
+      if (!this.isEnabled()) return resolve();
       if (!config.theme.system) {
         this.useSystemTheme = false;
         this.currentAppTheme = config.theme.name;
@@ -139,6 +151,16 @@ export class ThemeProvider {
     this.apply();
   }
 
+  public setActiveNavigationType(navigationType: string) {
+    this.currentNavigationType = navigationType;
+    let opts = {
+      navigation: {
+        type: navigationType
+      }
+    };
+    this.configProvider.set(opts);
+  }
+
   private setConfigTheme(): void {
     let opts = {
       theme: {
@@ -172,6 +194,14 @@ export class ThemeProvider {
 
   public getSelectedTheme() {
     return this.useSystemTheme ? 'system' : this.currentAppTheme;
+  }
+
+  public getCurrentNavigationType() {
+    return this.availableNavigationTypes[this.currentNavigationType].name;
+  }
+
+  public getSelectedNavigationType() {
+    return this.configProvider.get().navigation.type;
   }
 
   private useDarkStatusBar() {

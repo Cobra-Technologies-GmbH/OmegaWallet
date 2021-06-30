@@ -956,14 +956,6 @@ export class PersistenceProvider {
     return this.storage.get('reachedCardLimit');
   }
 
-  setAppTheme(value: string) {
-    return this.storage.set(Keys.APP_THEME, value);
-  }
-
-  getAppTheme() {
-    return this.storage.get(Keys.APP_THEME);
-  }
-
   setUserLocation(location: string) {
     return this.storage.set(Keys.USER_LOCATION, location);
   }
