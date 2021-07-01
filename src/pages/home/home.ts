@@ -567,6 +567,10 @@ export class HomePage {
     this.showAdvertisements = true;
   }
 
+  private addCardReferralAdvertisement() {
+    return;
+  }
+
   private addOmegaCard() {
     return;
   }

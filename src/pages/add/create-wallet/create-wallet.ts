@@ -5,8 +5,7 @@ import {
   Events,
   ModalController,
   NavController,
-  NavParams,
-  TextInput
+  NavParams
 } from 'ionic-angular';
 import * as _ from 'lodash';
 
