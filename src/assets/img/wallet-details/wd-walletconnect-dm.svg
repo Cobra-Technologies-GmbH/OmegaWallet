@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="50px"
+   height="50px"
+   viewBox="0 0 50 50"
+   version="1.1"
+   id="svg9"
+   sodipodi:docname="wd-walletconnect-dm.svg"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs13" />
+  <sodipodi:namedview
+     id="namedview11"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="16.64"
+     inkscape:cx="14.873798"
+     inkscape:cy="24.969952"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Group-6" />
+  <title
+     id="title2">Wallet Connect</title>
+  <g
+     id="V2"
+     stroke="none"
+     stroke-width="1"
+     fill="none"
+     fill-rule="evenodd">
+    <g
+       id="Wallet---Activity-(Bitcoin)-"
+       transform="translate(-301.000000, -277.000000)"
+       fill="#02FE45">
+      <g
+         id="Group-6"
+         transform="translate(301.000000, 277.000000)">
+        <rect
+           id="Rectangle"
+           opacity="0.2"
+           x="0"
+           y="0"
+           width="50"
+           height="50"
+           rx="12" />
+      </g>
+    </g>
+    <path
+       style="fill:#02fe45;fill-opacity:1;stroke:#02fe45;stroke-width:0.153305;stroke-opacity:0.3"
+       d="m 16.651363,35.15004 c -0.867619,-0.298373 -1.48457,-1.021097 -1.815881,-2.127203 -0.101471,-0.338771 -0.109122,-0.903005 -0.1265,-9.329928 l -0.0185,-8.969351 h 7.814012 7.814013 v 1.5625 1.5625 h 2.495798 2.495798 l -0.01795,7.406851 c -0.01655,6.830333 -0.02609,7.434112 -0.122457,7.757092 -0.333277,1.116935 -0.981962,1.873559 -1.837687,2.143473 -0.374358,0.118079 -0.539988,0.120429 -8.353366,0.118456 -7.859593,-0.002 -7.976426,-0.0037 -8.327282,-0.12439 z m 16.58181,-0.856341 c 0.568527,-0.26531 1.042072,-0.987186 1.168771,-1.78168 0.04027,-0.252503 0.06245,-2.762045 0.06275,-7.097274 l 4.53e-4,-6.706649 -3.771033,-0.02557 c -4.156153,-0.02818 -7.919988,-0.03052 -12.289664,-0.0076 l -2.869591,0.01502 4.57e-4,6.715745 c 2.94e-4,4.341507 0.02248,6.853844 0.06275,7.10637 0.126698,0.794494 0.600244,1.51637 1.168771,1.78168 l 0.30048,0.140223 h 7.932693 7.932692 l 0.300481,-0.140223 z m -3.75601,-17.58105 v -1.135908 l -1.577524,-0.02094 c -0.867638,-0.01152 -4.004657,-0.01137 -6.971153,3.31e-4 l -5.39363,0.02127 v 1.095513 c 0,0.602532 0.01803,1.113541 0.04006,1.135577 0.02203,0.02203 3.159054,0.04006 6.971154,0.04006 h 6.931089 z"
+       id="path10259" />
+    <path
+       style="fill:#02fe45;fill-opacity:1;stroke:#02fe45;stroke-width:0.153305;stroke-opacity:0.3"
+       d="m 30.041626,27.923878 c -0.677809,-0.172883 -1.232425,-0.602906 -1.476881,-1.145103 -0.110603,-0.245315 -0.137567,-0.408779 -0.135216,-0.819723 0.0025,-0.443849 0.02775,-0.565822 0.186323,-0.901442 0.22588,-0.478079 0.544422,-0.810484 0.958226,-0.99993 1.162652,-0.53228 2.516648,-0.08647 3.017456,0.993524 0.130109,0.280578 0.157696,0.427977 0.159132,0.850238 0.0015,0.439094 -0.02173,0.558608 -0.165408,0.851182 -0.455547,0.927645 -1.540341,1.427154 -2.543632,1.171254 z m 0.920351,-0.971097 c 0.815145,-0.242072 1.094131,-1.216785 0.51425,-1.796667 -0.270772,-0.270772 -0.533517,-0.355711 -1.007061,-0.325558 -0.669222,0.04261 -1.107871,0.48924 -1.110782,1.130982 -0.0022,0.48136 0.249264,0.812518 0.753264,0.99206 0.307851,0.109667 0.478843,0.109503 0.850329,-8.17e-4 z"
+       id="path10298" />
+  </g>
+  <metadata
+     id="metadata10485">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:title>Wallet Connect</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+</svg>

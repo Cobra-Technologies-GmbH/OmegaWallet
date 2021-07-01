@@ -787,7 +787,7 @@ export class HomePage {
       );
       if (this.advertisements.length == 0) this.showAdvertisements = false;
     }
-    if (this.slides) this.slides.slideTo(0, 500);
+    if (this.slides && this.slides.length && this.slides.length > 0) this.slides.slideTo(0, 500);
   }
 
   public goTo(page, params: any = {}) {
