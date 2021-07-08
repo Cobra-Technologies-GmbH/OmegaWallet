@@ -8,7 +8,7 @@ import { OmegaUserInfoType } from '../../providers/omega-id/omega-id';
 // providers
 // pages
 import { User } from '../../models/user/user.model';
-import { BitPayIdProvider, IABCardProvider } from '../../providers';
+import { IABCardProvider, OmegaIdProvider } from '../../providers';
 import { AnalyticsProvider } from '../../providers/analytics/analytics';
 import { AppProvider } from '../../providers/app/app';
 import { BitPayCardProvider } from '../../providers/bitpay-card/bitpay-card';
@@ -78,7 +78,6 @@ export class SettingsPage {
   public config;
   public selectedAlternative;
   public isCordova: boolean;
-  public isCopay: boolean;
   public lockMethod: string;
   public integrationServices = [];
   public cardServices = [];
@@ -94,7 +93,7 @@ export class SettingsPage {
   public bitPayIdUserInfo: any;
   public omegaIdUserInfo: OmegaUserInfoType;
   public accountInitials: string;
-  private network = Network[this.bitPayIdProvider.getEnvironment().network];
+  private network = Network[this.omegaIdProvider.getEnvironment().network];
   public showReorder: boolean = false;
   public showTotalBalance: boolean;
   public appTheme: string;
@@ -120,8 +119,7 @@ export class SettingsPage {
     private touchid: TouchIdProvider,
     private analyticsProvider: AnalyticsProvider,
     private persistenceProvider: PersistenceProvider,
-    private bitPayIdProvider: BitPayIdProvider,
-    // private omegaIdProvider: OmegaIdProvider,
+    private omegaIdProvider: OmegaIdProvider,
     private changeRef: ChangeDetectorRef,
     private iabCardProvider: IABCardProvider,
     private themeProvider: ThemeProvider,
@@ -131,7 +129,6 @@ export class SettingsPage {
     this.appName = this.app.info.nameCase;
     this.appVersion = this.app.info.version;
     this.isCordova = this.platformProvider.isCordova;
-    this.isCopay = this.app.info.name === 'copay';
   }
 
   ngOnInit() {
@@ -270,14 +267,10 @@ export class SettingsPage {
     }
     else
     {
-      // Simulieren
       this.logger.log('settings - link Omega Account');
 
+
       this.navCtrl.push(OmegaIdLinkPage);
-      // Login irgentwie
-      // this.omegaIdUserInfo = this.omegaIdProvider.linkAccount('swtrse');
-      // this.persistenceProvider.setOmegaIdUserInfo(this.network, this.omegaIdUserInfo);
-      // this.persistenceProvider.setOmegaAccount(this.network, this.omegaIdUserInfo);
     }
   }
 

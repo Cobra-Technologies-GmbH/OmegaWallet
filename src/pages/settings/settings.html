@@ -46,7 +46,8 @@
     </ion-slides>
 
     <ion-list class="bp-list">
-      <ng-container *ngIf="isCordova && !isCopay">
+      <!--<ng-container *ngIf="isCordova"> For Testing-->
+      <ng-container>
         <button ion-item (click)="openOmegaIdPage()">
 
           <ion-icon *ngIf="!omegaIdUserInfo" class="item-img icon-login" item-start>
@@ -251,7 +252,7 @@
         {{ 'Cards' | translate }}
       </ion-item-divider>
 
-      <div *ngIf="isCordova && !isCopay && showBitPayCard && bitpayCardItems?.length">
+      <div *ngIf="isCordova && showBitPayCard && bitpayCardItems?.length">
         <ion-list>
           <ng-container *ngFor="let card of bitpayCardItems; let i = index; trackBy: trackBy">
             <button ion-item (click)="openCardSettings(card.id)" @fade *ngIf="!card.hide">

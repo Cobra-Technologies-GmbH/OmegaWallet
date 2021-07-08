@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AccountInfo, Configuration, LogLevel, PublicClientApplication } from '@azure/msal-browser';
 import { Logger } from '../../providers/logger/logger';
 
 // providers
@@ -22,6 +23,52 @@ export class OmegaIdProvider {
   private OMEGA_API_URL: string;
   private deviceName = 'unknown device';
 
+  private myMSALObj: PublicClientApplication;
+  private account: AccountInfo | null;
+
+  private MSAL_CONFIG: Configuration =
+  {
+    auth:
+    {
+      clientId: "84375cab-362c-4265-8b08-c3a824fbc280",
+      authority: "https://cobraidentity.b2clogin.com/cobraidentity.onmicrosoft.com/B2C_1_SuSi",
+      knownAuthorities: ["https://cobraidentity.b2clogin.com"]
+    },
+    cache:
+    {
+      cacheLocation: "sessionStorage",
+      storeAuthStateInCookie: false
+    },
+    system:
+    {
+      loggerOptions:
+      {
+        loggerCallback: (level, message, containsPii) =>
+        {
+          if(containsPii)
+          {
+            return;
+          }
+          switch (level)
+          {	
+            case LogLevel.Error:	
+                this.logger.error(message);	
+                return;	
+            case LogLevel.Info:	
+                this.logger.info(message);	
+                return;	
+            case LogLevel.Verbose:	
+                this.logger.debug(message);	
+                return;	
+            case LogLevel.Warning:	
+                this.logger.warn(message);	
+                return;	
+          }
+      }
+      }
+    }
+  };
+
   constructor(
     private http: HttpClient,
     private appIdentityProvider: AppIdentityProvider,
@@ -30,19 +77,50 @@ export class OmegaIdProvider {
     private platformProvider: PlatformProvider,
     private persistenceProvider: PersistenceProvider,
     private iab: InAppBrowserProvider,
-  ) {
+  )
+  {
     this.logger.debug('OmegaProvider initialized');
-    if (this.platformProvider.isElectron) {
+    if (this.platformProvider.isElectron)
+    {
       this.deviceName = this.platformProvider.getOS().OSName;
-    } else if (this.platformProvider.isCordova) {
+    }
+    else if (this.platformProvider.isCordova)
+    {
       this.deviceName = this.device.model;
     }
+    this.myMSALObj = new PublicClientApplication(this.MSAL_CONFIG);
+    this.account = null;
+    this.loginRequest = { scopes: [], redirectUri: "msal84375cab-362c-4265-8b08-c3a824fbc280://auth" };
   }
 
-  public linkAccount(user: string): OmegaUserInfoType
+  private getAccount(): AccountInfo | null
   {
+    // need to call getAccount here?
+    const currentAccounts = this.myMSALObj.getAllAccounts();
+    if (currentAccounts === null)
+    {
+        this.logger.info("OmegaProvider - No accounts detected");
+        return null;
+    }
+    if (currentAccounts.length > 1)
+    {
+        // Add choose account code here
+        this.logger.info("OmegaProvider - Multiple accounts detected, need to add choose account code.");
+        return currentAccounts[0];
+    }
+    else if (currentAccounts.length === 1)
+    {
+        return currentAccounts[0];
+    }
+    return null;
+  }
+
+  public async linkAccount(): Promise<OmegaUserInfoType>
+  {
+    this.myMSALObj
+        
     return {
-      username: user,
+      username: this.account?.username,
       // network: this.NETWORK
     };
   }
@@ -203,12 +281,13 @@ export class OmegaIdProvider {
   return (res && res.data) || res;
 }
 
-  public async refreshUserInfo() {
-  this.logger.debug('Refreshing user info');
-  const userInfo = await this.apiCall('getBasicInfo');
-  const network = Network[this.getEnvironment().network];
-  await this.persistenceProvider.setOmegaIdUserInfo(network, userInfo);
-}
+  public async refreshUserInfo()
+  {
+    this.logger.debug('Refreshing user info');
+    const userInfo = await this.apiCall('getBasicInfo');
+    const network = Network[this.getEnvironment().network];
+    await this.persistenceProvider.setOmegaIdUserInfo(network, userInfo);
+  }
 
   public async unlockInvoice(invoiceId: string): Promise < string > {
   const isPaired = !!(await this.persistenceProvider.getOmegaIdPairingToken(
