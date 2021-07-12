@@ -787,7 +787,15 @@ export class HomePage {
       );
       if (this.advertisements.length == 0) this.showAdvertisements = false;
     }
-    if (this.slides && this.slides.length && this.slides.length > 0) this.slides.slideTo(0, 500);
+    var length: any;
+    try 
+    {
+      length = this.slides.length;
+    } catch (error)
+    {
+      length = 0;
+    }
+    if (this.slides && this.slides.length && length > 0) this.slides.slideTo(0, 500);
   }
 
   public goTo(page, params: any = {}) {

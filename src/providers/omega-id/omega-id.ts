@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import jwt_decode, { JwtPayload } from 'jwt-decode';
 import { Logger } from '../../providers/logger/logger';
 
 // providers
@@ -12,15 +13,33 @@ import { Network, PersistenceProvider } from '../persistence/persistence';
 import { PlatformProvider } from '../platform/platform';
 
 export interface OmegaUserInfoType {
-  username: string;
-  // network: string;
-  };
+	username: string;
+	givenName: string;
+	familyName: string;
+	objectId: string;
+};
+
+type customJwtPayload = JwtPayload & { name: string, given_name: string, family_name: string, oid: string }
+
+interface CustomToken
+{
+	access_token: string,
+	token_type: string
+}
 
 @Injectable()
 export class OmegaIdProvider {
   private NETWORK: string;
   private OMEGA_API_URL: string;
   private deviceName = 'unknown device';
+
+  private config =
+  {
+    clientId: "84375cab-362c-4265-8b08-c3a824fbc280",
+	authEndpoint: "https://cobraidentity.b2clogin.com/cobraidentity.onmicrosoft.com/B2C_1_AppLink/oauth2/v2.0/token",
+    grantType: "password",
+	scope: "openid 84375cab-362c-4265-8b08-c3a824fbc280 offline_access"
+  };
 
   constructor(
     private http: HttpClient,
@@ -30,21 +49,83 @@ export class OmegaIdProvider {
     private platformProvider: PlatformProvider,
     private persistenceProvider: PersistenceProvider,
     private iab: InAppBrowserProvider,
-  ) {
+  )
+  {
     this.logger.debug('OmegaProvider initialized');
-    if (this.platformProvider.isElectron) {
+    if (this.platformProvider.isElectron)
+    {
       this.deviceName = this.platformProvider.getOS().OSName;
-    } else if (this.platformProvider.isCordova) {
+    }
+    else if (this.platformProvider.isCordova)
+    {
       this.deviceName = this.device.model;
     }
   }
 
-  public linkAccount(user: string): OmegaUserInfoType
+	private getPromise(username: string, password: string): Promise<CustomToken>
+	{
+		return new Promise((resolve, reject) =>
+		{
+			let body: string = `client_id=${encodeURI(this.config.clientId)}&scope=${encodeURI(this.config.scope)}&username=${encodeURI(username)}&password=${encodeURI(password)}&grant_type=${encodeURI(this.config.grantType)}`;
+			
+			let headers: HttpHeaders = new HttpHeaders()
+			.append("Content-Type", "application/x-www-form-urlencoded")
+			.append("Accept", "application/json; charset=utf-8");
+
+			this.http.post(this.config.authEndpoint, body, { headers, responseType: 'json' }).subscribe(
+				data => { resolve(data as CustomToken); },
+				data => { reject(data); }
+			);
+		});
+	}
+
+	
+
+	private getDecodedAccessToken(token: string): customJwtPayload | null
+	{
+		try
+		{
+			let result : customJwtPayload = jwt_decode<customJwtPayload>(token);
+			const now = Date.now().valueOf() / 1000
+			if(result.exp && now >= result.exp)
+			{
+				this.logger.warn("OmegaId - Token expired");
+				return null;
+			}
+			if(result.nbf && now < result.nbf)
+			{
+				this.logger.warn("OmegaId - Token not valid yet");
+				return null;
+			}
+			return result;
+		}
+		catch (error)
+		{
+			this.logger.error("OmegaId - Token decode error");
+			return null;
+		}
+	}
+
+  public async linkAccount(username: string, password:string): Promise<OmegaUserInfoType | null>
   {
-    return {
-      username: user,
-      // network: this.NETWORK
-    };
+	try {
+		let http_promise: Promise<CustomToken> = this.getPromise(username, password);
+		let response_body: CustomToken = await http_promise;
+		this.logger.info("OmegaId - Login Success");
+		this.logger.debug(response_body);
+		
+		let token : customJwtPayload | null = this.getDecodedAccessToken(response_body.access_token as string);
+		if (!token) return null;
+		return {
+			username: token.name,
+			givenName: token.given_name,
+			familyName: token.family_name,
+			objectId: token.oid
+		};
+	} catch (error) {
+		this.logger.error(error);
+	}
+    return null;
   }
   
   public setNetwork(network: string) {
@@ -203,12 +284,13 @@ export class OmegaIdProvider {
   return (res && res.data) || res;
 }
 
-  public async refreshUserInfo() {
-  this.logger.debug('Refreshing user info');
-  const userInfo = await this.apiCall('getBasicInfo');
-  const network = Network[this.getEnvironment().network];
-  await this.persistenceProvider.setOmegaIdUserInfo(network, userInfo);
-}
+  public async refreshUserInfo()
+  {
+    this.logger.debug('Refreshing user info');
+    const userInfo = await this.apiCall('getBasicInfo');
+    const network = Network[this.getEnvironment().network];
+    await this.persistenceProvider.setOmegaIdUserInfo(network, userInfo);
+  }
 
   public async unlockInvoice(invoiceId: string): Promise < string > {
   const isPaired = !!(await this.persistenceProvider.getOmegaIdPairingToken(
