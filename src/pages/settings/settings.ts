@@ -7,7 +7,6 @@ import { OmegaUserInfoType } from '../../providers/omega-id/omega-id';
 
 // providers
 // pages
-import { User } from '../../models/user/user.model';
 import { IABCardProvider, OmegaIdProvider } from '../../providers';
 import { AnalyticsProvider } from '../../providers/analytics/analytics';
 import { AppProvider } from '../../providers/app/app';
@@ -135,16 +134,15 @@ export class SettingsPage {
     if (this.isCordova) {
       // check for user info
       this.persistenceProvider
-        .getBitPayIdUserInfo(this.network)
-        .then((user: User) => {
+        .getOmegaIdUserInfo(this.network)
+        .then((user: OmegaUserInfoType) => {
           if (user) {
             this.updateUser(user);
           }
         });
 
-      this.events.subscribe('BitPayId/Disconnected', () => this.updateUser());
-      this.events.subscribe('BitPayId/Connected', user =>
-        this.updateUser(user)
+      this.events.subscribe('OmegaId/Disconnected', () => this.updateUser());
+      this.events.subscribe('OmegaId/Connected', user => this.updateUser(user)
       );
 
       this.events.subscribe('updateCards', cards => {
@@ -241,12 +239,12 @@ export class SettingsPage {
   }
 
   private updateUser(user?) {
-    this.bitPayIdUserInfo = user;
-    this.accountInitials = this.getBitPayIdInitials(user);
+    this.omegaIdUserInfo = user;
+    this.accountInitials = this.getOmegaIdInitials(user);
     this.changeRef.detectChanges();
   }
 
-  private getBitPayIdInitials(user): string {
+  private getOmegaIdInitials(user): string {
     if (!user) return '';
 
     const { givenName, familyName } = user;

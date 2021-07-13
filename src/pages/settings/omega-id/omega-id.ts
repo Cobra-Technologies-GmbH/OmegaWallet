@@ -4,7 +4,8 @@ import { Events, NavController, NavParams } from 'ionic-angular';
 import { ActionSheetProvider, Logger, OmegaIdProvider, PersistenceProvider, PopupProvider } from '../../../providers'
 import { InAppBrowserProvider } from '../../../providers/in-app-browser/in-app-browser';
 
-import { OmegaUserInfoType } from '../../..//providers/omega-id/omega-id';
+import { OmegaUserInfoType } from '../../../providers/omega-id/omega-id';
+import { SettingsPage } from '../settings';
 
 @Component({
     selector: 'omega-id',
@@ -124,6 +125,9 @@ export class OmegaIdPage
                     );
                 }
             }
-        );
+        )
+        .then( _ => {
+            this.navCtrl.push(SettingsPage);
+        });
     }
 }

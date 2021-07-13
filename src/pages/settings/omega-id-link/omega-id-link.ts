@@ -20,6 +20,7 @@ export class OmegaIdLinkPage
     private network = Network[this.omegaIdProvider.getEnvironment().network];
     public username: string;
 	public password: string;
+    public linkError: boolean;
 
     constructor
     (
@@ -51,9 +52,17 @@ export class OmegaIdLinkPage
         try
         {
             var result: OmegaUserInfoType = await this.omegaIdProvider.linkAccount(this.username, this.password);
-            this.persistenceProvider.setOmegaIdUserInfo(this.network, result);
-            this.persistenceProvider.setOmegaAccount(this.network, result);
-            this.navCtrl.push(SettingsPage);
+            if(result == null)
+            {
+                this.linkError = true;
+            }
+            else
+            {
+                this.linkError = false;
+                this.persistenceProvider.setOmegaIdUserInfo(this.network, result);
+                this.persistenceProvider.setOmegaAccount(this.network, result);
+                this.navCtrl.push(SettingsPage);
+            }
         }
         catch(err)
         {

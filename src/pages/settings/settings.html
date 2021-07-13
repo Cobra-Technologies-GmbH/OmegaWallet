@@ -53,10 +53,10 @@
           <ion-icon *ngIf="!omegaIdUserInfo" class="item-img icon-login" item-start>
             <img src="assets/img/omega-card/icon-omega.svg" width="60">
           </ion-icon>
-          <ion-icon *ngIf="omegaIdUserInfo && !omegaIdUserInfo?.givenName" class="item-img icon-login" item-start>
+          <ion-icon *ngIf="omegaIdUserInfo && !omegaIdUserInfo?.username" class="item-img icon-login" item-start>
             <img src="assets/img/omega-card/icon-omega.svg" width="60">
           </ion-icon>
-          <ion-icon *ngIf="omegaIdUserInfo && omegaIdUserInfo?.givenName" class="item-img icon-login" item-start>
+          <ion-icon *ngIf="omegaIdUserInfo && omegaIdUserInfo?.username" class="item-img icon-login" item-start>
             <span class="icon-bitpay-id">
               {{accountInitials}}
             </span>
@@ -65,13 +65,9 @@
           <ion-label>
             <span class="main-label">
               <span *ngIf="!omegaIdUserInfo" translate>Log in or Sign Up</span>
-              <span class="bitpay-name" *ngIf="omegaIdUserInfo && !omegaIdUserInfo?.givenName">
-                <span translate>Omega Account</span>
-                <div class="bitpay-email">{{ omegaIdUserInfo?.email }}</div>
-              </span>
-              <span class="bitpay-name" *ngIf="omegaIdUserInfo && omegaIdUserInfo?.givenName">
+              <span class="bitpay-name" *ngIf="omegaIdUserInfo && omegaIdUserInfo?.username">
                 {{ omegaIdUserInfo?.givenName }} {{ omegaIdUserInfo?.familyName }}
-                <div class="bitpay-email">{{ omegaIdUserInfo?.email }}</div>
+                <div class="bitpay-email">{{ omegaIdUserInfo?.username }}</div>
               </span>
             </span>
           </ion-label>

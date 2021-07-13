@@ -18,6 +18,9 @@
 	<ion-label stacked>{{ 'Password' | translate }}</ion-label>
 	<ion-input (ionChange)="changePassword(password)" [(ngModel)]="password" type="password" required></ion-input>
   </ion-item>
+  <ion-item class="errorbox" *ngIf="linkError">
+    <ion-label class="error-msg" stacked>Could not link account. Please check username and password and try again.</ion-label>
+    </ion-item>
   <button
     ion-button
     class="button-standard button-secondary omega-id-link__disconnect-button"
