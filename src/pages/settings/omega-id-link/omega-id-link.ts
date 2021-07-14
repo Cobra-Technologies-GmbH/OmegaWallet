@@ -21,7 +21,7 @@ export class OmegaIdLinkPage
     public username: string;
 	public password: string;
     public linkError: boolean;
-
+	
     constructor
     (
         private logger: Logger,
@@ -29,7 +29,8 @@ export class OmegaIdLinkPage
         private omegaIdProvider: OmegaIdProvider,
         private navCtrl: NavController
     )
-    {}
+    {
+	}
 
     async ionViewDidLoad()
     {
@@ -46,7 +47,7 @@ export class OmegaIdLinkPage
         this.password = password;
     }
 
-    public async linkOmegaId()
+	public async linkOmegaId()
     {
         this.logger.info('Linking OmegaID...');
         try

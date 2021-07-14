@@ -10,6 +10,7 @@
       width="40"
     />
   </div>
+  <div>
   <ion-item style="background: #121212; color: rgba(255, 255, 255, 0.6); border-bottom: 1px;">
     <ion-label stacked>{{ 'Username' | translate }}</ion-label>
     <ion-input (ionChange)="changeUsername(username)" [(ngModel)]="username" type="text" required></ion-input>
@@ -28,4 +29,5 @@
   >
     {{'Link' | translate}}
   </button>
+  </div>
 </ion-content>
