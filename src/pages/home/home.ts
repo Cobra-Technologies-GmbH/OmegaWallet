@@ -41,6 +41,7 @@ import { CardConfig } from '../../providers/gift-card/gift-card.types';
 // Pages
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { User } from '../../models/user/user.model';
+import { OmegaUserInfoType } from '../../providers/omega-id/omega-id';
 import { Network } from '../../providers/persistence/persistence';
 import { ExchangeCryptoPage } from '../exchange-crypto/exchange-crypto';
 import { BitPayCardIntroPage } from '../integrations/bitpay-card/bitpay-card-intro/bitpay-card-intro';
@@ -54,6 +55,8 @@ import { AddFundsPage } from '../onboarding/add-funds/add-funds';
 import { AmountPage } from '../send/amount/amount';
 import { AltCurrencyPage } from '../settings/alt-currency/alt-currency';
 import { BitPayIdPage } from '../settings/bitpay-id/bitpay-id';
+import { OmegaIdLinkPage } from '../settings/omega-id-link/omega-id-link';
+import { OmegaIdPage } from '../settings/omega-id/omega-id';
 
 export interface Advertisement {
   name: string;
@@ -105,6 +108,7 @@ export class HomePage {
   public testingAdsEnabled: boolean;
   public showCoinbase: boolean = false;
   public bitPayIdUserInfo: any;
+  public omegaIdUserInfo: OmegaUserInfoType;
   public accountInitials: string;
   public isCopay: boolean;
   private user$: Observable<User>;
@@ -170,7 +174,7 @@ export class HomePage {
     this.user$.subscribe(async user => {
       if (user) {
         this.bitPayIdUserInfo = user;
-        this.accountInitials = this.getBitPayIdInitials(user);
+        this.accountInitials = this.getOmegaIdInitials(user);
       }
     });
   }
@@ -227,17 +231,17 @@ export class HomePage {
 
   ionViewWillEnter() {
     const config = this.configProvider.get();
-    if (this.iabCardProvider.ref) {
-      // check for user info
-      this.persistenceProvider
-        .getBitPayIdUserInfo(this.network)
-        .then((user: User) => {
-          this.bitPayIdUserInfo = user;
-          if (user) {
-            this.accountInitials = this.getBitPayIdInitials(user);
-          }
-        });
-    }
+
+    this.persistenceProvider
+      .getOmegaIdUserInfo(this.network)
+      .then((user: OmegaUserInfoType) => 
+      {
+        this.omegaIdUserInfo = user;
+        if (user) {
+          this.accountInitials = this.getOmegaIdInitials(user);
+        }
+      });
+
     this.totalBalanceAlternativeIsoCode =
       config.wallet.settings.alternativeIsoCode;
     this.totalBalanceAlternativeIsoSymbol = this.setIsoSymbol(this.totalBalanceAlternativeIsoCode);
@@ -1021,6 +1025,16 @@ export class HomePage {
     }
   }
 
+  public openOmegaIdPage(): void {
+    if (this.omegaIdUserInfo) {
+      this.navCtrl.push(OmegaIdPage, this.omegaIdUserInfo);
+    }
+    else 
+    {
+      this.navCtrl.push(OmegaIdLinkPage);
+    }
+  }
+
   public openBitPayIdPage(): void {
     if (this.bitPayIdUserInfo) {
       this.navCtrl.push(BitPayIdPage, this.bitPayIdUserInfo);
@@ -1040,7 +1054,7 @@ export class HomePage {
     }
   }
 
-  private getBitPayIdInitials(user): string {
+  private getOmegaIdInitials(user): string {
     const { givenName, familyName } = user;
     return [givenName, familyName]
       .map(name => name && name.charAt(0).toUpperCase())

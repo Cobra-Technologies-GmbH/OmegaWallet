@@ -131,7 +131,6 @@ export class SettingsPage {
   }
 
   ngOnInit() {
-    if (this.isCordova) {
       // check for user info
       this.persistenceProvider
         .getOmegaIdUserInfo(this.network)
@@ -150,7 +149,6 @@ export class SettingsPage {
           this.bitpayCardItems = cards;
         }
       });
-    }
   }
 
   ionViewDidLoad() {

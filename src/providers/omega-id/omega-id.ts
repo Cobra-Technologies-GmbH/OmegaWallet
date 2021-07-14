@@ -92,7 +92,7 @@ export class OmegaIdProvider {
 				this.logger.warn("OmegaId - Token expired");
 				return null;
 			}
-			if(result.nbf && now < result.nbf)
+			if(result.nbf && now + 60 < result.nbf)
 			{
 				this.logger.warn("OmegaId - Token not valid yet");
 				return null;

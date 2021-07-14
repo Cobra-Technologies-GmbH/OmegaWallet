@@ -5,16 +5,16 @@
         {{ 'Home' | translate }}
       </div>
     </ion-title>
-    <ion-buttons *ngIf="isCordova && !isCopay" end>
+    <ion-buttons end>
       <button color="light" ion-button clear icon-only (click)="openOmegaIdPage()">
         <div [reveal-at-scroll-pos]="expandableHeader.headerHeight" [scrollArea]="scrollArea">
           <ion-icon *ngIf="!omegaIdUserInfo">
             <img src="assets/img/omega-card/icon-omega.svg" width="25">
           </ion-icon>
-          <ion-icon *ngIf="omegaIdUserInfo && !omegaIdUserInfo?.givenName">
-            <img src="assets/img/bitpay-card/icon-bitpay.svg" width="25">
+          <ion-icon *ngIf="omegaIdUserInfo && !omegaIdUserInfo?.username">
+            <img src="assets/img/omega-card/icon-omega.svg" width="25">
           </ion-icon>
-          <ion-icon *ngIf="omegaIdUserInfo && omegaIdUserInfo?.givenName">
+          <ion-icon *ngIf="omegaIdUserInfo && omegaIdUserInfo?.username">
             <span class="icon-bitpay-id icon-small">
               {{accountInitials}}
             </span>
