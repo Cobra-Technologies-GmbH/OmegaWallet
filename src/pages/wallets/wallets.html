@@ -1,12 +1,12 @@
-<ion-header class="bp-header">
+<ion-header>
   <ion-navbar>
     <ion-title>
       <div [reveal-at-scroll-pos]="expandableHeader.headerHeight" [scrollArea]="scrollArea">
         {{ 'Wallets' | translate }}
       </div>
     </ion-title>
-    <ion-buttons right class="settings-button" *ngIf="walletsGroups && walletsGroups[0]">
-      <button class="option-button disable-hover" (click)="showMoreOptions()" ion-button icon-only>
+    <ion-buttons end *ngIf="walletsGroups && walletsGroups[0]">
+      <button ion-button (click)="showMoreOptions()">
         <span translate>Options</span>
       </button>
       <button ion-button clear icon-only color="grey" *ngIf="txpsN > 0" (click)="openProposalsNotificationsPage()">
