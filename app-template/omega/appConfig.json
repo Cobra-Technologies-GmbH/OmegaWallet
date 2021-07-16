@@ -9,7 +9,7 @@
   "bundleName": "wallet",
   "appUri": "omega",
   "name": "omega",
-  "applePay": "<config-file mode=\"add\" parent=\"com.apple.developer.payment-pass-provisioning\" target=\"Entitlements-Release.plist\"><true /></config-file><config-file mode=\"add\" parent=\"com.apple.developer.in-app-payments\" target=\"Entitlements-Release.plist\"><array><string>merchant.eco.omega.wallet.applepay</string></array></config-file><config-file mode=\"add\" parent=\"com.apple.developer.pass-type-identifiers\" target=\"Entitlements-Release.plist\"><array><string>$(TeamIdentifierPrefix)*</string></array></config-file><config-file mode=\"add\" parent=\"com.apple.developer.associated-domains\" target=\"Entitlements-Release.plist\"><array><string>applinks:omegaapp.page.link</string></array></config-file>",
+  "applePay": "<config-file mode=\"add\" parent=\"com.apple.developer.in-app-payments\" target=\"Entitlements-Release.plist\"><array><string>merchant.eco.omega.wallet.applepay</string></array></config-file><config-file mode=\"add\" parent=\"com.apple.developer.pass-type-identifiers\" target=\"Entitlements-Release.plist\"><array><string>$(TeamIdentifierPrefix)*</string></array></config-file><config-file mode=\"add\" parent=\"com.apple.developer.associated-domains\" target=\"Entitlements-Release.plist\"><array><string>applinks:omegaapp.page.link</string></array></config-file>",
   "dynamicLink": "omegaapp.page.link",
   "nameNoSpace": "omega",
   "nameCase": "Omega",
