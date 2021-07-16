@@ -11,15 +11,9 @@
       </button>
     </ion-buttons>
     <ion-title>{{cardConfig?.displayName}}</ion-title>
-    <ion-buttons right>
-      <button
-        class="option-button"
-        clear
-        (click)="showMoreOptions()"
-        ion-button
-        icon-only
-      >
-      <span translate>Options</span>
+    <ion-buttons end>
+      <button class="option-button" clear (click)="showMoreOptions()" ion-button>
+        <span translate>Options</span>
       </button>
     </ion-buttons>
   </ion-navbar>
